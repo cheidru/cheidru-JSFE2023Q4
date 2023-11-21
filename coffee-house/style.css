@@ -20,6 +20,8 @@
     --text-dark: #403F3D;
     --border-dark: #665F55;
     --border-light: #C1B6AD;
+    --background-container: #665F55;
+    --background-body: #E1D4C9;
 }
 
 * {
