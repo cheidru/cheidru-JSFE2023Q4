@@ -20,7 +20,6 @@
     --text-dark: #403F3D;
     --border-dark: #665F55;
     --border-light: #C1B6AD;
-    --background-container: #665F55;
     --background-body: #E1D4C9;
 }
 
@@ -110,10 +109,11 @@ section {
     margin-bottom: 4px;
 }
 
-#header-menu img {
+#header-menu #coffee-cup-svg {
     width: 20px;
     height: 20px;
     align-self: top;
+    background-image: url(./assets/svg/coffee-cup.svg);
 }
 
 #hero {
@@ -378,7 +378,7 @@ section {
     gap: 20px;
 }
 
-#mobile-offer-pay button {
+#mobile-offer-pay [id$='-btn'] {
     width: 200px;
     height: auto;
     display: flex;

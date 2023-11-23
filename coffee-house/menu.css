@@ -22,7 +22,7 @@
     gap: 16px;
 }
 
-#menu-offer-btn-wrapper button {
+#menu-offer-btn-wrapper div {
     display: flex;
     padding: 8px 16px 8px 8px;
     justify-content: center;
@@ -33,10 +33,9 @@
     background-color: transparent;
 }
 
-#menu-offer-btn-wrapper button:first-child {
+#menu-offer-btn-wrapper > div:first-child {
     color: var(--text-light);
     font-feature-settings: 'clig' off, 'liga' off;
-    /* Desktop/Action/link & button */
     font-family: Inter;
     font-size: 16px;
     font-style: normal;
@@ -46,7 +45,7 @@
     border: none;
 }
 
-#menu-offer-btn-wrapper button div {
+#menu-offer-btn-wrapper > div div {
     width: 30px;
     height: 30px;
     display: flex;
@@ -59,18 +58,18 @@
     background-repeat: no-repeat;
 }
 
-#menu-offer-btn-wrapper button:first-child div {
+#menu-offer-btn-wrapper > div:first-child div {
     background: var(--background-body);
     background-image: url(./assets/svg/coffee-item.svg);
     background-position: center;
     background-repeat: no-repeat;
 }
 
-#menu-offer-btn-wrapper button:nth-child(2) div {
+#menu-offer-btn-wrapper > div:nth-child(2) div {
     background-image: url(./assets/svg/tea-item.svg);
 }
 
-#menu-offer-btn-wrapper button:last-child div {
+#menu-offer-btn-wrapper > div:last-child div {
     background-image: url(./assets/svg/dessert-item.svg);
 }
 
