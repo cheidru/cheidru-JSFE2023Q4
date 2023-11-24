@@ -90,7 +90,8 @@ section {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 40px;
+    padding-bottom: 2px;
+    gap: 43px;
 }
 
 #header-nav li {
@@ -125,7 +126,7 @@ section {
     height: auto;
     padding: 100px;
     border-radius: 40px;
-    background: url(./assets/pics/home/img-hero.jpg), lightgray 50% / cover no-repeat;
+    background: url(./assets/pics/home/img-hero.jpg) 0px -30px / cover no-repeat, lightgray 50% / cover no-repeat;
 }
 
 #hero-offer-wrapper {
@@ -153,8 +154,10 @@ section {
     font-style: normal;
     font-weight: 600;
     line-height: 105%;
+    letter-spacing: 1px;
     color: var(--text-light);
 }
+
 
 
 .heading-black span {
@@ -166,7 +169,7 @@ section {
 #hero button {
     display: flex;
     width: 200px;
-    padding: 20px 78px;
+    padding: 23px 78px;
     justify-content: center;
     align-items: center;
     gap: 8px;
@@ -184,6 +187,7 @@ section {
     font-style: normal;
     font-weight: 600;
     line-height: 125%; /* 75px */
+    letter-spacing: 0.7px;
 }
 .heading span {
     color: var(--text-accent);
@@ -193,9 +197,10 @@ section {
 #favourite-slider-wrapper {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
+    padding: 0 5px;
     height: auto;
 }
 
@@ -228,6 +233,11 @@ section {
     height: 100%;
 }
 
+#slider-item-wrapper img {
+    width: 480px;
+    height: 480px;
+}
+
 #favourite .heading {
     text-align: center;
 }
@@ -237,31 +247,30 @@ section {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    margin-bottom: 2px;
 }
 
 #slider-item-title {
     align-self: stretch;
+    padding-bottom: 6px;
     color: var(--text-dark, #403F3D);
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
-
-    /* Desktop/Heading/heading-3 */
     font-family: Inter;
     font-size: 24px;
-    font-style: normal;
-    font-weight: 600;
     line-height: 125%; /* 30px */
+    letter-spacing: 0.4px;
 }
 
 .item-description {
     align-self: stretch;
+    padding-bottom: 5px;
     color: var(--text-dark, #403F3D);
     text-align: center;
     font-feature-settings: 'clig' off, 'liga' off;
     /* Desktop/Body/medium */
     font-family: Inter;
     font-size: 16px;
-    font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 24px */
 }
@@ -300,6 +309,7 @@ section {
 
 #about .heading {
     align-self: stretch;
+    letter-spacing: 0.46px;
 }
 
 #about-image-wrapper {
@@ -360,7 +370,7 @@ section {
     height: auto;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 39px;
 }
 
 #mobile-offer .item-description {
@@ -456,7 +466,7 @@ section {
 #contact-offer .heading-black {
     font-size: 60px;
     line-height: 125%;
-
+    letter-spacing: 0.5px;
 }
 
 #contact-socials{
@@ -495,6 +505,7 @@ section {
     display: flex;
     flex-direction: column;
     gap: 40px;
+    letter-spacing: 0.25px;
 }
 
 #contact-list-title {
