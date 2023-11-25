@@ -29,9 +29,14 @@
     box-sizing: border-box;
   }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Inter;    
     background-color:darkgray;
+
 }
 
 #content-wrapper {
@@ -44,6 +49,11 @@ body {
     height: 100%;
     padding: 20px 40px 40px;
     background-color: var(--background-body);
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-dark);
 }
 
 main {
@@ -61,7 +71,7 @@ header {
     width: 100%;
 }
 
-section {
+section, #coffee-menu {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -99,7 +109,17 @@ section {
     width: fit-content;
 }
 
+
+#header-menu-wrapper a {
+    color: var(--text-dark, #403F3D);
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 150%; /* 24px */
+}
+
 #header-menu {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -166,7 +186,7 @@ section {
     font-style: italic;
 }
 
-#hero button {
+#hero #hero-btn {
     display: flex;
     width: 200px;
     padding: 23px 78px;
