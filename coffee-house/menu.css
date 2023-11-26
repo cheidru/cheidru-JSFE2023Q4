@@ -29,6 +29,11 @@
     height: auto;
     text-align: center;
     letter-spacing: 0.3px;
+    margin-left: -3px;
+}
+
+#menu-offer .heading::first-line {
+    margin-left: 0;
 }
 
 #menu-offer-btn-wrapper {
@@ -77,17 +82,17 @@
 
 #menu-offer-btn-wrapper > div:first-child div {
     background: var(--background-body);
-    background-image: url(./assets/svg/coffee-item.svg);
+    background-image: url(./assets/svg/menu/coffee-item.svg);
     background-position: center;
     background-repeat: no-repeat;
 }
 
 #menu-offer-btn-wrapper > div:nth-child(2) div {
-    background-image: url(./assets/svg/tea-item.svg);
+    background-image: url(./assets/svg/menu/tea-item.svg);
 }
 
 #menu-offer-btn-wrapper > div:last-child div {
-    background-image: url(./assets/svg/dessert-item.svg);
+    background-image: url(./assets/svg/menu/dessert-item.svg);
 }
 
 #coffee-menu {
@@ -113,7 +118,7 @@
 
 .menu-item:hover {
     transform: scale(97%);
-    transition: 0.4s;
+    transition: 500ms;
 }
 
 .menu-item-img {

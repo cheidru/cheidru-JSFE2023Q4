@@ -36,6 +36,7 @@ html {
 body {
     font-family: Inter;    
     background-color:darkgray;
+    user-select: none;
 
 }
 
@@ -93,7 +94,7 @@ section, #coffee-menu {
 #header-logo {
     width: 100px;
     height: 60px;
-    background-image: url(./assets/svg/logo.svg);
+    background-image: url(./assets/svg/header/logo.svg);
 }
 
 #header-nav ul {
@@ -111,7 +112,7 @@ section, #coffee-menu {
 
 
 #header-menu-wrapper a {
-    color: var(--text-dark, #403F3D);
+    color: var(--text-dark);
     font-family: Inter;
     font-size: 16px;
     font-weight: 600;
@@ -130,11 +131,18 @@ section, #coffee-menu {
     margin-bottom: 4px;
 }
 
+
+#header-menu:hover {
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--text-dark);
+    transform: translateY(3px);
+}
+
 #header-menu #coffee-cup-svg {
     width: 20px;
     height: 20px;
     align-self: top;
-    background-image: url(./assets/svg/coffee-cup.svg);
+    background-image: url(./assets/svg/header/coffee-cup.svg);
 }
 
 #hero {
@@ -167,6 +175,7 @@ section, #coffee-menu {
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 24px */
+    margin-top: 2px;
 }
 
 .heading-black {
@@ -179,25 +188,46 @@ section, #coffee-menu {
 }
 
 
-
 .heading-black span {
     align-self: stretch;
     color: var(--text-accent);
     font-style: italic;
 }
 
-#hero #hero-btn {
+#hero-btn {
     display: flex;
+    flex-direction: row;
     width: 200px;
-    padding: 23px 78px;
+    padding: 20px 78px;
     justify-content: center;
     align-items: center;
     gap: 8px;
-    font-size: 16px;
     border-radius: 100px;
     border: none;
     background: var(--background-body);
 }
+
+#hero-btn p {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 150%; 
+    color: #403F3D;
+}
+
+#hero-btn-cup {
+    display: none;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    background-image: url(./assets/svg/header/coffee-cup.svg);
+}
+
+#hero-btn:hover #hero-btn-cup {
+    display: block;
+}
+
+ 
 
 .heading {
     color: var(--text-dark);
@@ -232,6 +262,40 @@ section, #coffee-menu {
     align-items: center;
     border-radius: 100px;
     border: 1px solid var(--border-dark);
+    cursor: pointer;
+    transition: 500ms;
+}
+
+
+[id^="favourite-btn"]:hover {
+    background-color: #665F55;
+    border-radius: 100px;
+    border: none
+}
+
+
+#favourite-btn-left {
+    background-image: url(./assets/svg/home/arrow-left.svg);
+    background-size: 24px 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+#favourite-btn-left:hover {
+    background-image: url(./assets/svg/home/arrow-left-hover.svg);
+}
+
+#favourite-btn-right {
+    background-image: url(./assets/svg/home/arrow-right.svg);
+    background-size: 24px 24px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+#favourite-btn-right:hover {
+    background-image: url(./assets/svg/home/arrow-right-hover.svg);
 }
 
 #slider-content-wrapper {
@@ -347,34 +411,40 @@ section, #coffee-menu {
     height: 100%;
 }
 
-[id^="img-"] {
+
+[class^="img-"] {
     width: 660px;
+    display: flex;    
+    align-items: center;
+    justify-content: center;
     border-radius: 20px;
-    background-position: center;
+    overflow: hidden;
 }
 
-#img-11, #img-22 {
+img {
+    height: auto;
+    width: 726px;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.img-1 img:hover {
+    transform: scale(80%);
+    border-radius: 20px;
+}
+
+
+.img-2 img:hover {
+    transform: scale(60%);
+    border-radius: 5%;
+}
+
+.img-1 {
     height: 590px;
 }
 
-#img-12, #img-21 {
+.img-2 {
     height: 430px;
-}
-
-#img-11 {
-    background-image: url(./assets/pics/home/about-1.jpg);
-}
-
-#img-12 {
-    background-image: url(./assets/pics/home/about-2.jpg);
-}
-
-#img-21 {
-    background-image: url(./assets/pics/home/about-3.jpg);
-}
-
-#img-22 {
-    background-image: url(./assets/pics/home/about-4.jpg);
 }
 
 #mobile {
@@ -383,6 +453,7 @@ section, #coffee-menu {
     align-items: center;
     gap: 100px;
     height: auto;
+    margin-bottom: -2px;
 }
 
 #mobile-offer {
@@ -395,6 +466,7 @@ section, #coffee-menu {
 
 #mobile-offer .item-description {
     text-align: left;
+    padding-bottom: 2px;
 }
 
 #mobile-offer .heading {
@@ -406,6 +478,7 @@ section, #coffee-menu {
     flex-direction: row;
     justify-content: flex-start;
     gap: 20px;
+    padding-bottom: 5px;
 }
 
 #mobile-offer-pay [id$='-btn'] {
@@ -414,11 +487,22 @@ section, #coffee-menu {
     display: flex;
     flex-direction: row;
     gap: 8px;
-    padding: 12px 20px;
+    padding: 11px 20px;
     align-items: center;
     border-radius: 100px;
     border: 1px solid var(--border-dark);
     background-color: transparent;
+    transition: 500ms;
+    cursor: pointer;
+}
+
+#mobile-offer-pay [id$='-btn']:hover {
+    border: none;
+    background-color: #665F55;
+}
+
+#mobile-offer-pay [id$='-btn']:hover p {
+    color: #E1D4C9;
 }
 
 .pay-btn-img {
@@ -427,11 +511,19 @@ section, #coffee-menu {
 }
 
 #app-store-btn .pay-btn-img {
-    background-image: url(./assets/svg/app-store-icon.svg);
+    background-image: url(./assets/svg/home/app-store-icon.svg);
+}
+
+#app-store-btn:hover .pay-btn-img {
+    background-image: url(./assets/svg/home/app-store-icon-hover.svg);
 }
 
 #google-play-btn .pay-btn-img {
-    background-image: url(./assets/svg/google-play-icon.svg);
+    background-image: url(./assets/svg/home/google-play-icon.svg);
+}
+
+#google-play-btn:hover .pay-btn-img {
+    background-image: url(./assets/svg/home/google-play-icon-hover.svg);
 }
 
 .pay-btn-text {
@@ -505,18 +597,34 @@ section, #coffee-menu {
     border: 1px solid var(--border-light);
     background-repeat: no-repeat;
     background-position: center;
+    transition: 0.5s;
 }
 
 #twitter-btn {
-    background-image: url(./assets/svg/twitter.svg);
+    background-image: url(./assets/svg/footer/twitter.svg);
+}
+
+#twitter-btn:hover {
+    background-color: #E1D4C9;
+    background-image: url(./assets/svg/footer/twitter-hover.svg);
 }
 
 #instagram-btn {
-    background-image: url(./assets/svg/instagram.svg);
+    background-image: url(./assets/svg/footer/instagram.svg);
+}
+
+#instagram-btn:hover {
+    background-color: #E1D4C9;
+    background-image: url(./assets/svg/footer/instagram-hover.svg);
 }
 
 #facebook-btn {
-    background-image: url(./assets/svg/facebook.svg);
+    background-image: url(./assets/svg/footer/facebook.svg);
+}
+
+#facebook-btn:hover {
+    background-color: #E1D4C9;
+    background-image: url(./assets/svg/footer/facebook-hover.svg);
 }
 
 #contact-list {
@@ -543,28 +651,35 @@ section, #coffee-menu {
     line-height: 150%; /* 24px */
 }
 
-#contacts > div {
-    width: auto;
+#contacts a {
+    width: fit-content;
     height: auto;
     display: flex;
     flex-direction: row;
     gap: 8px;
-    padding-bottom: 4px; 
+    padding-bottom: 4px;
+    color: var(--text-light);
+    cursor: pointer;
 }
 
-#contacts > div > div {
+#contacts a:hover {
+    padding-bottom: 2px;
+    border-bottom: 2px solid var(--text-light);
+}
+
+#contacts a div {
     width: 20px;
     height: 20px;
 }
 
-#contacts-pin {
-    background-image: url(./assets/svg/pin-alt.svg);
+#contacts-pin div {
+    background-image: url(./assets/svg/footer/pin-alt.svg);
 }
 
-#contacts-phone {
-    background-image: url(./assets/svg/phone.svg);
+#contacts-phone div {
+    background-image: url(./assets/svg/footer/phone.svg);
 }
 
-#contacts-time {
-    background-image: url(./assets/svg/clock.svg);
+#contacts-time div {
+    background-image: url(./assets/svg/footer/clock.svg);
 }
