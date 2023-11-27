@@ -111,6 +111,13 @@ section, #coffee-menu {
 }
 
 
+#header-nav:hover li:hover {
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--text-dark);
+    transform: translateY(3px);
+}
+
+
 #header-menu-wrapper a {
     color: var(--text-dark);
     font-family: Inter;
@@ -429,14 +436,14 @@ img {
 }
 
 .img-1 img:hover {
-    transform: scale(80%);
-    border-radius: 20px;
+    transform: scale(90%);
+    /* border-radius: 20px; */
 }
 
 
 .img-2 img:hover {
-    transform: scale(60%);
-    border-radius: 5%;
+    transform: scale(90%);
+    /* border-radius: 5%; */
 }
 
 .img-1 {
@@ -651,7 +658,7 @@ img {
     line-height: 150%; /* 24px */
 }
 
-#contacts a {
+#contacts [id^="contacts-"] {
     width: fit-content;
     height: auto;
     display: flex;
@@ -662,12 +669,16 @@ img {
     cursor: pointer;
 }
 
+#contacts #contacts-time {
+    cursor: default;
+}
+
 #contacts a:hover {
     padding-bottom: 2px;
     border-bottom: 2px solid var(--text-light);
 }
 
-#contacts a div {
+[id^="contacts-"] div {
     width: 20px;
     height: 20px;
 }
