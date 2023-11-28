@@ -34,10 +34,9 @@ html {
 }
 
 body {
-    font-family: Inter;    
-    background-color:darkgray;
+    font-family: Inter;
+    background-color: var(--background-body);
     user-select: none;
-
 }
 
 #content-wrapper {
@@ -112,14 +111,35 @@ section, #coffee-menu {
     width: fit-content;
 }
 
-
-
 #header-menu-wrapper a {
     color: var(--text-dark);
     font-family: Inter;
     font-size: 16px;
     font-weight: 600;
     line-height: 150%; /* 24px */
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    transform: scaleX(0);
+    transition: 0.5s;
+}
+
+#header-menu-wrapper a::after {
+    background-color: var(--text-dark);
+}
+
+#header-menu-wrapper li:hover a::after {
+    transform: scaleX(1);
+}
+
+#header-menu:hover a::after {
+    transform: scaleX(1); 
 }
 
 #header-menu a {
@@ -223,8 +243,6 @@ section, #coffee-menu {
     display: block;
 }
 
- 
-
 .heading {
     color: var(--text-dark);
     font-feature-settings: 'clig' off, 'liga' off;
@@ -261,7 +279,6 @@ section, #coffee-menu {
     cursor: pointer;
     transition: 500ms;
 }
-
 
 [id^="favourite-btn"]:hover {
     background-color: #665F55;
@@ -570,7 +587,6 @@ img {
     gap: 40px;
 }
 
-
 #contact-offer .heading-black {
     font-size: 60px;
     line-height: 125%;
@@ -647,6 +663,22 @@ img {
     line-height: 150%; /* 24px */
 }
 
+.footer-link {
+    width: fit-content;
+}
+
+#contacts a {
+    position: relative;
+}
+
+#contacts .footer-link a::after {
+    background-color: var(--text-light);
+}
+
+#contacts .footer-link:hover a::after {
+    transform: scaleX(1);
+}
+
 #contacts [id^="contacts-"] {
     width: fit-content;
     height: auto;
@@ -661,23 +693,6 @@ img {
 #contacts #contacts-time {
     cursor: default;
 }
-
-#contacts .footer-link a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 100%;
-    height: 2px;
-    background-color: var(--text-light);
-    transform: scaleX(0);
-    transition: 0.5s;
-}
-
-#contacts .footer-link:hover a:after {
-    transform: scaleX(1);
-}
-
 
 [id^="contacts-"] .footer-link-img {
     width: 20px;
