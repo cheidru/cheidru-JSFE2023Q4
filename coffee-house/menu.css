@@ -1,10 +1,21 @@
-
-
 #content-wrapper, main {
     gap: 0;
 }
 
-#header-menu::after {
+
+#header-menu-menu {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 72px;
+    height: 24px;
+    margin-bottom: 4px;
+}
+
+#header-menu-menu::after {
     content: '';
     position: absolute;
     bottom: -4px;
@@ -14,12 +25,11 @@
     border: 1px solid var(--text-dark);
 }
 
-
-#header-menu:hover {
-    padding-bottom: 0;
-    transform: translateY(0);
-    cursor: default;
-    border-bottom: none;
+#header-menu-menu #coffee-cup-svg {
+    width: 20px;
+    height: 20px;
+    align-self: top;
+    background-image: url(./assets/svg/header/coffee-cup.svg);
 }
 
 #menu-offer {
