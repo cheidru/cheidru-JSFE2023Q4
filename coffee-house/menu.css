@@ -124,11 +124,6 @@
     cursor: pointer;
 }
 
-.menu-item:hover {
-    transform: scale(97%);
-    transition: 500ms;
-}
-
 .menu-item-img {
     width: 309px;
     height: 310px;
@@ -136,12 +131,13 @@
     border-radius: 40px;
     background-color: lightgray;
     background-size: 340px 340px;
-    background-position: -15px -17px;
+    background-position: center;
     background-repeat: no-repeat;
+    transition: 0.5s ease-in-out;
 }
 
 #coffee-menu #item-1 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-1.jpg);    
+    background-image: url(./assets/pics/menu/coffee-1.jpg);
 }
 
 #coffee-menu #item-2 .menu-item-img {
@@ -149,27 +145,31 @@
 }
 
 #coffee-menu #item-3 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-3.jpg); 
+    background-image: url(./assets/pics/menu/coffee-3.jpg);
 }
 
 #coffee-menu #item-4 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-4.jpg); 
+    background-image: url(./assets/pics/menu/coffee-4.jpg);
 }
 
 #coffee-menu #item-5 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-5.jpg); 
+    background-image: url(./assets/pics/menu/coffee-5.jpg);
 }
 
 #coffee-menu #item-6 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-6.jpg); 
+    background-image: url(./assets/pics/menu/coffee-6.jpg);
 }
 
 #coffee-menu #item-7 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-7.jpg); 
+    background-image: url(./assets/pics/menu/coffee-7.jpg);
 }
 
 #coffee-menu #item-8 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-8.jpg); 
+    background-image: url(./assets/pics/menu/coffee-8.jpg);
+}
+
+.menu-item:hover .menu-item-img {
+    background-size: 310px 310px;
 }
 
 .menu-item-descr {
