@@ -221,6 +221,7 @@ a::after {
     border-radius: 100px;
     border: none;
     background: var(--background-body);
+
 }
 
 #hero-btn p {
@@ -229,18 +230,24 @@ a::after {
     font-weight: 600;
     line-height: 150%; 
     color: #403F3D;
+    transition: 0.5s;
+    transform: translateX(14px);
 }
 
 #hero-btn-cup {
-    display: none;
     width: 20px;
     height: 20px;
     flex-shrink: 0;
     background-image: url(./assets/svg/header/coffee-cup.svg);
+    opacity: 0;
 }
 
 #hero-btn:hover #hero-btn-cup {
-    display: block;
+    opacity: 1;
+}
+
+#hero-btn:hover p {
+    transform: translateX(0);
 }
 
 .heading {
