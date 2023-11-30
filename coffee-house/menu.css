@@ -217,5 +217,49 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 150%; /* 24px */
+}
 
+#refresh-btn {
+    display: none;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 100px;
+    border-radius: 100px;
+    border: 1px solid var(--border-dark);
+    background-image: url(./assets/svg/menu/refresh.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+@media (max-width: 768px) {
+      
+    #header-menu-menu p,
+    #header-menu-menu div,
+    #header-menu-menu::after {
+        display: none;
+    }
+    
+    #header-menu-menu {
+        width: 44px;
+        height: 44px;
+        background-image: url(./assets/svg/header/burger-off.svg);
+    }
+        
+    #menu-offer .heading {
+        width: 100%;
+    }
+    
+    #coffee-menu {
+        grid-template-columns: 1fr 1fr;
+        padding-bottom: 40px;
+    }
+
+    #item-5, #item-6, #item-7, #item-8 {
+        display: none;
+    }
+        
+    #refresh-btn {
+        display: flex;
+    }
 }

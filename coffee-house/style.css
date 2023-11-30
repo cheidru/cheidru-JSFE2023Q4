@@ -13,14 +13,13 @@
 }
 
 :root {
-    --text-light: #E1D4C9;
     --background-body: #E1D4C9;
     --background-container: #665F55;
-    --text-accent: #B0907A;
-    --text-dark: #403F3D;
     --border-dark: #665F55;
     --border-light: #C1B6AD;
-    --background-body: #E1D4C9;
+    --text-accent: #B0907A;
+    --text-dark: #403F3D;
+    --text-light: #E1D4C9;
 }
 
 * {
@@ -717,3 +716,70 @@ img {
 #contacts-time .footer-link-img {
     background-image: url(./assets/svg/footer/clock.svg);
 }
+
+@media (max-width: 768px) {
+
+    #content-wrapper {
+        width: 768px;
+    }
+
+    #header-nav {
+        display: none;
+    }
+
+    #header-menu a {
+        display: none;
+    }
+
+    #header-menu {
+        width: 44px;
+        height: 44px;
+        background-image: url(./assets/svg/header/burger-off.svg);
+    }
+
+        
+    #hero-btn #hero-btn-cup {
+        opacity: 1;
+    }
+
+    #hero-btn p {
+        transform: translateX(0);
+    }
+
+    #hero {
+        padding: 100px 60px;
+    }
+
+    
+#slider-content-wrapper {
+    width: 480px;
+    /* max-width: 1162px; */
+}
+        
+    #about-image-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+        
+    .img-2 {
+        display: none;
+    }
+        
+    #mobile {
+        flex-direction: column;
+    }
+    
+    #contact {
+        flex-direction: column;
+        padding: 100px 60px;
+    }
+    
+    #mobile-image {
+        background-repeat: no-repeat;
+    }
+
+  }
+
+  @media (max-width: 380px) {
+    
+  }
