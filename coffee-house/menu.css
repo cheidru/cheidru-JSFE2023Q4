@@ -263,7 +263,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 380px) {
     #coffee-menu {
         grid-template-columns: 1fr;
         padding-bottom: 40px;
