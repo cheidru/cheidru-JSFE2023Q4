@@ -718,7 +718,6 @@ img {
 }
 
 @media (max-width: 768px) {
-
     #content-wrapper {
         width: 768px;
     }
@@ -788,23 +787,17 @@ img {
         margin-bottom: 5px;
         background-repeat: no-repeat;
     }
-
   }
 
-@media (max-width: 380px) {
-    
+@media (max-width: 380px) {    
     #content-wrapper {
         width: 380px;
         padding: 20px 16px;
     }
 
-    #header-menu-wrapper {
-        /* margin-top: -2px; */
-    }
-
     #hero {
-        margin-top: -5px;
-        padding: 60px 16px;
+        margin-top: -2px;
+        padding: 52px 16px 60px;
         background: url(./assets/pics/home/img-hero.jpg) center / 310% no-repeat, lightgray 50%;
     }
    
@@ -812,12 +805,17 @@ img {
         width: 100%;
     }
 
+    span {
+        margin-left: -4px;
+        margin-right: 4px;
+    }
+
+
     #hero-offer-wrapper h1 {
         letter-spacing: 0.5px;
         padding-top: 10px;
         margin-bottom: -5px;
     }
-
     
     .heading-black {
         color: var(--text-light, #E1D4C9);
@@ -838,7 +836,6 @@ img {
         padding: 0;
         overflow: hidden;
     }
-
             
     #slider-content-wrapper {
         width: 100%;
@@ -847,9 +844,22 @@ img {
     #slider-item-wrapper {
         width: 100%;
     }
+        
+    #slider-item-wrapper img {
+        width: 100%;
+        height: auto;
+    }
        
     #about-image-wrapper {
         overflow: hidden;        
+    }
+
+    #favourite {
+        margin-left: 8px;
+    }
+    
+    h2 {
+        letter-spacing: 0.5px;
     }
 
     .img-1 {
@@ -857,27 +867,39 @@ img {
         align-self: center;
         border-radius: 20px;
     }
+
+    #about .heading span {
+        margin-right: -2px;
+    }
         
     #mobile {
         flex-direction: column;
     }
-    
-    #contact {
-        flex-direction: column;
-        padding: 100px 60px;
+
+    #mobile-offer .heading {
+        padding-right: 0;
+        letter-spacing: 0.5px;
     }
         
     #mobile-offer-pay {
+        margin-top: -2px;
         flex-direction: column;
         padding-bottom: 0;
     }
 
     #mobile-image {
+        margin-left: 0;
         margin-top: -60px;
         width: 348px;
         height: 348px;
         background: url(./assets/pics/home/mobile-screens.png) center / contain no-repeat;
         /* background-image: url(./assets/pics/home/mobile-screens.png); */
+    }
+        
+    #contact {
+        margin-top: -2px;
+        flex-direction: column;
+        padding: 100px 60px;
     }
         
     #contact {

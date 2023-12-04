@@ -114,8 +114,7 @@
 
 #coffee-menu {
     width: 100%;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 0 10px;
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: repeat(4, 1fr);
@@ -268,5 +267,19 @@
         grid-template-columns: 1fr;
         padding-bottom: 40px;
     }
+
+    #menu-offer-btn-wrapper {
+        gap: 8px;
+    }
+
+    #menu-offer span {
+        padding-left: 6px;
+    }
+
+    
+#coffee-menu {
+    padding: 0 19px;
+    padding-bottom: 40px;
+}
 
 }
