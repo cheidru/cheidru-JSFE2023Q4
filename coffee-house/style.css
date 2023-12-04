@@ -133,13 +133,6 @@ a::after {
     background-color: var(--text-dark);
 }
 
-#header-menu-wrapper li:hover a::after {
-    transform: scaleX(1);
-}
-
-#header-menu:hover a::after {
-    transform: scaleX(1); 
-}
 
 #header-menu a {
     position: relative;
@@ -241,13 +234,6 @@ a::after {
     opacity: 0;
 }
 
-#hero-btn:hover #hero-btn-cup {
-    opacity: 1;
-}
-
-#hero-btn:hover p {
-    transform: translateX(0);
-}
 
 .heading {
     color: var(--text-dark);
@@ -286,13 +272,6 @@ a::after {
     transition: 500ms;
 }
 
-[id^="favourite-btn"]:hover {
-    background-color: #665F55;
-    border-radius: 100px;
-    border: none
-}
-
-
 #favourite-btn-left {
     background-image: url(./assets/svg/home/arrow-left.svg);
     background-size: 24px 24px;
@@ -300,21 +279,11 @@ a::after {
     background-repeat: no-repeat;
 }
 
-
-#favourite-btn-left:hover {
-    background-image: url(./assets/svg/home/arrow-left-hover.svg);
-}
-
 #favourite-btn-right {
     background-image: url(./assets/svg/home/arrow-right.svg);
     background-size: 24px 24px;
     background-position: center;
     background-repeat: no-repeat;
-}
-
-
-#favourite-btn-right:hover {
-    background-image: url(./assets/svg/home/arrow-right-hover.svg);
 }
 
 #slider-content-wrapper {
@@ -447,17 +416,6 @@ img {
     transition: 0.5s;
 }
 
-.img-1 img:hover {
-    transform: scale(90%);
-    /* border-radius: 20px; */
-}
-
-
-.img-2 img:hover {
-    transform: scale(90%);
-    /* border-radius: 5%; */
-}
-
 .img-1 {
     height: 590px;
 }
@@ -515,14 +473,6 @@ img {
     cursor: pointer;
 }
 
-#mobile-offer-pay [id$='-btn']:hover {
-    border: none;
-    background-color: #665F55;
-}
-
-#mobile-offer-pay [id$='-btn']:hover p {
-    color: #E1D4C9;
-}
 
 .pay-btn-img {
     width: 36px;
@@ -533,17 +483,10 @@ img {
     background-image: url(./assets/svg/home/app-store-icon.svg);
 }
 
-#app-store-btn:hover .pay-btn-img {
-    background-image: url(./assets/svg/home/app-store-icon-hover.svg);
-}
-
 #google-play-btn .pay-btn-img {
     background-image: url(./assets/svg/home/google-play-icon.svg);
 }
 
-#google-play-btn:hover .pay-btn-img {
-    background-image: url(./assets/svg/home/google-play-icon-hover.svg);
-}
 
 .pay-btn-text {
     display: flex;
@@ -622,27 +565,12 @@ img {
     background-image: url(./assets/svg/footer/twitter.svg);
 }
 
-#twitter-btn:hover {
-    background-color: #E1D4C9;
-    background-image: url(./assets/svg/footer/twitter-hover.svg);
-}
-
 #instagram-btn {
     background-image: url(./assets/svg/footer/instagram.svg);
 }
 
-#instagram-btn:hover {
-    background-color: #E1D4C9;
-    background-image: url(./assets/svg/footer/instagram-hover.svg);
-}
-
 #facebook-btn {
     background-image: url(./assets/svg/footer/facebook.svg);
-}
-
-#facebook-btn:hover {
-    background-color: #E1D4C9;
-    background-image: url(./assets/svg/footer/facebook-hover.svg);
 }
 
 #contact-list {
@@ -679,10 +607,6 @@ img {
 
 #contacts .footer-link a::after {
     background-color: var(--text-light);
-}
-
-#contacts .footer-link:hover a::after {
-    transform: scaleX(1);
 }
 
 #contacts [id^="contacts-"] {
@@ -911,5 +835,81 @@ img {
         font-size: 32px;
         letter-spacing: 0.3px;
     }
+}
 
+@media (hover:hover) and (pointer:fine) {
+    #header-menu-wrapper li:hover a::after {
+        transform: scaleX(1);
+    }
+    
+    #header-menu:hover a::after {
+        transform: scaleX(1); 
+    }
+    
+    #hero-btn:hover #hero-btn-cup {
+        opacity: 1;
+    }
+
+    #hero-btn:hover p {
+        transform: translateX(0);
+    }
+        
+    [id^="favourite-btn"]:hover {
+        background-color: var(--border-dark);
+        border: none;
+    }
+    
+    #favourite-btn-left:hover {
+        background-image: url(./assets/svg/home/arrow-left-hover.svg);
+    }
+    
+    #favourite-btn-right:hover {
+        background-image: url(./assets/svg/home/arrow-right-hover.svg);
+    }    
+    
+    .img-1 img:hover {
+        transform: scale(90%);
+        /* border-radius: 20px; */
+    }
+
+    .img-2 img:hover {
+        transform: scale(90%);
+        /* border-radius: 5%; */
+    }
+    
+    #mobile-offer-pay [id$='-btn']:hover {
+        border: none;
+        background-color: #665F55;
+    }
+
+    #mobile-offer-pay [id$='-btn']:hover p {
+        color: #E1D4C9;
+    }
+    
+    #app-store-btn:hover .pay-btn-img {
+        background-image: url(./assets/svg/home/app-store-icon-hover.svg);
+    }
+    
+    #google-play-btn:hover .pay-btn-img {
+        background-image: url(./assets/svg/home/google-play-icon-hover.svg);
+    }
+    
+    #twitter-btn:hover {
+        background-color: #E1D4C9;
+        background-image: url(./assets/svg/footer/twitter-hover.svg);
+    }
+    
+    #instagram-btn:hover {
+        background-color: #E1D4C9;
+        background-image: url(./assets/svg/footer/instagram-hover.svg);
+    }
+    
+    #facebook-btn:hover {
+        background-color: #E1D4C9;
+        background-image: url(./assets/svg/footer/facebook-hover.svg);
+    }
+    
+    #contacts .footer-link:hover a::after {
+        transform: scaleX(1);
+    }
 }
