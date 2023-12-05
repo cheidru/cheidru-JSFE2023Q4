@@ -176,10 +176,6 @@
     background-image: url(./assets/pics/menu/coffee-8.jpg);
 }
 
-.menu-item:hover .menu-item-img {
-    background-size: 310px 310px;
-}
-
 .menu-item-descr {
     display: flex;
     padding: 20px;
@@ -282,4 +278,10 @@
     padding-bottom: 40px;
 }
 
+}
+
+@media (hover:hover) and (pointer:fine) {
+    .menu-item:hover .menu-item-img {
+        background-size: 310px 310px;
+    }
 }
