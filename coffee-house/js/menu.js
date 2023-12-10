@@ -38,6 +38,7 @@ const menuBTNWrapper = document.getElementById('menu-offer-btn-wrapper');
 const menuBTN = document.querySelectorAll('.menu-offer-btn');
 const coffeeCupSVG = document.getElementById('coffee-cup-svg');
 const refreshBTN = document.getElementById('refresh-btn');
+const menuItem = document.querySelectorAll('.menu-item');
 
 
 let actualMenu = 0;
@@ -776,7 +777,6 @@ const products = [
         const prodItemPrice = prodTempl.getElementById('price');
         prodItemPrice.textContent = '$' + products[prodItemNumber].price;
         menu.appendChild(prodTempl);
-        // console.log('prodTempl = ', prodTempl, 'menu = ', menu);
     }
 }
 
@@ -814,11 +814,14 @@ refreshBTN.addEventListener('click', () => {
 
 window.addEventListener('resize', () => {
     let cupStyle =  getComputedStyle(coffeeCupSVG);
+
     let newShortMenu = cupStyle.display == 'none' && actualMenu !== 1 ? 4 : 0;
     if(newShortMenu !== shortMenu) {
         shortMenu = newShortMenu;
         fillProdMenu();
     }
+})
 
-    if (burgerMNUStyle.display == 'none' && burgerMenuON == true) hideBurgerMenu();
+menu.addEventListener('click', (event) => {
+  console.log('menu item clicked', 'event.target = ', event.target.parentElement.id, event.target.parentElement.parentElement.id);
 })
