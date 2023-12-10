@@ -208,6 +208,7 @@ a::after {
 }
 
 #hero {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -220,6 +221,14 @@ a::after {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+video {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: auto;
 }
 
 #hero-offer-wrapper {
@@ -232,6 +241,7 @@ a::after {
     gap: 40px;
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Inter;
+    z-index: 1;
 }
 
 #hero p {
@@ -270,7 +280,6 @@ a::after {
     border-radius: 100px;
     border: none;
     background: var(--background-body);
-
 }
 
 #hero-btn p {
