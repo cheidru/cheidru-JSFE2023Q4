@@ -13,8 +13,6 @@
 
 
 
-
-
 // The Modal with the description of a specific product opens when clicking on any part of a card of product
 
 // The part of the page outside the Modal is darkened
@@ -38,6 +36,8 @@ const menu = document.getElementById('product-menu');
 const productTemplate = document.getElementById('menu-prodict-template');
 const menuBTNWrapper = document.getElementById('menu-offer-btn-wrapper');
 const menuBTN = document.querySelectorAll('.menu-offer-btn');
+const coffeeCupSVG = document.getElementById('coffee-cup-svg');
+const refreshBTN = document.getElementById('refresh-btn');
 
 
 let actualMenu = 0;
@@ -49,6 +49,9 @@ const productPictures = [
     'dessert-1.png', 'dessert-2.png', 'dessert-3.png', 'dessert-4.png',
     'dessert-5.png', 'dessert-6.png', 'dessert-7.png', 'dessert-8.png',
 ];
+
+let cupStyle =  getComputedStyle(coffeeCupSVG);
+let shortMenu = cupStyle.display == 'none' ? 4 : 0;
 const products = [
     {
       "name": "Irish coffee",
@@ -754,9 +757,9 @@ const products = [
   function fillProdMenu() {
     menu.innerHTML = '';
 
-    console.log('fillProdMenu started', 'menuProdNumber[actualMenu] =', menuProdNumber[actualMenu], 'menuProdNumber[actualMenu + 1] =', menuProdNumber[actualMenu + 1]);
+    console.log('fillProdMenu started', 'menuProdNumber[actualMenu] =', menuProdNumber[actualMenu], 'menuProdNumber[actualMenu + 1] =', menuProdNumber[actualMenu + 1], 'shortMenu =', shortMenu);
 
-    for(let i = menuProdNumber[actualMenu]; i < menuProdNumber[actualMenu + 1]; i++) {
+    for(let i = menuProdNumber[actualMenu]; i < menuProdNumber[actualMenu + 1] - shortMenu; i++) {
         // Fill in product card
         let prodTempl = productTemplate.content.cloneNode(true);
         const prodItemId = prodTempl.querySelector('.menu-item');
@@ -780,7 +783,8 @@ const products = [
 fillProdMenu();
 
 menuBTNWrapper.addEventListener('click', (event) => {
-    console.log('menuBTNWrapper clicked', 'event.target =', event.target.parentElement.id);
+    let cupStyle =  getComputedStyle(coffeeCupSVG);
+    console.log('menuBTNWrapper clicked', 'event.target =', event.target.parentElement.id, 'coffeeCupSVG.style.display =', cupStyle.display);
     let newMenu = 0;
     if(event.target.parentElement.id == 'coffee') newMenu = 0;
     if(event.target.parentElement.id == 'tea') newMenu = 1;
@@ -790,6 +794,31 @@ menuBTNWrapper.addEventListener('click', (event) => {
         menuBTN[newMenu].classList.add('selected-btn');
         menuBTN[actualMenu].classList.remove('selected-btn');
         actualMenu = newMenu;
+        shortMenu = cupStyle.display == 'none' && actualMenu !== 1 ? 4 : 0;
+        if(actualMenu == 1) {
+          menu.style.gridTemplateRows = "1fr";
+          refreshBTN.style.display = 'none';
+        } else {
+          menu.style.gridTemplateRows = "1fr 1fr";
+          if (cupStyle.display == 'none') refreshBTN.style.display = 'flex';
+        }
         fillProdMenu();
     }
+})
+
+refreshBTN.addEventListener('click', () => {
+  shortMenu = 0;
+  refreshBTN.style.display = 'none';
+  fillProdMenu();
+})
+
+window.addEventListener('resize', () => {
+    let cupStyle =  getComputedStyle(coffeeCupSVG);
+    let newShortMenu = cupStyle.display == 'none' && actualMenu !== 1 ? 4 : 0;
+    if(newShortMenu !== shortMenu) {
+        shortMenu = newShortMenu;
+        fillProdMenu();
+    }
+
+    if (burgerMNUStyle.display == 'none' && burgerMenuON == true) hideBurgerMenu();
 })

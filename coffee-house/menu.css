@@ -241,29 +241,14 @@
         grid-template-columns: 1fr 1fr 1fr;
         /* padding-bottom: 40px; */
     }
-
-    #item-7, #item-8 {
-        display: none;
-    }
-            
-    #refresh-btn {
-        display: flex;
-    }
 }
-
 
 @media (max-width: 1080px) {        
     #product-menu {
         grid-template-columns: 1fr 1fr;
         padding-bottom: 40px;
     }
-
-    #item-5, #item-6 {
-        display: none;
-    }
 }
-
-
 
 @media (max-width: 768px) {
       
@@ -292,6 +277,11 @@
         
     #menu-offer .heading {
         width: 100%;
+    }
+    
+    #refresh-btn {
+        display: flex;
+        cursor: pointer;
     }
 }
 
