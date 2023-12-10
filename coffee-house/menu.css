@@ -70,9 +70,36 @@
     border-radius: 100px;
     border: 1px solid var(--border-light);
     background-color: transparent;
+    transition: 0.5s;
+    cursor: pointer;
 }
 
-#menu-offer-btn-wrapper > div:first-child {
+#menu-offer-btn-wrapper > .selected-btn {
+    color: var(--text-light);
+    font-feature-settings: 'clig' off, 'liga' off;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%; /* 24px */
+    background: var(--background-container);
+    border: none;    
+}
+
+#menu-offer-btn-wrapper > .selected-btn div {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    padding: 3px 7px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    background: var(--background-body);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#menu-offer-btn-wrapper > div:hover {
     color: var(--text-light);
     font-feature-settings: 'clig' off, 'liga' off;
     font-family: Inter;
@@ -82,6 +109,19 @@
     line-height: 150%; /* 24px */
     background: var(--background-container);
     border: none;
+}
+
+#menu-offer-btn-wrapper > div:hover div {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    padding: 3px 7px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    background: var(--background-body);
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #menu-offer-btn-wrapper > div div {
@@ -95,13 +135,11 @@
     background: var(--border-light);
     background-position: center;
     background-repeat: no-repeat;
+    transition: 0.5s;
 }
 
 #menu-offer-btn-wrapper > div:first-child div {
-    background: var(--background-body);
     background-image: url(./assets/svg/menu/coffee-item.svg);
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 #menu-offer-btn-wrapper > div:nth-child(2) div {
@@ -112,9 +150,10 @@
     background-image: url(./assets/svg/menu/dessert-item.svg);
 }
 
-#coffee-menu {
+#product-menu {
     width: 100%;
-    padding: 0 10px;
+    /* padding: 0 10px; */
+    gap: 40px;
     display: grid;
     grid-template-rows: 1fr 1fr;
     grid-template-columns: repeat(4, 1fr);
@@ -144,38 +183,6 @@
     background-position: center;
     background-repeat: no-repeat;
     transition: 0.5s ease-in-out;
-}
-
-#coffee-menu #item-1 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-1.jpg);
-}
-
-#coffee-menu #item-2 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-2.jpg);
-}
-
-#coffee-menu #item-3 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-3.jpg);
-}
-
-#coffee-menu #item-4 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-4.jpg);
-}
-
-#coffee-menu #item-5 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-5.jpg);
-}
-
-#coffee-menu #item-6 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-6.jpg);
-}
-
-#coffee-menu #item-7 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-7.jpg);
-}
-
-#coffee-menu #item-8 .menu-item-img {
-    background-image: url(./assets/pics/menu/coffee-8.jpg);
 }
 
 .menu-item-descr {
@@ -230,7 +237,7 @@
 
 @media (max-width: 1400px) {
         
-    #coffee-menu {
+    #product-menu {
         grid-template-columns: 1fr 1fr 1fr;
         /* padding-bottom: 40px; */
     }
@@ -246,7 +253,7 @@
 
 
 @media (max-width: 1080px) {        
-    #coffee-menu {
+    #product-menu {
         grid-template-columns: 1fr 1fr;
         padding-bottom: 40px;
     }
@@ -261,15 +268,26 @@
 @media (max-width: 768px) {
       
     #header-menu-menu p,
-    #header-menu-menu div,
+    #header-menu-menu div:first-child,
     #header-menu-menu::after {
         display: none;
     }
     
     #header-menu-menu {
+        position: relative;
+        display: flex;
         width: 44px;
         height: 44px;
-        background-image: url(./assets/svg/header/burger-off.svg);
+        justify-content: center;
+        align-items: center;
+        border-radius: 100px;
+        border: 1px solid var(--border-dark);
+        /* background-image: url(./assets/svg/header/burger-off.svg); */
+        cursor: pointer;
+    }
+
+    #header-menu-menu #coffee-cup-svg {
+        display: none;
     }
         
     #menu-offer .heading {
@@ -278,28 +296,16 @@
 }
 
 @media (max-width: 720px) {
-    #coffee-menu {
+    #product-menu {
         grid-template-columns: 1fr;
         padding-bottom: 40px;
     }
 
-    /* #menu-offer-btn-wrapper {
-        gap: 8px;
-    }
-
-    #menu-offer span {
-        padding-left: 6px;
-    }
-        
-    #coffee-menu {
-        padding: 0 19px;
-        padding-bottom: 40px;
-    } */
 }
 
 
 @media (max-width: 380px) {
-    #coffee-menu {
+    #product-menu {
         grid-template-columns: 1fr;
         padding-bottom: 40px;
     }
@@ -312,7 +318,7 @@
         padding-left: 6px;
     }
         
-    #coffee-menu {
+    #product-menu {
         padding: 0 19px;
         padding-bottom: 40px;
     }
