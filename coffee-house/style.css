@@ -773,8 +773,7 @@ video {
         align-items: center;
         border-radius: 100px;
         border: 1px solid var(--border-dark);
-        /* background-image: url(./assets/svg/header/burger-off.svg); */
-        cursor: pointer;
+         cursor: pointer;
     }
 
     #burger-mnu {
@@ -857,6 +856,11 @@ video {
 }
 
 @media (max-width: 680px) {
+
+        
+    #burger-mnu {
+        width: 680px;
+    }
    
     #hero-offer-wrapper {
         width: 100%;
@@ -921,11 +925,24 @@ video {
         flex-direction: column;
         padding-bottom: 0;
     }
+    
+    #burger-mnu {
+        width: 500px;
+        height: 724px;
+        padding: 60px 16px;
+    }
 }
 
 @media (max-width: 380px) {    
     #content-wrapper {
         padding: 20px 16px;
+    }
+
+    #burger-mnu {
+        top: calc(100% + 15px);
+        width: 380px;
+        height: 724px;
+        padding: 60px 16px;
     }
 
     #hero {
