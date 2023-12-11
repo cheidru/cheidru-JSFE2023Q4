@@ -743,6 +743,11 @@ video {
         width: 100%;
         height: auto;
         margin-top: -5px;
+    }    
+
+    video {
+        min-height: 100%;
+        object-fit: cover;
     }
 }
 

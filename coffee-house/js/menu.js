@@ -34,11 +34,18 @@
 
 const menu = document.getElementById('product-menu');
 const productTemplate = document.getElementById('menu-prodict-template');
-const menuBTNWrapper = document.getElementById('menu-offer-btn-wrapper');
+const coffeeBTN = document.getElementById('coffee');
+const teaBTN = document.getElementById('tea');
+const dessertBTN = document.getElementById('dessert');
+
+
+
+
 const menuBTN = document.querySelectorAll('.menu-offer-btn');
 const coffeeCupSVG = document.getElementById('coffee-cup-svg');
 const refreshBTN = document.getElementById('refresh-btn');
 const menuItem = document.querySelectorAll('.menu-item');
+const modal = document.getElementById('modal');
 
 
 let actualMenu = 0;
@@ -782,29 +789,38 @@ const products = [
 
 fillProdMenu();
 
-menuBTNWrapper.addEventListener('click', (event) => {
-    let cupStyle =  getComputedStyle(coffeeCupSVG);
-    console.log('menuBTNWrapper clicked', 'event.target =', event.target.parentElement.id, 'coffeeCupSVG.style.display =', cupStyle.display);
-    let newMenu = 0;
-    if(event.target.parentElement.id == 'coffee') newMenu = 0;
-    if(event.target.parentElement.id == 'tea') newMenu = 1;
-    if(event.target.parentElement.id == 'dessert') newMenu = 2;
+coffeeBTN.addEventListener('click', (event) => {
+  let newMenu = 0;
+  if(newMenu !== actualMenu) changeMNU(newMenu);
+});
 
-    if(newMenu !== actualMenu) {
-        menuBTN[newMenu].classList.add('selected-btn');
-        menuBTN[actualMenu].classList.remove('selected-btn');
-        actualMenu = newMenu;
-        shortMenu = cupStyle.display == 'none' && actualMenu !== 1 ? 4 : 0;
-        if(actualMenu == 1) {
-          menu.style.gridTemplateRows = "1fr";
-          refreshBTN.style.display = 'none';
-        } else {
-          menu.style.gridTemplateRows = "1fr 1fr";
-          if (cupStyle.display == 'none') refreshBTN.style.display = 'flex';
-        }
-        fillProdMenu();
-    }
-})
+teaBTN.addEventListener('click', (event) => {
+  let newMenu = 1;
+  if(newMenu !== actualMenu) changeMNU(newMenu);
+});
+
+dessertBTN.addEventListener('click', (event) => {
+  let newMenu = 2;
+  if(newMenu !== actualMenu) changeMNU(newMenu);
+});
+
+
+function changeMNU(newMenu) {
+
+  menuBTN[newMenu].classList.add('selected-btn');
+  menuBTN[actualMenu].classList.remove('selected-btn');
+  console.log('newMenu =', newMenu, 'actualMenu =', actualMenu, menuBTN);
+  actualMenu = newMenu;
+  shortMenu = cupStyle.display == 'none' && actualMenu !== 1 ? 4 : 0;
+  if(actualMenu == 1) {
+    menu.style.gridTemplateRows = "1fr";
+    refreshBTN.style.display = 'none';
+  } else {
+    menu.style.gridTemplateRows = "1fr 1fr";
+    if (cupStyle.display == 'none') refreshBTN.style.display = 'flex';
+  }
+  fillProdMenu();
+}
 
 refreshBTN.addEventListener('click', () => {
   shortMenu = 0;
@@ -822,6 +838,19 @@ window.addEventListener('resize', () => {
     }
 })
 
-menu.addEventListener('click', (event) => {
+menu.addEventListener('click', (event) => {  
   console.log('menu item clicked', 'event.target = ', event.target.parentElement.id, event.target.parentElement.parentElement.id);
+  console.log((event.target.parentElement.id).slice(5), (event.target.parentElement.parentElement.id).slice(5));
+  if(event.target.parentElement.id.includes('item-')) fillModal((event.target.parentElement.id).slice(6));
+  if(event.target.parentElement.parentElement.id.includes('item-')) fillModal((event.target.parentElement.parentElement.id).slice(6));
+  showModal();
 })
+
+function fillModal(itemID) {
+  console.log('fillModal for ', itemID);
+
+}
+
+function showModal() {
+  
+}

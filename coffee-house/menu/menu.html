@@ -12,33 +12,65 @@
 </head>
 <body>
     <div id="power-layer" class="hidden-modal"></div>
+
     <div id="modal" class="hidden-modal">
-        <div id="big-modal-img"></div>
-        <div id="big-modal-wrapper">
-            <p id="title">Irish coffee</p>
-            <p id="recipe">Fragrant black coffee with Jameson Irish whiskey and whipped milk</p>
-            <p id="size">Size</p>
-            <div id="sizes">
-                <div id="size-1"></div>
-                <div id="size-2"></div>
-                <div id="size-3"></div>
+    <!-- <div id="modal"> -->
+        <div id="modal-img"></div>
+        <div id="modal-wrapper">
+            <div id="head">
+                <p id="head-title" class="modal-title">Irish coffee</p>
+                <p id="recipe">Fragrant black coffee with Jameson Irish whiskey and whipped milk</p>
             </div>
-            <p id="additive">Additives</p>
-            <div id="additives">
-                <div id="additive-1"></div>
-                <div id="additive-2"></div>
-                <div id="additive-3"></div>
+            <div id="size" class="modal-body choose">
+                <p>Size</p>
+                <div class="modal-buttons" id="sizes">
+                    <div class="menu-modal-btn selected-btn" id="size-1">
+                        <div>S</div>
+                        <p>200 ml</p>
+                    </div>
+                    <div class="menu-modal-btn" id="size-2">
+                        <div>M</div>
+                        <p>300 ml</p>
+                    </div>
+                    <div class="menu-modal-btn" id="size-3">
+                        <div>L</div>
+                        <p>400 ml</p>
+                    </div>
+                </div>
             </div>
-            <div id="total"><p>Total:</p><p>$7.00</p></div>
-            <div id="alert">
-                <div id="alert-ico"></div>
+
+            <div id="additive" class="modal-body choose">
+                <p>Additives</p>
+                <div class="modal-buttons" id="additives">
+                    <div class="menu-modal-btn" id="additive-1">
+                        <div>1</div>
+                        <p>Sugar</p>
+                    </div>
+                    <div class="menu-modal-btn" id="additive-2">
+                        <div>2</div>
+                        <p>Cinnamon</p>
+                    </div>
+                    <div class="menu-modal-btn" id="additive-3">
+                        <div>3</div>
+                        <p>Syrup</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal-total" class="modal-title">
+                <p>Total:</p><p>$7.00</p>
+            </div>
+
+            <div id="modal-alert">
+                <div id="alert-ico">
+                </div>
                 <div id="alert-text">
                     The cost is not final. Download our mobile app to see the final price 
                     and place your order. Earn loyalty points and enjoy your favorite coffee 
                     with up to 20% discount.
                 </div>
-            <div id="close-btn"></div>
             </div>
+            <div id="close-btn" class="modal-body">Close</div>
         </div>
     </div>
 
@@ -82,7 +114,7 @@
         <main>
             <section id="menu-offer">
                 <h1 class="heading">Behind each of our cups hides an <span>amazing surprise</span></h1>
-                <div id="menu-offer-btn-wrapper">
+                <div class="menu-offer-btn-wrapper">
                     <div class="menu-offer-btn selected-btn" id="coffee">
                         <div></div>
                         <p>Coffee</p>
