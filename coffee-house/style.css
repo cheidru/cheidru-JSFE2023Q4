@@ -150,7 +150,7 @@ a::after {
     background: var(--background-body);
     transform: translateX(1000px);
     transition: 1s;
-    z-index: 1;
+    z-index: 2;
 }
 
 #burger-mnu-btn {
