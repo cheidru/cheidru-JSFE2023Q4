@@ -37,15 +37,30 @@ const productTemplate = document.getElementById('menu-prodict-template');
 const coffeeBTN = document.getElementById('coffee');
 const teaBTN = document.getElementById('tea');
 const dessertBTN = document.getElementById('dessert');
+const anyWhere = document.querySelector('body');
 
-
+const modal = document.getElementById('modal');
+const powerLayer = document.getElementById('power-layer');
+const modalWindow = document.getElementById('modal');
+const modalPicture = document.getElementById('modal-img');
+const modalTitle = document.getElementById('head-title');
+const modalDescr = document.getElementById('recipe');
+const modalSval = document.getElementById('s-value');
+const modalMval = document.getElementById('m-value');
+const modalLval = document.getElementById('l-value');
+const modalOneval = document.getElementById('1-value');
+const modalTwoval = document.getElementById('2-value');
+const modalThreeval = document.getElementById('3-value');
+const modalPrice = document.getElementById('total-price-value');
+const modalCloseBTN = document.getElementById('close-btn');
 
 
 const menuBTN = document.querySelectorAll('.menu-offer-btn');
 const coffeeCupSVG = document.getElementById('coffee-cup-svg');
 const refreshBTN = document.getElementById('refresh-btn');
 const menuItem = document.querySelectorAll('.menu-item');
-const modal = document.getElementById('modal');
+
+
 
 
 let actualMenu = 0;
@@ -849,8 +864,35 @@ menu.addEventListener('click', (event) => {
 function fillModal(itemID) {
   console.log('fillModal for ', itemID);
 
+  modalPicture.style.backgroundImage = `url(./assets/pics/menu/${productPictures[itemID]})`;
+  modalTitle.textContent = products[itemID].name;
+  modalDescr.textContent = products[itemID].description;
+  modalPrice.textContent = "$" + products[itemID].price;
+  modalSval.textContent = products[itemID].sizes.s.size;
+  modalMval.textContent = products[itemID].sizes.m.size;
+  modalLval.textContent = products[itemID].sizes.l.size;
+  modalOneval.textContent = products[itemID].additives[0].name;
+  modalTwoval.textContent = products[itemID].additives[1].name;
+  modalThreeval.textContent = products[itemID].additives[2].name;
+  console.log('products[itemID].additives[2].name = ', products[itemID].additives[2].name);
 }
 
 function showModal() {
-  
+  console.log('showModal started');
+  powerLayer.classList.remove('hidden-modal');
+  modalWindow.classList.remove('hidden-modal');
+  powerLayer.style.display = 'flex';
+  anyWhere.style.overflow = 'hidden';
+  modalWindow.style.display = 'flex';
+}
+
+modalCloseBTN.addEventListener('click', () => (closeModal()));
+powerLayer.addEventListener('click', () => (closeModal()));
+
+function closeModal() {
+  powerLayer.classList.add('hidden-modal');
+  modalWindow.classList.add('hidden-modal');
+  powerLayer.style.display = 'none';
+  anyWhere.style.overflow = 'unset';
+  modalWindow.style.display = 'none';
 }
