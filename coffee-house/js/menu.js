@@ -5,28 +5,10 @@ const teaBTN = document.getElementById('tea');
 const dessertBTN = document.getElementById('dessert');
 const anyWhere = document.querySelector('body');
 
-const modal = document.getElementById('modal');
-const powerLayer = document.getElementById('power-layer');
-const modalWindow = document.getElementById('modal');
-const modalPicture = document.getElementById('modal-img');
-const modalTitle = document.getElementById('head-title');
-const modalDescr = document.getElementById('recipe');
-const modalSval = document.getElementById('s-value');
-const modalMval = document.getElementById('m-value');
-const modalLval = document.getElementById('l-value');
-const modalOneval = document.getElementById('1-value');
-const modalTwoval = document.getElementById('2-value');
-const modalThreeval = document.getElementById('3-value');
-const modalPrice = document.getElementById('total-price-value');
-const modalCloseBTN = document.getElementById('close-btn');
-
-
 const menuBTN = document.querySelectorAll('.menu-offer-btn');
 const coffeeCupSVG = document.getElementById('coffee-cup-svg');
 const refreshBTN = document.getElementById('refresh-btn');
 const menuItem = document.querySelectorAll('.menu-item');
-
-
 
 
 let actualMenu = 0;
@@ -785,7 +767,6 @@ dessertBTN.addEventListener('click', (event) => {
   if(newMenu !== actualMenu) changeMNU(newMenu);
 });
 
-
 function changeMNU(newMenu) {
 
   menuBTN[newMenu].classList.add('selected-btn');
@@ -827,24 +808,96 @@ menu.addEventListener('click', (event) => {
   showModal();
 })
 
-function fillModal(itemID) {
-  console.log('fillModal for ', itemID);
+// Modal window section
 
+const modal = document.getElementById('modal');
+const powerLayer = document.getElementById('power-layer');
+const modalWindow = document.getElementById('modal');
+const modalPicture = document.getElementById('modal-img');
+const modalTitle = document.getElementById('head-title');
+const modalDescr = document.getElementById('recipe');
+const modalSval = document.getElementById('s-value');
+const modalMval = document.getElementById('m-value');
+const modalLval = document.getElementById('l-value');
+const modalOneval = document.getElementById('1-value');
+const modalTwoval = document.getElementById('2-value');
+const modalThreeval = document.getElementById('3-value');
+const modalPrice = document.getElementById('total-price-value');
+const modalCloseBTN = document.getElementById('close-btn');
+
+let selectedProduct = {};
+selectedProduct.price = products[itemID].price;
+selectedProduct.finalprice = products[itemID].price;
+selectedProduct.ID = 0;
+selectedProduct.size = 0;
+selectedProduct.additive = '';
+
+function fillModal(itemID) {
+  selectedProduct.ID = itemID;
   modalPicture.style.backgroundImage = `url(./assets/pics/menu/${productPictures[itemID]})`;
   modalTitle.textContent = products[itemID].name;
   modalDescr.textContent = products[itemID].description;
-  modalPrice.textContent = "$" + products[itemID].price;
+  modalPrice.textContent = "$" + selectedProduct.price;
   modalSval.textContent = products[itemID].sizes.s.size;
   modalMval.textContent = products[itemID].sizes.m.size;
   modalLval.textContent = products[itemID].sizes.l.size;
   modalOneval.textContent = products[itemID].additives[0].name;
   modalTwoval.textContent = products[itemID].additives[1].name;
   modalThreeval.textContent = products[itemID].additives[2].name;
-  console.log('products[itemID].additives[2].name = ', products[itemID].additives[2].name);
+}
+
+function updateModal(option) {
+  let updateSize = false;
+  let updateAdditive = false;
+  switch(option) {
+    case 'S':
+      if (selectedProduct.size !== 0) {
+        selectedProduct.finalprice = selectedProduct.size == 1 ? selectedProduct.finalprice - 0.50: selectedProduct.finalprice - 1.00;
+        selectedProduct.size = 0;
+        updateSize = true;
+      }
+    break;
+    case 'M':
+      if (selectedProduct.size !== 1) {
+        selectedProduct.finalprice = selectedProduct.size == 2 ? selectedProduct.finalprice - 0.50: selectedProduct.finalprice + 0.50;
+        selectedProduct.size = 1;
+        updateSize = true;
+      }
+    break;
+    case 'L':
+      if (selectedProduct.size !== 2) {
+        selectedProduct.finalprice = selectedProduct.size == 0 ? selectedProduct.finalprice + 1.00: selectedProduct.finalprice + 0.50;
+        selectedProduct.size = 2;
+        updateSize = true;
+      }
+    break;
+    case 'O':
+      if (!selectedProduct.additive.includes('O')) {
+        selectedProduct.additive = selectedProduct.additive + 'O';
+        selectedProduct.finalprice = selectedProduct.finalprice + 0.50;
+        updateAdditive = true;
+      }
+    break;
+    case 'T':
+      if (!selectedProduct.additive.includes('T')) {
+        selectedProduct.additive = selectedProduct.additive + 'T';
+        selectedProduct.finalprice = selectedProduct.finalprice + 0.50;
+        updateAdditive = true;
+      }
+    break;
+    case 'E':
+      if (!selectedProduct.additive.includes('E')) {
+        selectedProduct.additive = selectedProduct.additive + 'E';
+        selectedProduct.finalprice = selectedProduct.finalprice + 0.50;
+        updateAdditive = true;
+      }
+    break;
+
+    
+  }
 }
 
 function showModal() {
-  console.log('showModal started');
   powerLayer.classList.remove('hidden-modal');
   modalWindow.classList.remove('hidden-modal');
   powerLayer.style.display = 'flex';
@@ -862,3 +915,10 @@ function closeModal() {
   anyWhere.style.overflow = 'unset';
   modalWindow.style.display = 'none';
 }
+
+modalSval.addEventListener('click', () => {updateModal('S')});
+modalMval.addEventListener('click', () => {updateModal('M')});
+modalLval.addEventListener('click', () => {updateModal('L')});
+modalOneval.addEventListener('click', () => {updateModal('O')});
+modalTwoval.addEventListener('click', () => {updateModal('T')});
+modalThreeval.addEventListener('click', () => {updateModal('E')});

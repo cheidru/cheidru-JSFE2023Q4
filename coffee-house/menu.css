@@ -121,16 +121,6 @@
     background: var(--background-body);    
 }
 
-.menu-modal-btn:not(.selected-btn):hover {
-    color: var(--text-light);
-    background: var(--background-container);
-    border: none;
-}
-
-.menu-modal-btn:not(.selected-btn):hover div{
-    color: var(--text-dark);
-    background: var(--background-body);  
-}
 
 #modal-total {
     display: flex;
@@ -177,10 +167,6 @@
     transition: 0.7s;
 }
 
-#close-btn:hover {
-    color: var(--text-light);
-    background: var(--background-container);
-}
 
 #head {
     display: flex;
@@ -287,30 +273,6 @@
     background-repeat: no-repeat;
 }
 
-.menu-offer-btn-wrapper > div:hover {
-    color: var(--text-light);
-    font-feature-settings: 'clig' off, 'liga' off;
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 150%; /* 24px */
-    background: var(--background-container);
-    border: none;
-}
-
-.menu-offer-btn-wrapper > div:hover div {
-    width: 30px;
-    height: 30px;
-    display: flex;
-    padding: 3px 7px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 100px;
-    background: var(--background-body);
-    background-position: center;
-    background-repeat: no-repeat;
-}
 
 .menu-offer-btn-wrapper > div div {
     width: 30px;
@@ -505,5 +467,46 @@
 @media (hover:hover) and (pointer:fine) {
     .menu-item:hover .menu-item-img {
         background-size: 310px 310px;
+    }
+    
+    .menu-modal-btn:not(.selected-btn):hover {
+        color: var(--text-light);
+        background: var(--background-container);
+        border: none;
+    }
+
+    .menu-modal-btn:not(.selected-btn):hover div{
+        color: var(--text-dark);
+        background: var(--background-body);  
+    }
+    
+    #close-btn:hover {
+        color: var(--text-light);
+        background: var(--background-container);
+    }
+    
+    .menu-offer-btn-wrapper > div:hover {
+        color: var(--text-light);
+        font-feature-settings: 'clig' off, 'liga' off;
+        font-family: Inter;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 150%; /* 24px */
+        background: var(--background-container);
+        border: none;
+    }
+
+    .menu-offer-btn-wrapper > div:hover div {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        padding: 3px 7px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 100px;
+        background: var(--background-body);
+        background-position: center;
+        background-repeat: no-repeat;
     }
 }
