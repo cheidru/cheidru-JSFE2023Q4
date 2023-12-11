@@ -1,37 +1,3 @@
-// Заполняем активный раздел продуктами
-// When switching categories, the products of the selected category are displayed
-
-// For screens with a width of 768px or less, when opening/reloading the page or 
-// switching categories, only 4 products are displayed. If there are more than 4 products 
-// in the displayed category, a Load More button is displayed below
-
-// When clicking the Load More button below the displayed products, the missing products are added, 
-// and the Load More button is hidden
-
-// When changing the screen width, the product display mode (8 products per page or 4 products with 
-// a Load More button) changes without page reloading
-
-
-
-// The Modal with the description of a specific product opens when clicking on any part of a card of product
-
-// The part of the page outside the Modal is darkened
-
-// When the Modal is open, the vertical scroll of the page becomes inactive; when closed, it becomes active again
-
-// Clicking on the area around the Modal and Close button closes it
-
-// The Modal is centered on both axes, sizes of modal elements and their layout match the design
-
-// After the Modal is opened, the 'Size' option 'S' is selected, and no option in the 'Additives' section is selected. 
-// The product's final price is the same as in the card
-
-// Only one 'Size' option can be selected. Changing this option also changes the final price of the product based on 
-// the choice (+$0.00 for S, +$0.50 for M, +$1.00 for L):
-
-// Multiple 'Additives' options can be selected, and each selected option increases 
-// the final price of the product by $0.50
-
 const menu = document.getElementById('product-menu');
 const productTemplate = document.getElementById('menu-prodict-template');
 const coffeeBTN = document.getElementById('coffee');

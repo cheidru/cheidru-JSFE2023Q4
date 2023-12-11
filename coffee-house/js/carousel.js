@@ -1,23 +1,3 @@
-// Carousel elements are automatically scroll to the left with 
-// a specified time interval by default. The time interval duration 
-// is at the student's choose, but the recommended value is 5-7 seconds
-
-// The current state until the next automatic switch is shown in 
-// the progress bar of the corresponding slide by filling it with color
-// When hovering the mouse or touch-and-hold on the displayed carousel element, 
-// the time to the element switch is paused. When the mouse cursor moves out, 
-// or the hold ends, the time continues from where it stopped
-
-// The switch slides is accompanied by like the carousel animation 
-// (the method of animation execution is not verified) ???
-
-// Manual switching in the corresponding direction is implemented by 
-// pressing left arrow button or right arrow button
-// For mobile devices, manual switching in the corresponding direction 
-// is additionally implemented by swiping left or right
-// When manually switching, the progress bar state of the switched slide resets, 
-// and the progress bar of the displayed slide starts to fill
-
 const sliderItem = document.querySelectorAll('.slider-item');
 const leftBTN_FAV = document.getElementById('favourite-btn-left');
 const rightBTN_FAV = document.getElementById('favourite-btn-right');
@@ -52,7 +32,7 @@ function scrollSlider() {
     bullet_FAV[currentItem_FAV.number].style.background = 'var(--border-light)';
     currentItem_FAV.number = currentItem_FAV.number === 2 ? 0 : currentItem_FAV.number + 1;
     sliderItemWrapper.style.transform = `translateX(${currentItem_FAV.number * -33.3}%)`;
-    console.log('scrollSlider', 'currentItem_FAV.number =', currentItem_FAV.number);
+    // console.log('scrollSlider', 'currentItem_FAV.number =', currentItem_FAV.number);
 }
 
 function scrollSliderBack() {
