@@ -11,6 +11,68 @@
  
 </head>
 <body>
+    <div id="power-layer" class="hidden-modal"></div>
+
+    <div id="modal" class="hidden-modal">
+        <div id="modal-img"></div>
+        <div id="modal-wrapper">
+            <div id="head">
+                <p id="head-title" class="modal-title">Irish coffee</p>
+                <p id="recipe">Fragrant black coffee with Jameson Irish whiskey and whipped milk</p>
+            </div>
+            <div id="size" class="modal-body choose">
+                <p>Size</p>
+                <div class="modal-buttons" id="sizes">
+                    <div class="menu-modal-btn selected-btn" id="size-1">
+                        <div>S</div>
+                        <p id="s-value">200 ml</p>
+                    </div>
+                    <div class="menu-modal-btn" id="size-2">
+                        <div>M</div>
+                        <p id="m-value">300 ml</p>
+                    </div>
+                    <div class="menu-modal-btn" id="size-3">
+                        <div>L</div>
+                        <p id="l-value">400 ml</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="additive" class="modal-body choose">
+                <p>Additives</p>
+                <div class="modal-buttons" id="additives">
+                    <div class="menu-modal-btn" id="additive-1">
+                        <div>1</div>
+                        <p id="1-value">Sugar</p>
+                    </div>
+                    <div class="menu-modal-btn" id="additive-2">
+                        <div>2</div>
+                        <p id="2-value">Cinnamon</p>
+                    </div>
+                    <div class="menu-modal-btn" id="additive-3">
+                        <div>3</div>
+                        <p id="3-value">Syrup</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal-total" class="modal-title">
+                <p>Total:</p><p id="total-price-value">$7.00</p>
+            </div>
+
+            <div id="modal-alert">
+                <div id="alert-ico">
+                </div>
+                <div id="alert-text">
+                    The cost is not final. Download our mobile app to see the final price 
+                    and place your order. Earn loyalty points and enjoy your favorite coffee 
+                    with up to 20% discount.
+                </div>
+            </div>
+            <div id="close-btn" class="modal-body">Close</div>
+        </div>
+    </div>
+
     <div id="content-wrapper">
         <header>
             <div id="header-menu-wrapper">
@@ -28,6 +90,21 @@
                 <div id="header-menu-menu">
                     <p>Menu</p>
                     <div id="coffee-cup-svg"></div>
+                    <div id="burger-btn-bar-one"></div>
+                    <div id="burger-btn-bar-two"></div>
+                </div>              
+
+                <div id="burger-mnu">
+                    <ul>
+                        <li><a href="#favourite">Favorite coffee</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#mobile">Mobile app</a></li>
+                        <li><a href="#contact">Contact us</a></li>
+                    </ul>
+                    <a id="burger-mnu-btn" href="./menu/menu.html">
+                        <p>Menu</p>
+                        <img id="butger-mnu-cup" src="./assets/svg/burger-mnu-coffee-cup.svg" alt="cup icon">
+                    </a>
                 </div>
             </div>
 
@@ -36,88 +113,35 @@
         <main>
             <section id="menu-offer">
                 <h1 class="heading">Behind each of our cups hides an <span>amazing surprise</span></h1>
-                <div id="menu-offer-btn-wrapper">
-                    <div id="menu-offer-btn-coffee">
+                <div class="menu-offer-btn-wrapper">
+                    <div class="menu-offer-btn selected-btn" id="coffee">
                         <div></div>
                         <p>Coffee</p>
                     </div>
-                    <div id="menu-offer-btn-tea">
+                    <div class="menu-offer-btn" id="tea">
                         <div></div>
                         <p>Tea</p>
                     </div>
-                    <div id="menu-offer-btn-dessert">
+                    <div class="menu-offer-btn" id="dessert">
                         <div></div>
                         <p>Dessert</p>
                     </div>
                 </div>
             </section>
 
-            <div id="coffee-menu">
-                 <div class="menu-item" id="item-1">
-                    <div class="menu-item-img"></div>
-                    <div class="menu-item-descr">
-                        <p>Irish coffee</p>
-                        <p>Fragrant black coffee with Jameson Irish whiskey and whipped milk</p>
-                        <p>$7.00</p>
-                    </div>
-                 </div>
-                 <div class="menu-item" id="item-2">
-                    <div class="menu-item-img"></div>
-                    <div class="menu-item-descr">
-                        <p>Kahlua coffee</p>
-                        <p>Classic coffee with milk and Kahlua liqueur under a cap of frothed milk</p>
-                        <p>$7.00</p>
-                    </div>
-                 </div>
-                 <div class="menu-item" id="item-3">
-                    <div class="menu-item-img"></div>
-                    <div class="menu-item-descr">
-                        <p>Honey raf</p>
-                        <p>Espresso with frothed milk, cream and aromatic honey</p>
-                        <p>$5.50</p>
-                    </div>
-                 </div>
-                 <div class="menu-item" id="item-4">
-                    <div class="menu-item-img"></div>
-                    <div class="menu-item-descr">
-                        <p>Ice cappuccino</p>
-                        <p>Cappuccino with soft thick foam in summer version with ice</p>
-                        <p>$5.00</p>
-                    </div>
-                 </div>
-                 <div class="menu-item" id="item-5">
-                    <div class="menu-item-img"></div>
-                    <div class="menu-item-descr">
-                        <p>Espresso</p>
-                        <p>Classic black coffee</p>
-                        <p>$4.50</p>
-                    </div>
-                 </div>
-                 <div class="menu-item" id="item-6">
-                    <div class="menu-item-img"></div>
-                    <div class="menu-item-descr">
-                        <p>Latte</p>
-                        <p>Espresso coffee with the addition of steamed milk and dense milk foam</p>
-                        <p>$5.50</p>
-                    </div>
-                 </div>
-                 <div class="menu-item" id="item-7">
-                    <div class="menu-item-img"></div>
-                    <div class="menu-item-descr">
-                        <p>Latte macchiato</p>
-                        <p>Espresso with frothed milk and chocolate</p>
-                        <p>$5.50</p>
-                    </div>
-                 </div>
-                 <div class="menu-item" id="item-8">
-                    <div class="menu-item-img"></div>
-                    <div class="menu-item-descr">
-                        <p>Coffee with cognac</p>
-                        <p>Fragrant black coffee with cognac and whipped cream</p>
-                        <p>$6.50</p>
-                    </div>
-                 </div>
+            <div id="product-menu">
             </div>
+
+            <template id="menu-prodict-template">
+                <div class="menu-item" id="item-">
+                    <div class="menu-item-img"></div>
+                    <div class="menu-item-descr">
+                        <p id="title">Irish coffee</p>
+                        <p id="recipe">Fragrant black coffee with Jameson Irish whiskey and whipped milk</p>
+                        <p id="price">$7.00</p>
+                    </div>
+                 </div>
+            </template>
                  
             <div id="refresh-btn"></div>
 
@@ -159,5 +183,7 @@
             </div>
         </footer>
     </div>
+    <script src="./js/burger.js"></script>
+    <script src="./js/menu.js"></script>
 </body>
 </html>
