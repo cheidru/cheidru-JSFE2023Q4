@@ -15,7 +15,7 @@ let scrollOnHold = false;
 scroller();
 
 function scroller() {
-    console.log('scroller started', 'currentItem_FAV.number =', currentItem_FAV.number);
+    // console.log('scroller started', 'currentItem_FAV.number =', currentItem_FAV.number);
     bullet_FAV[currentItem_FAV.number].style.background = 'var(--border-light)';
         currentItem_FAV.bulletTimerID = setInterval(updateBulletState, bulUpdateInterval * 1000);
         currentItem_FAV.itemTimerID = setInterval(scrollSlider, scrollInterval * 1000);
@@ -40,14 +40,14 @@ function scrollSliderBack() {
     bullet_FAV[currentItem_FAV.number].style.background = 'var(--border-light)';
     currentItem_FAV.number = currentItem_FAV.number === 0 ? 2 : currentItem_FAV.number - 1;
     sliderItemWrapper.style.transform = `translateX(${currentItem_FAV.number * -33.3}%)`;
-    console.log('scrollSliderBack', 'currentItem_FAV.number =', currentItem_FAV.number);
+    // console.log('scrollSliderBack', 'currentItem_FAV.number =', currentItem_FAV.number);
 }
 
 function holdScrolling() {
     clearInterval(currentItem_FAV.bulletTimerID);
     clearInterval(currentItem_FAV.itemTimerID);
     scrollOnHold = true;
-    console.log('sholdScrollin', 'currentItem_FAV.number =', currentItem_FAV.number);
+    // console.log('sholdScrollin', 'currentItem_FAV.number =', currentItem_FAV.number);
 }
 
 function resumeScrolling(scrollToNext, scroller) {
