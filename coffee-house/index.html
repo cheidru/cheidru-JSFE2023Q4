@@ -28,11 +28,28 @@
                         <p>Menu</p>
                         <div id="coffee-cup-svg"></div>
                     </a>
+                    <div id="burger-btn-bar-one"></div>
+                    <div id="burger-btn-bar-two"></div>
+                </div>
+
+
+                <div id="burger-mnu">
+                    <ul>
+                        <li><a href="#favourite">Favorite coffee</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#mobile">Mobile app</a></li>
+                        <li><a href="#contact">Contact us</a></li>
+                    </ul>
+                    <a id="burger-mnu-btn" href="./menu/menu.html">
+                        <p>Menu</p>
+                        <img id="butger-mnu-cup" src="./assets/svg/burger-mnu-coffee-cup.svg" alt="cup icon">
+                    </a>
                 </div>
 
             </div>
 
             <div id="hero">
+                <video src="./assets/video (360p).mp4" autoplay muted loop type="video/mp4"></video>
                 <div id="hero-offer-wrapper">
                     <h1 class="heading-black"><span>Enjoy</span> premium coffee at our charming cafe</h1>
 
@@ -54,17 +71,47 @@
                     <div id="favourite-btn-left"></div>
 
                     <div id="slider-content-wrapper">
-                        <div id="slider-item-wrapper">
-                            <img src="./assets/pics/home/coffee-slider-1.png" alt="S'mores Frappuccino image">
-                            <div id="slider-item-data">
-                                <p id="slider-item-title">S’mores Frappuccino</p>
-                                <p class="item-description">
-                                    This new drink takes an espresso and mixes it with 
-                                    brown sugar and cinnamon before being topped with 
-                                    oat milk.</p>
-                                <p id="slider-item-price">$5.50</p>
+                        <div id="slider-item-wrapper-window">
+
+                            <div id="slider-item-wrapper">
+                                <div class="slider-item" id="slider-item-1">
+                                    <img src="./assets/pics/home/coffee-slider-1.png" alt="S'mores Frappuccino image">
+                                    <div id="slider-item-data">
+                                        <p id="slider-item-title">S’mores Frappuccino</p>
+                                        <p class="item-description">
+                                            This new drink takes an espresso and mixes it with 
+                                            brown sugar and cinnamon before being topped with 
+                                            oat milk.</p>
+                                        <p id="slider-item-price">$5.50</p>
+                                    </div>
+                                </div>
+    
+                                <div class="slider-item" id="slider-item-2">
+                                    <img src="./assets/pics/home/coffee-slider-2.png" alt="S'mores Frappuccino image">
+                                    <div id="slider-item-data">
+                                        <p id="slider-item-title">Caramel Macchiato</p>
+                                        <p class="item-description">
+                                            Fragrant and unique classic espresso with rich caramel-peanut syrup, 
+                                            with cream under whipped thick foam.</p>
+                                        <p id="slider-item-price">$5.00</p>
+                                    </div>
+                                </div>
+    
+                                <div class="slider-item" id="slider-item-3">
+                                    <img src="./assets/pics/home/coffee-slider-3.png" alt="S'mores Frappuccino image">
+                                    <div id="slider-item-data">
+                                        <p id="slider-item-title">Ice coffee</p>
+                                        <p class="item-description">
+                                            A popular summer drink that tones and invigorates. Prepared from coffee, 
+                                            milk and ice.</p>
+                                        <p id="slider-item-price">$4.50</p>
+                                    </div>
+                                </div>
+    
                             </div>
+
                         </div>
+
                     </div>
 
                     <div id="favourite-btn-right"></div>
@@ -172,5 +219,7 @@
             </div>
         </footer>
     </div>
+    <script src="./js/burger.js"></script>
+    <script src="./js/carousel.js"></script>
 </body>
 </html>
