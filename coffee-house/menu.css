@@ -403,7 +403,12 @@
 @media (max-width: 768px) {
        
     #modal {
-        width: 688px;
+        width: 100%;
+        margin: 16px;
+    }
+
+    #modal-wrapper {
+        flex-shrink: 1;
     }
       
     #header-menu-menu p,
@@ -450,6 +455,11 @@
 @media (max-width: 380px) {
     #modal {
         width: 100%;
+        margin: 16px;
+    }
+
+    #modal-wrapper {
+        flex-shrink: 1;
     }
     
     #modal-img {
