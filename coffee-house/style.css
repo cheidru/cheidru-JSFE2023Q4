@@ -975,6 +975,19 @@ video {
         font-size: 32px;
     }
 
+    
+    #slider-item-wrapper {
+        width: auto;
+    }
+
+    .slider-item .item-description {
+        width: 320px;
+    } 
+            
+    .slider-item img {
+        width: 360px;
+        height: auto;
+    }
        
     #about-image-wrapper {
         overflow: hidden;        
