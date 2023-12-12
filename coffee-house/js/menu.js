@@ -826,8 +826,8 @@ const modalPrice = document.getElementById('total-price-value');
 const modalCloseBTN = document.getElementById('close-btn');
 
 let selectedProduct = {};
-selectedProduct.price = products[itemID].price;
-selectedProduct.finalprice = products[itemID].price;
+selectedProduct.price = products[0].price;
+selectedProduct.finalprice = products[0].price;
 selectedProduct.ID = 0;
 selectedProduct.size = 0;
 selectedProduct.additive = '';
@@ -853,6 +853,7 @@ function updateModal(option) {
     case 'S':
       if (selectedProduct.size !== 0) {
         selectedProduct.finalprice = selectedProduct.size == 1 ? selectedProduct.finalprice - 0.50: selectedProduct.finalprice - 1.00;
+        switchSize(selectedProduct.size, 0);
         selectedProduct.size = 0;
         updateSize = true;
       }
@@ -860,6 +861,7 @@ function updateModal(option) {
     case 'M':
       if (selectedProduct.size !== 1) {
         selectedProduct.finalprice = selectedProduct.size == 2 ? selectedProduct.finalprice - 0.50: selectedProduct.finalprice + 0.50;
+        switchSize(selectedProduct.size, 1);
         selectedProduct.size = 1;
         updateSize = true;
       }
@@ -867,6 +869,7 @@ function updateModal(option) {
     case 'L':
       if (selectedProduct.size !== 2) {
         selectedProduct.finalprice = selectedProduct.size == 0 ? selectedProduct.finalprice + 1.00: selectedProduct.finalprice + 0.50;
+        switchSize(selectedProduct.size, 2);
         selectedProduct.size = 2;
         updateSize = true;
       }
@@ -876,6 +879,9 @@ function updateModal(option) {
         selectedProduct.additive = selectedProduct.additive + 'O';
         selectedProduct.finalprice = selectedProduct.finalprice + 0.50;
         updateAdditive = true;
+      } else {
+        selectedProduct.additive = selectedProduct.additive.split('O').join('');
+        selectedProduct.finalprice = selectedProduct.finalprice - 0.50;
       }
     break;
     case 'T':
@@ -883,6 +889,9 @@ function updateModal(option) {
         selectedProduct.additive = selectedProduct.additive + 'T';
         selectedProduct.finalprice = selectedProduct.finalprice + 0.50;
         updateAdditive = true;
+      } else {
+        selectedProduct.additive = selectedProduct.additive.split('T').join('');
+        selectedProduct.finalprice = selectedProduct.finalprice - 0.50;
       }
     break;
     case 'E':
@@ -890,12 +899,20 @@ function updateModal(option) {
         selectedProduct.additive = selectedProduct.additive + 'E';
         selectedProduct.finalprice = selectedProduct.finalprice + 0.50;
         updateAdditive = true;
+      } else {
+        selectedProduct.additive = selectedProduct.additive.split('E').join('');
+        selectedProduct.finalprice = selectedProduct.finalprice - 0.50;
       }
     break;
 
+    function switchSize(oldSize, newSize) {
+
+    }
+
+    }
     
   }
-}
+
 
 function showModal() {
   powerLayer.classList.remove('hidden-modal');
