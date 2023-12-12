@@ -401,6 +401,10 @@
 }
 
 @media (max-width: 768px) {
+       
+    #modal {
+        width: 688px;
+    }
       
     #header-menu-menu p,
     #header-menu-menu div:first-child,
@@ -444,10 +448,20 @@
 
 
 @media (max-width: 380px) {
+    #modal {
+        width: 100%;
+    }
+    
+    #modal-img {
+        display: none;
+    }
+
     #product-menu {
         grid-template-columns: 1fr;
         padding-bottom: 40px;
     }
+
+
 
     .menu-offer-btn-wrapper {
         gap: 8px;
