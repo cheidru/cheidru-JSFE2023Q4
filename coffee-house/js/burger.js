@@ -8,6 +8,14 @@ const page = document.querySelector('body');
 
 let burgerMenuON = false;
 
+
+burgerHomeMenu.addEventListener('click', (event) => {
+    console.log(event.target.parentNode.tagName);
+    if (event.target.parentNode.tagName == 'LI' || event.target.parentNode == burgerMenuBTN) {
+        hideBurgerMenu();        
+    }
+})
+
 if(burgerHomeBTN) {
     burgerHomeBTN.addEventListener('click', () => {
         let burgerMNUStyle = getComputedStyle(burgerHomeMenu);
@@ -16,23 +24,6 @@ if(burgerHomeBTN) {
         }
     })
 }
-
-burgerHomeMenu.addEventListener('click', (event) => {
-    console.log(event.target.parentNode.tagName);
-    if (event.target.parentNode.tagName == 'LI' || event.target.parentNode == burgerMenuMenuBTN) {
-        hideBurgerMenu();        
-    }
-})
-
-if(burgerMenuBTN) {
-    burgerMenuBTN.addEventListener('click', () => {
-        let burgerMNUStyle = getComputedStyle(burgerHomeMenu);
-        if(burgerMNUStyle.display == 'flex') {
-            burgerMenuON == false ? showBurgerMenuMenu() : hideBurgerMenuMenu();
-        }
-    })
-}
-
 
 function showBurgerMenu() {
     burgerHomeMenu.classList.add('engaged');
@@ -46,6 +37,16 @@ function hideBurgerMenu() {
     burgerMenuON = false;
 }
 
+
+if(burgerMenuBTN) {
+    burgerMenuBTN.addEventListener('click', () => {
+        let burgerMNUStyle = getComputedStyle(burgerHomeMenu);
+        if(burgerMNUStyle.display == 'flex') {
+            burgerMenuON == false ? showBurgerMenuMenu() : hideBurgerMenuMenu();
+        }
+    })
+}
+
 function showBurgerMenuMenu() {
     burgerHomeMenu.classList.add('engaged');
     burgerMenuBTN.classList.add('engaged');
@@ -57,6 +58,7 @@ function hideBurgerMenuMenu() {
     burgerMenuBTN.classList.remove('engaged');
     burgerMenuON = false;
 }
+
 
 window.addEventListener('resize', () => {
     let burgerMNUStyle = getComputedStyle(burgerHomeMenu);
