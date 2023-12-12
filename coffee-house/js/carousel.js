@@ -87,6 +87,23 @@ sliderItem[1].addEventListener('mouseleave', () => {resumeScrolling(scrollSlider
 sliderItem[2].addEventListener('mouseover', () => {holdScrolling()});
 sliderItem[2].addEventListener('mouseleave', () => {resumeScrolling(scrollSlider, scroller);});
 
-leftBTN_FAV.addEventListener('click', () =>{scrollSliderBack();});
-rightBTN_FAV.addEventListener('click', () => {scrollSlider();});
+leftBTN_FAV.addEventListener('click', scrollSliderBack, false);
+rightBTN_FAV.addEventListener('click', scrollSlider, false);
 
+// Swipe section
+
+let x1 = 0;
+
+sliderItemWrapper.addEventListener('touchstart', touchHandler, false);
+sliderItemWrapper.addEventListener('touchmove', swipeHandler, false);
+
+function touchHandler(event) {
+    x1 = event.touches[0].clientX;
+}
+
+function swipeHandler(event) {
+    let x2 = event.touches[0].clientX;
+
+    if (x2 - x1 > 40) scrollSlider();
+    if (x2 - x1 < 40) scrollSliderBack();
+}
