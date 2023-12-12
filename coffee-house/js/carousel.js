@@ -93,17 +93,29 @@ rightBTN_FAV.addEventListener('click', scrollSlider, false);
 // Swipe section
 
 let x1 = 0;
+let x2 = 0;
 
-sliderItemWrapper.addEventListener('touchstart', touchHandler, false);
-sliderItemWrapper.addEventListener('touchmove', swipeHandler, false);
-
-function touchHandler(event) {
+sliderItemWrapper.addEventListener('touchstart', (event) => {
     x1 = event.touches[0].clientX;
-}
+    console.log('touch at x1 ', x1);
+    sliderItemWrapper.addEventListener('touchmove', (event) => {
+        event.preventDefault();
+        x2 = event.touches[0].clientX;
+    }, false);
 
-function swipeHandler(event) {
-    let x2 = event.touches[0].clientX;
+    sliderItemWrapper.addEventListener('touchend', (event) => {
 
-    if (x2 - x1 > 40) scrollSlider();
-    if (x2 - x1 < 40) scrollSliderBack();
-}
+        if (x2 - x1 > 20) {
+            console.log('scroll right');
+            scrollSlider();
+
+        }
+        if (x2 - x1 < 20) {
+            console.log('scroll left');
+            scrollSliderBack();
+
+        }
+        console.log('move to x2 ', x2);
+    }, false);
+    
+}, false);
