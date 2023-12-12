@@ -940,7 +940,8 @@ video {
 
     #burger-mnu {
         top: calc(100% + 15px);
-        width: 380px;
+        left: 16px;
+        width: 100vw;
         height: 724px;
         padding: 60px 16px;
     }
