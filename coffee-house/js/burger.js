@@ -63,6 +63,8 @@ function hideBurgerMenuMenu() {
 window.addEventListener('resize', () => {
     let burgerMNUStyle = getComputedStyle(burgerHomeMenu);
     let pageStyle = getComputedStyle(page);
-    if (burgerMNUStyle.display == 'none' && burgerMenuON == true) hideBurgerMenu();
-    if (parseInt(pageStyle.width) > 768) hideBurgerMenu();
+    if (burgerMNUStyle.display == 'none' && burgerMenuON && burgerHomeBTN) hideBurgerMenu();
+    if (burgerMNUStyle.display == 'none' && burgerMenuON && burgerMenuBTN) hideBurgerMenuMenu();
+    if (parseInt(pageStyle.width) > 768  && burgerHomeBTN) hideBurgerMenu();
+    if (parseInt(pageStyle.width) > 768  && burgerMenuBTN) hideBurgerMenuMenu();
 })

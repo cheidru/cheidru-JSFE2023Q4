@@ -727,9 +727,7 @@ const products = [
 
   function fillProdMenu() {
     menu.innerHTML = '';
-
-    console.log('fillProdMenu started', 'menuProdNumber[actualMenu] =', menuProdNumber[actualMenu], 'menuProdNumber[actualMenu + 1] =', menuProdNumber[actualMenu + 1], 'shortMenu =', shortMenu);
-
+    
     for(let i = menuProdNumber[actualMenu]; i < menuProdNumber[actualMenu + 1] - shortMenu; i++) {
         // Fill in product card
         let prodTempl = productTemplate.content.cloneNode(true);
@@ -737,7 +735,6 @@ const products = [
         // generate id to define product for further handling
         prodItemId.setAttribute('id', 'item-' + actualMenu + i);
         const prodItemNumber = i;
-        console.log('prodItemNumber =', prodItemNumber);
         const prodItemPicture = prodTempl.querySelector('.menu-item-img');
         prodItemPicture.style.backgroundImage = `url(./assets/pics/menu/${productPictures[prodItemNumber]})`;
         const prodItemTitle = prodTempl.getElementById('title');
@@ -811,6 +808,7 @@ menu.addEventListener('click', (event) => {
 // Modal window section
 
 const modal = document.getElementById('modal');
+const modalButtons = document.querySelectorAll('.menu-modal-btn');
 const powerLayer = document.getElementById('power-layer');
 const modalWindow = document.getElementById('modal');
 const modalPicture = document.getElementById('modal-img');
@@ -825,6 +823,15 @@ const modalThreeval = document.getElementById('3-value');
 const modalPrice = document.getElementById('total-price-value');
 const modalCloseBTN = document.getElementById('close-btn');
 
+
+const modalMBTN = modalMval.parentElement;
+const modalSBTN = modalSval.parentElement;
+const modalLBTN = modalLval.parentElement;
+const modalOneBTN = modalOneval.parentElement;
+const modalTwoBTN = modalTwoval.parentElement;
+const modalThreeBTN = modalThreeval.parentElement;
+
+
 let selectedProduct = {};
 selectedProduct.price = products[0].price;
 selectedProduct.finalprice = products[0].price;
@@ -834,6 +841,8 @@ selectedProduct.additive = '';
 
 function fillModal(itemID) {
   selectedProduct.ID = itemID;
+  selectedProduct.price = products[itemID].price;
+  selectedProduct.finalprice = products[itemID].price;
   modalPicture.style.backgroundImage = `url(./assets/pics/menu/${productPictures[itemID]})`;
   modalTitle.textContent = products[itemID].name;
   modalDescr.textContent = products[itemID].description;
@@ -847,69 +856,68 @@ function fillModal(itemID) {
 }
 
 function updateModal(option) {
-  let updateSize = false;
-  let updateAdditive = false;
+  console.log('updateModal');
+
   switch(option) {
     case 'S':
       if (selectedProduct.size !== 0) {
-        selectedProduct.finalprice = selectedProduct.size == 1 ? selectedProduct.finalprice - 0.50: selectedProduct.finalprice - 1.00;
+        selectedProduct.finalprice = selectedProduct.size == 1 ? Number(selectedProduct.finalprice) - 0.5: Number(selectedProduct.finalprice) - 1;
         switchSize(selectedProduct.size, 0);
         selectedProduct.size = 0;
-        updateSize = true;
       }
     break;
     case 'M':
       if (selectedProduct.size !== 1) {
-        selectedProduct.finalprice = selectedProduct.size == 2 ? selectedProduct.finalprice - 0.50: selectedProduct.finalprice + 0.50;
+        selectedProduct.finalprice = selectedProduct.size == 2 ? Number(selectedProduct.finalprice) - 0.5: Number(selectedProduct.finalprice) + 0.5;
         switchSize(selectedProduct.size, 1);
         selectedProduct.size = 1;
-        updateSize = true;
       }
     break;
     case 'L':
       if (selectedProduct.size !== 2) {
-        selectedProduct.finalprice = selectedProduct.size == 0 ? selectedProduct.finalprice + 1.00: selectedProduct.finalprice + 0.50;
+        selectedProduct.finalprice = selectedProduct.size == 0 ? Number(selectedProduct.finalprice) + 1: Number(selectedProduct.finalprice) + 0.5;
         switchSize(selectedProduct.size, 2);
         selectedProduct.size = 2;
-        updateSize = true;
       }
     break;
     case 'O':
       if (!selectedProduct.additive.includes('O')) {
-        selectedProduct.additive = selectedProduct.additive + 'O';
-        selectedProduct.finalprice = selectedProduct.finalprice + 0.50;
-        updateAdditive = true;
-      } else {
-        selectedProduct.additive = selectedProduct.additive.split('O').join('');
-        selectedProduct.finalprice = selectedProduct.finalprice - 0.50;
-      }
+         addAdditive('O', 3);
+      } else {removeAdditive('O', 3)}
     break;
     case 'T':
       if (!selectedProduct.additive.includes('T')) {
-        selectedProduct.additive = selectedProduct.additive + 'T';
-        selectedProduct.finalprice = selectedProduct.finalprice + 0.50;
-        updateAdditive = true;
-      } else {
-        selectedProduct.additive = selectedProduct.additive.split('T').join('');
-        selectedProduct.finalprice = selectedProduct.finalprice - 0.50;
-      }
+        addAdditive('T', 4);
+     } else {removeAdditive('T', 4)}
     break;
     case 'E':
       if (!selectedProduct.additive.includes('E')) {
-        selectedProduct.additive = selectedProduct.additive + 'E';
-        selectedProduct.finalprice = selectedProduct.finalprice + 0.50;
-        updateAdditive = true;
-      } else {
-        selectedProduct.additive = selectedProduct.additive.split('E').join('');
-        selectedProduct.finalprice = selectedProduct.finalprice - 0.50;
-      }
+        addAdditive('E', 5);
+     } else { removeAdditive('E', 5)}
     break;
+  }
 
-    function switchSize(oldSize, newSize) {
+      function switchSize(oldSize, newSize) {
+        console.log('selectedProduct.finalprice = ', selectedProduct.finalprice);
+        modalButtons[oldSize].classList.remove('selected-btn');
+        modalButtons[newSize].classList.add('selected-btn');
+        modalPrice.textContent = "$" + selectedProduct.finalprice.toFixed(2);
+      }
 
-    }
+      function addAdditive(Code, ID) {
+        modalButtons[ID].classList.add('selected-btn');
+        selectedProduct.additive = selectedProduct.additive + Code;
+        selectedProduct.finalprice = Number(selectedProduct.finalprice) + 0.5;
+        modalPrice.textContent = "$" + selectedProduct.finalprice.toFixed(2);
+      }
 
-    }
+      function removeAdditive(Code, ID) {
+        modalButtons[ID].classList.remove('selected-btn');
+        selectedProduct.additive = selectedProduct.additive.split(Code).join('');
+        selectedProduct.finalprice = Number(selectedProduct.finalprice) - 0.5;
+        modalPrice.textContent = "$" + selectedProduct.finalprice.toFixed(2);
+      }
+
     
   }
 
@@ -931,11 +939,18 @@ function closeModal() {
   powerLayer.style.display = 'none';
   anyWhere.style.overflow = 'unset';
   modalWindow.style.display = 'none';
+  modalButtons[selectedProduct.size].classList.remove('selected-btn');
+  modalButtons[0].classList.add('selected-btn');
+  modalButtons[3].classList.remove('selected-btn');
+  modalButtons[4].classList.remove('selected-btn');
+  modalButtons[5].classList.remove('selected-btn');
+  selectedProduct.size = 0;
+  selectedProduct.additive = '';
 }
 
-modalSval.addEventListener('click', () => {updateModal('S')});
-modalMval.addEventListener('click', () => {updateModal('M')});
-modalLval.addEventListener('click', () => {updateModal('L')});
-modalOneval.addEventListener('click', () => {updateModal('O')});
-modalTwoval.addEventListener('click', () => {updateModal('T')});
-modalThreeval.addEventListener('click', () => {updateModal('E')});
+modalSBTN.addEventListener('click', () => {updateModal('S')});
+modalMBTN.addEventListener('click', () => {updateModal('M')});
+modalLBTN.addEventListener('click', () => {updateModal('L')});
+modalOneBTN.addEventListener('click', () => {updateModal('O')});
+modalTwoBTN.addEventListener('click', () => {updateModal('T')});
+modalThreeBTN.addEventListener('click', () => {updateModal('E')});
