@@ -108,12 +108,11 @@ sliderItemWrapper.addEventListener('touchmove', (event) => {
 sliderItemWrapper.addEventListener('touchend', (event) => {
     event.preventDefault();
 
-    if (x2 - x1 > 30) {
+    if (x2 - x1 > 15) {
         scrollSliderBack();
     }
 
-    if (x2 - x1 < 30) {
-        console.log('scroll left');
+    if (x2 - x1 < -15) {
         scrollSlider();
     }
 
