@@ -400,16 +400,14 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
        
     #modal {
-        width: 100%;
-        margin: 16px;
+        max-width: 800px;
+        width: 90vw;
+        left: 50%;
     }
 
-    #modal-wrapper {
-        flex-shrink: 1;
-    }
       
     #header-menu-menu p,
     #header-menu-menu div:first-child,
@@ -452,11 +450,7 @@
 }
 
 
-@media (max-width: 380px) {
-    #modal {
-        width: 100%;
-        margin: 16px;
-    }
+@media (max-width: 670px) {
 
     #modal-wrapper {
         flex-shrink: 1;
@@ -465,6 +459,11 @@
     #modal-img {
         display: none;
     }
+
+}
+
+@media (max-width: 380px) {
+
 
     #product-menu {
         grid-template-columns: 1fr;
