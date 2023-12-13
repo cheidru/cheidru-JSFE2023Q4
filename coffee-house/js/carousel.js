@@ -62,8 +62,6 @@ function resumeScrolling() {
     scroller();
 }
 
-sliderItem[0].addEventListener('pointerover', () => {holdScrolling()});
-sliderItem[0].addEventListener('pointerleave', () => {resumeScrolling();});
 
 sliderItem[0].addEventListener('pointerdown', (event) => {
     event.preventDefault();
@@ -77,15 +75,17 @@ sliderItem[0].addEventListener('pointerdown', (event) => {
         sliderItem[0].onpointermove = null;
         sliderItem[0].onpointerup = null;
   };
-
-
 });
 
-sliderItem[1].addEventListener('mouseover', () => {holdScrolling()});
-sliderItem[1].addEventListener('mouseleave', () => {resumeScrolling();});
 
-sliderItem[2].addEventListener('mouseover', () => {holdScrolling()});
-sliderItem[2].addEventListener('mouseleave', () => {resumeScrolling();});
+sliderItem[0].addEventListener('mouseover', holdScrolling);
+sliderItem[0].addEventListener('mouseleave', resumeScrolling);
+
+sliderItem[1].addEventListener('mouseover', holdScrolling);
+sliderItem[1].addEventListener('mouseleave', resumeScrolling);
+
+sliderItem[2].addEventListener('mouseover', holdScrolling);
+sliderItem[2].addEventListener('mouseleave', resumeScrolling);
 
 leftBTN_FAV.addEventListener('click', scrollSliderBack, false);
 rightBTN_FAV.addEventListener('click', scrollSlider, false);
@@ -96,26 +96,27 @@ let x1 = 0;
 let x2 = 0;
 
 sliderItemWrapper.addEventListener('touchstart', (event) => {
+    event.preventDefault();
     x1 = event.touches[0].clientX;
-    console.log('touch at x1 ', x1);
-    sliderItemWrapper.addEventListener('touchmove', (event) => {
-        event.preventDefault();
-        x2 = event.touches[0].clientX;
-    }, false);
+}, false);
 
-    sliderItemWrapper.addEventListener('touchend', (event) => {
+sliderItemWrapper.addEventListener('touchmove', (event) => {
+    event.preventDefault();
+    x2 = event.touches[0].clientX;
+}, false);
 
-        if (x2 - x1 > 20) {
-            console.log('scroll right');
-            scrollSlider();
+sliderItemWrapper.addEventListener('touchend', (event) => {
+    event.preventDefault();
 
-        }
-        if (x2 - x1 < 20) {
-            console.log('scroll left');
-            scrollSliderBack();
+    if (x2 - x1 > 30) {
+        scrollSliderBack();
+    }
 
-        }
-        console.log('move to x2 ', x2);
-    }, false);
-    
+    if (x2 - x1 < 30) {
+        console.log('scroll left');
+        scrollSlider();
+    }
+
+    x1 = 0;
+    x2 = 0;
 }, false);
