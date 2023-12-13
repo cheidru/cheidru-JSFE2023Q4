@@ -7,63 +7,63 @@ const sliderItemWrapper = document.getElementById('slider-item-wrapper');
 
 let scrollInterval = 3; // time in seconds
 let bulUpdateInterval = 0.03;
+
 let currentItem_FAV = {};
 currentItem_FAV.number = 0;
 currentItem_FAV.showtime = 0; // time in seconds
+currentItem_FAV.clearIntervalID = 0;
 currentItem_FAV.pointerX = 0; // starting point to see dragging direction
-let scrollOnHold = false;
+
 scroller();
 
 function scroller() {
-    // console.log('scroller started', 'currentItem_FAV.number =', currentItem_FAV.number);
-    bullet_FAV[currentItem_FAV.number].style.background = 'var(--border-light)';
-        currentItem_FAV.bulletTimerID = setInterval(updateBulletState, bulUpdateInterval * 1000);
-        currentItem_FAV.itemTimerID = setInterval(scrollSlider, scrollInterval * 1000);
+        // bullet_FAV[currentItem_FAV.number].style.background = 'var(--border-light)';
+        currentItem_FAV.clearIntervalID = setInterval(updateBulletState, bulUpdateInterval * 1000);
+
 }
 
 function updateBulletState() {
     currentItem_FAV.showtime += bulUpdateInterval;
     let bgrPos = ( currentItem_FAV.showtime / scrollInterval ) * 100; // background size of pagination bar in percent
+
+    if (bgrPos >= 100) {
+        bullet_FAV[currentItem_FAV.number].style.background = 'var(--border-light)';
+        currentItem_FAV.number = currentItem_FAV.number == 2 ? 0 : currentItem_FAV.number + 1;
+        currentItem_FAV.showtime = 0;
+        sliderItemWrapper.style.transform = `translateX(${currentItem_FAV.number * -33.3}%)`;
+        return;
+    }
     bullet_FAV[currentItem_FAV.number].style.background = `linear-gradient(to right, var(--border-dark) 0%, var(--border-dark) ${bgrPos}%, var(--border-light) ${bgrPos}%, var(--border-light) 100%)`;
 }
 
 function scrollSlider() {
-    currentItem_FAV.showtime = 0;
     bullet_FAV[currentItem_FAV.number].style.background = 'var(--border-light)';
+    clearInterval(currentItem_FAV.clearIntervalID);
+    currentItem_FAV.showtime = 0;
     currentItem_FAV.number = currentItem_FAV.number === 2 ? 0 : currentItem_FAV.number + 1;
     sliderItemWrapper.style.transform = `translateX(${currentItem_FAV.number * -33.3}%)`;
-    // console.log('scrollSlider', 'currentItem_FAV.number =', currentItem_FAV.number);
+    scroller();
 }
 
 function scrollSliderBack() {
-    currentItem_FAV.showtime = 0;
     bullet_FAV[currentItem_FAV.number].style.background = 'var(--border-light)';
+    clearInterval(currentItem_FAV.clearIntervalID);
+    currentItem_FAV.showtime = 0;
     currentItem_FAV.number = currentItem_FAV.number === 0 ? 2 : currentItem_FAV.number - 1;
     sliderItemWrapper.style.transform = `translateX(${currentItem_FAV.number * -33.3}%)`;
-    // console.log('scrollSliderBack', 'currentItem_FAV.number =', currentItem_FAV.number);
+    scroller();
 }
 
 function holdScrolling() {
-    clearInterval(currentItem_FAV.bulletTimerID);
-    clearInterval(currentItem_FAV.itemTimerID);
-    scrollOnHold = true;
-    // console.log('sholdScrollin', 'currentItem_FAV.number =', currentItem_FAV.number);
+    clearInterval(currentItem_FAV.clearIntervalID);
 }
 
-function resumeScrolling(scrollToNext, scroller) {
-    currentItem_FAV.bulletTimerID = setInterval(() => {
-        updateBulletState();
-    }, bulUpdateInterval * 1000);
-
-    setTimeout(()=>{
-        clearInterval(currentItem_FAV.bulletTimerID);
-        scrollToNext();
-        scroller();
-    }, (scrollInterval - currentItem_FAV.showtime) * 1000);
+function resumeScrolling() {
+    scroller();
 }
 
-sliderItem[0].addEventListener('mouseover', () => {holdScrolling()});
-sliderItem[0].addEventListener('mouseleave', () => {resumeScrolling(scrollSlider, scroller);});
+sliderItem[0].addEventListener('pointerover', () => {holdScrolling()});
+sliderItem[0].addEventListener('pointerleave', () => {resumeScrolling();});
 
 sliderItem[0].addEventListener('pointerdown', (event) => {
     event.preventDefault();
@@ -82,10 +82,10 @@ sliderItem[0].addEventListener('pointerdown', (event) => {
 });
 
 sliderItem[1].addEventListener('mouseover', () => {holdScrolling()});
-sliderItem[1].addEventListener('mouseleave', () => {resumeScrolling(scrollSlider, scroller);});
+sliderItem[1].addEventListener('mouseleave', () => {resumeScrolling();});
 
 sliderItem[2].addEventListener('mouseover', () => {holdScrolling()});
-sliderItem[2].addEventListener('mouseleave', () => {resumeScrolling(scrollSlider, scroller);});
+sliderItem[2].addEventListener('mouseleave', () => {resumeScrolling();});
 
 leftBTN_FAV.addEventListener('click', scrollSliderBack, false);
 rightBTN_FAV.addEventListener('click', scrollSlider, false);
