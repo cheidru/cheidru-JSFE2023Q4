@@ -17,6 +17,7 @@
 }
 
 #modal {
+    box-sizing: border-box;
     position: fixed;
     top: 50%;
     left: 50vw;
