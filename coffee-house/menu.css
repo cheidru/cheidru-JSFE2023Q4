@@ -402,19 +402,20 @@
 }
 
 @media (max-width: 900px) {
-       
+        
     #modal {
         max-width: 800px;
         width: 90vw;
         left: 50%;
     }
-
-      
-    #header-menu-menu p,
-    #header-menu-menu div:first-child,
-    #header-menu-menu::after {
-        display: none;
+        
+    #menu-offer .heading {
+        width: 100%;
     }
+
+}
+
+@media (max-width: 768px) {
     
     #header-menu-menu {
         position: relative;
@@ -427,25 +428,46 @@
         border: 1px solid var(--border-dark);
         cursor: pointer;
     }
-
-    #header-menu-menu #coffee-cup-svg {
+          
+    #header-menu-menu p,
+    #coffee-cup-svg,
+    #header-menu-menu::after {
         display: none;
     }
-        
-    #menu-offer .heading {
-        width: 100%;
+   
+    [id^="burger-btn-bar-"] {
+        position: absolute;
+        display: block;
+        width: 16px;
+        height: 1.5px;
+        background-color: var(--text-dark);
+    }
+
+    #burger-btn-bar-one {
+        transform: translateY(-4px);
     }
     
-    #refresh-btn {
-        display: flex;
-        cursor: pointer;
+    .engaged #burger-btn-bar-one {
+        transform: translateY(0) rotate(-45deg);
     }
-}
 
-@media (max-width: 720px) {
+    #burger-btn-bar-two {
+        transform: translateY(4px);
+    }
+    
+    .engaged #burger-btn-bar-two {
+        transform: translateY(0) rotate(45deg);
+    }
+
     #product-menu {
         grid-template-columns: 1fr;
         padding-bottom: 40px;
+    }
+
+        
+    #refresh-btn {
+        display: flex;
+        cursor: pointer;
     }
 
 }
