@@ -745,6 +745,8 @@ const products = [
         prodItemPrice.textContent = '$' + products[prodItemNumber].price;
         menu.appendChild(prodTempl);
     }
+
+    if (shortMenu == 0) refreshBTN.style.display = 'none';
 }
 
 fillProdMenu();
@@ -765,10 +767,8 @@ dessertBTN.addEventListener('click', (event) => {
 });
 
 function changeMNU(newMenu) {
-
   menuBTN[newMenu].classList.add('selected-btn');
   menuBTN[actualMenu].classList.remove('selected-btn');
-  console.log('newMenu =', newMenu, 'actualMenu =', actualMenu, menuBTN);
   actualMenu = newMenu;
   shortMenu = cupStyle.display == 'none' && actualMenu !== 1 ? 4 : 0;
   if(actualMenu == 1) {
@@ -793,8 +793,11 @@ window.addEventListener('resize', () => {
     let newShortMenu = cupStyle.display == 'none' && actualMenu !== 1 ? 4 : 0;
     if(newShortMenu !== shortMenu) {
         shortMenu = newShortMenu;
+        refreshBTN.style.display = 'flex';
         fillProdMenu();
     }
+
+
 })
 
 menu.addEventListener('click', (event) => {  
@@ -917,8 +920,6 @@ function updateModal(option) {
         selectedProduct.finalprice = Number(selectedProduct.finalprice) - 0.5;
         modalPrice.textContent = "$" + selectedProduct.finalprice.toFixed(2);
       }
-
-    
   }
 
 
