@@ -859,7 +859,8 @@ video {
 
         
     #burger-mnu {
-        width: 680px;
+        width: 100vw;
+        margin: 0 auto;
     }
    
     #hero-offer-wrapper {
@@ -927,7 +928,6 @@ video {
     }
     
     #burger-mnu {
-        width: 500px;
         height: 724px;
         padding: 60px 16px;
     }
@@ -941,9 +941,6 @@ video {
     #burger-mnu {
         top: calc(100% + 15px);
         left: 16px;
-        width: 100vw;
-        height: 724px;
-        padding: 60px 16px;
     }
 
     #hero {
