@@ -93,29 +93,37 @@ rightBTN_FAV.addEventListener('click', scrollSlider, false);
 // Swipe section
 
 let x1 = 0;
+let y1 = 0;
 let x2 = 0;
+let y2 = 0;
 
 sliderItemWrapper.addEventListener('touchstart', (event) => {
     event.preventDefault();
     x1 = event.touches[0].clientX;
+    y1 = event.touches[0].clientY;
 }, false);
 
 sliderItemWrapper.addEventListener('touchmove', (event) => {
     event.preventDefault();
     x2 = event.touches[0].clientX;
+    y2 = event.touches[0].clientY;
 }, false);
 
 sliderItemWrapper.addEventListener('touchend', (event) => {
-    event.preventDefault();
 
-    if (x2 - x1 > 15) {
+    if (Math.abs(x2 - x1) / Math.abs(y2 - y1) < 0.5) return;
+
+    event.preventDefault();
+    if (x2 - x1 > 25) {
         scrollSliderBack();
     }
 
-    if (x2 - x1 < -15) {
+    if (x2 - x1 < -25) {
         scrollSlider();
     }
 
     x1 = 0;
+    y1 = 0;
     x2 = 0;
+    y2 = 0;
 }, false);
