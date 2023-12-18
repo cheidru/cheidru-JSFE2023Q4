@@ -910,7 +910,7 @@ video {
     }
 
     #slider-item-wrapper {
-        width: 100%;
+        width: auto;
     }
         
     .slider-item img {
@@ -976,10 +976,6 @@ video {
         font-size: 32px;
     }
 
-    
-    #slider-item-wrapper {
-        width: auto;
-    }
 
     .slider-item .item-description {
         width: 320px;
