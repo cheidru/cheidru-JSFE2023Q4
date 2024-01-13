@@ -100,7 +100,8 @@ main {
 }
 
 #quiz-question {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
+    font-style: italic;
 }
 
 #quiz-counter-wrapper {
