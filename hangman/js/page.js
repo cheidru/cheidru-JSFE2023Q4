@@ -1,31 +1,4 @@
-const powerLayer = document.createElement('div');
-const modal = document.createElement('div');
-const modalCongrat = document.createElement('p');
-const modalWord = document.createElement('p');
-const modalButton = document.createElement('button');
-const main = document.createElement('main');
-const gameTitle = document.createElement('h1');
-const puzzleWrapper = document.createElement('div');
-const gallowsWrapper = document.createElement('div');
-const img = document.createElement('img');
-const quizWrapper = document.createElement('div');
-const quizWord = document.createElement('div');
-const quizQuestion = document.createElement('div');
-const quizCounterWrapper = document.createElement('div');
-const quizCounterText = document.createElement('div');
-const quizCounter = document.createElement('div');
-const keyboard = document.createElement('div');
-const button = document.createElement('div');
-
-powerLayer.className = "hidden-modal";
-powerLayer.setAttribute("id", "power-layer")
-modal.className = "hidden-modal";
-
-
-
-
-
-/* 
+document.body.innerHTML = `
 <div id="power-layer" class="hidden-modal"></div>
 <div id="modal" class="hidden-modal">
     <p id="modal-congrat"></p>
@@ -48,9 +21,33 @@ modal.className = "hidden-modal";
                 <div id="quiz-counter">0 / 6</div>
             </div>
             <div id="keyboard">
-                <div id="a">A</div>
+            <div id="a">A</div>
+            <div id="b">B</div>
+            <div id="c">C</div>
+            <div id="d">D</div>
+            <div id="e">E</div>
+            <div id="f">F</div>
+            <div id="g">G</div>
+            <div id="h">H</div>
+            <div id="i">I</div>
+            <div id="j">J</div>
+            <div id="k">K</div>
+            <div id="l">L</div>
+            <div id="m">M</div>
+            <div id="n">N</div>
+            <div id="o">O</div>
+            <div id="p">P</div>
+            <div id="q">Q</div>
+            <div id="r">R</div>
+            <div id="s">S</div>
+            <div id="t">T</div>
+            <div id="u">U</div>
+            <div id="v">V</div>
+            <div id="w">W</div>
+            <div id="x">X</div>
+            <div id="y">Y</div>
+            <div id="z">Z</div>
             </div>
         </div>
     </div>
-
-</main> */
+</main>`;

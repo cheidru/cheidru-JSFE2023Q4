@@ -146,6 +146,11 @@ main {
 
 
 @media (max-width: 1439px) {
+    body {
+        padding: 2rem 0;
+        height: 100%;
+    }
+
     main {
         padding: 0 1rem;
     }
@@ -163,7 +168,7 @@ main {
     
 }
 
-@media (max-width: 767px) {    
+@media (max-width: 767px) {
     main {
         padding: 0;
     }
