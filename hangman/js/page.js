@@ -1,7 +1,7 @@
 document.body.innerHTML = `
 <div id="power-layer" class="hidden-modal"></div>
 <div id="modal" class="hidden-modal">
-    <p id="modal-congrat"></p>
+    <p id="modal-title"></p>
     <p id="modal-word"></p>
     <button>Try again?</button>
 </div>

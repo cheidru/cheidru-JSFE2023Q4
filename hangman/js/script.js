@@ -38,6 +38,10 @@ const quizWord = document.getElementById('quiz-word');
 const attemptNo = document.getElementById('quiz-counter');
 const keyBTN = document.getElementById('keyboard');
 const gallowsIMG = document.getElementById('gallows-img');
+const powerLayer = document.getElementById('power-layer');
+const modal = document.getElementById('modal');
+const modalText = document.getElementById('modal-word');
+const button = document.querySelector('button');
 
 attemptNo.textContent = "0 / 6";
 
@@ -56,16 +60,9 @@ selectNewWord();
 
 console.log(secretWord);
 
-
-
-// while (attempt <= ATTEMPT_LIMIT && guess !== secretWord)
-
 // PC keyboard press
 document.addEventListener('keypress', (event) => {
-  // TODO check keyboard language
   const letter = event.code[3].toLowerCase();
-  console.log('PC keypress', event, 'letter =', letter);
-
   checkGuess(letter);
 })
 
@@ -73,18 +70,16 @@ document.addEventListener('keypress', (event) => {
 keyBTN.addEventListener('click', (event) => {
   const letter = event.target.id;
   if (letter === 'keyboard') return;
-  console.log('Virtual keypress', event, 'letter =', letter);
   checkGuess(letter);
 })
 
-function checkGuess(event) {
-  // TODO throw massage if disabled PC key pressed
-  if (keyDisabled.includes(event.key)) {
-    seeModal('wrong button')
+function checkGuess(letter) {
+  if (keyDisabled.includes(letter)) {
+    seeModal('wrong button', letter)
     return;
   }
   keyDisabled.push(letter);
-  updateVirtualKBD(letter);
+  // updateVirtualKBD(letter);
 
   // Check if the letter presented in the word
   let indices = [];
@@ -97,7 +92,7 @@ function checkGuess(event) {
     for (let i = 0; i < indices.length; i++) {
       guessArr[indices[i]] = letter;
     }
-    guess = guessArr.join(',');
+    guess = guessArr.join('');
     quizWord.textContent = guess;
     if(!guessArr.includes('_')) seeModal('win');
 
@@ -109,16 +104,55 @@ function checkGuess(event) {
   }
 }
 
-
 // Показать модальное окно
-function seeModal(status) {
+function seeModal(status, letter) {
+  let showPlayAgain = true;
+  let mTitle = '';
+  let mTxt = '';
+
   switch (status) {
     case 'win':
-      
+      mTitle = 'You win!';
+      mTxt = `Your attempts ${attempt} / 6 ${'\n'}
+      Secret word "${secretWord.toUpperCase()}"`;
+      break;
+    case 'loose':
+      mTitle = 'You loose!'
+      mTxt = `Your attempts ${attempt} / 6 ${'\n'}
+      Secret word "${secretWord.toUpperCase()}"`;
+      break;
+    case 'wrong button':
+      mTxt = `You already pressed the button '${letter.toUpperCase()}' before`;
+      showPlayAgain = false;
+      break;
+    default:
+      break;
   }
 
-  selectNewWord();
+  modalText.textContent = mTxt;
+  modal.classList.remove('hidden-modal');
+  powerLayer.classList.remove('hidden-modal');
+
+
+  if (showPlayAgain) {
+    button.addEventListener('click', () => {
+      selectNewWord();
+      attemptNo.textContent = "0 / 6";
+      modal.classList.add('hidden-modal');
+      powerLayer.classList.add('hidden-modal');
+    }, true);
+  } else {
+    button.classList.add('hidden-modal')
+    powerLayer.addEventListener('click', () => {
+      modal.classList.add('hidden-modal');
+      powerLayer.classList.add('hidden-modal');
+      button.classList.remove('hidden-modal')
+    }, true);
+  }
 }
+
+
+
 
 function selectNewWord() {
   while(actWordIndex === newWordIndex) {
