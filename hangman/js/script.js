@@ -56,27 +56,29 @@ let wordObj = {};
 let secretWord = '';
 let secretWordArr = []; 
 let guess = '';
+const VIRTUAL_KBD = 1;
+const PHYSICAL_KBD = 0;
 
 selectNewWord();
 
-console.log(secretWord);
+console.log('secret word is "', secretWord, '"');
 
 // PC keyboard press
 document.addEventListener('keypress', (event) => {
   const letter = event.code[3].toLowerCase();
-  checkGuess(letter);
+  checkGuess(letter, PHYSICAL_KBD);
 })
 
 // Virtual keyboard press
 keyBTN.addEventListener('click', (event) => {
   const letter = event.target.id;
   if (letter === 'keyboard') return;
-  checkGuess(letter);
+  checkGuess(letter, VIRTUAL_KBD);
 })
 
-function checkGuess(letter) {
+function checkGuess(letter, kbd) {
   if (keyDisabled.includes(letter)) {
-    seeModal('wrong button', letter)
+    if (kbd === PHYSICAL_KBD) seeModal('wrong button', letter);
     return;
   }
   const keyhandle = document.getElementById(`${letter}`);
@@ -118,11 +120,11 @@ function seeModal(status, letter) {
   switch (status) {
     case 'win':
       mTitle = 'Congrats! You win!';
-      mTxt = `Your attempts ${attempt} / 6` + "<br>" + `Secret word "${secretWord.toUpperCase()}"`;
+      mTxt = `Your incorrect guesses ${attempt} / 6` + "<br>" + `Secret word "${secretWord.toUpperCase()}"`;
       break;
     case 'loose':
       mTitle = 'You loose!'
-      mTxt = `Your attempts ${attempt} / 6` + "<br>" + `Secret word "${secretWord.toUpperCase()}"`;
+      mTxt = `Your incorrect guesses ${attempt} / 6` + "<br>" + `Secret word "${secretWord.toUpperCase()}"`;
       break;
     case 'wrong button':
       mTxt = `You already pressed` + "<br>" + `the button '${letter.toUpperCase()}' before`;
@@ -177,7 +179,7 @@ function selectNewWord() {
   secretWord = wordObj.codeword;
   guess = '_'.repeat(secretWord.length);
   quizWord.textContent = guess;
-  quizQuestion.textContent = wordObj.descr;
+  quizQuestion.textContent = "Hint: " + wordObj.descr;
   secretWordArr = secretWord.split('');
   attempt = 0;
   gallowsIMG.src = hangmanIMG[attempt];

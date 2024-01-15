@@ -75,7 +75,7 @@ quizCounterWrapper.setAttribute('id', 'quiz-counter-wrapper');
 
 const quizCounterText = document.createElement('div');
 quizCounterText.setAttribute('id', 'quiz-counter-text');
-quizCounterText.textContent = 'Your attempts :';
+quizCounterText.textContent = 'Incorrect guesses :';
 
 const quizCounter = document.createElement('div');
 quizCounter.setAttribute('id', 'quiz-counter');
