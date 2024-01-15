@@ -28,24 +28,90 @@ const alphabet = [
     'z'
 ]
 
-let powerLayer = document.createElement('div');
+const powerLay = document.createElement('div');
+powerLay.setAttribute('id', 'power-layer');
+powerLay.classList.add('hidden-modal');
 
-let modal = document.createElement('div');
-let modalTitle = document.createElement('p');
-let modalWord = document.createElement('p');
-let button = document.createElement('button');
-let main = document.createElement('main');
-let title = document.createElement('h1');
-let puzzleWrapper = document.createElement('div');
-let imag = document.createElement('img');
-let quizWrapper = document.createElement('div');
-let quizWord = document.createElement('div');
-let quizQuestion = document.createElement('div');
-let quizCounterWrapper = document.createElement('div');
-let quizCounterText = document.createElement('div');
-let quizCounter = document.createElement('div');
-let keyboard = document.createElement('div');
+const mod = document.createElement('div');
+mod.setAttribute('id', 'modal');
+mod.classList.add('hidden-modal');
 
+const modalTitle = document.createElement('p');
+modalTitle.setAttribute('id', 'modal-title');
+
+const modalWord = document.createElement('p');
+modalWord.setAttribute('id', 'modal-word');
+
+const button = document.createElement('button');
+button.textContent = "Play again";
+
+const main = document.createElement('main');
+
+const title = document.createElement('h1');
+title.textContent = 'Hangman Game';
+
+const puzzleWrapper = document.createElement('div');
+puzzleWrapper.setAttribute('id', 'puzzle-wrapper');
+
+const gallowsWrapper = document.createElement('div');
+gallowsWrapper.setAttribute('id', 'gallows-wrapper');
+
+const imag = document.createElement('img');
+imag.setAttribute('id', 'gallows-img');
+imag.src = './assets/pic/gallows.svg';
+
+const quizWrapper = document.createElement('div');
+quizWrapper.setAttribute('id', 'quiz-wrapper');
+
+const quizWrd = document.createElement('div');
+quizWrd.setAttribute('id', 'quiz-word');
+quizWrd.textContent = '_ _ _ _ _ _';
+
+const quizQuest = document.createElement('div');
+quizQuest.setAttribute('id', 'quiz-question');
+
+const quizCounterWrapper = document.createElement('div');
+quizCounterWrapper.setAttribute('id', 'quiz-counter-wrapper');
+
+const quizCounterText = document.createElement('div');
+quizCounterText.setAttribute('id', 'quiz-counter-text');
+quizCounterText.textContent = 'Your attempts :';
+
+const quizCounter = document.createElement('div');
+quizCounter.setAttribute('id', 'quiz-counter');
+quizCounter.textContent = '0 / 6';
+
+const keyboard = document.createElement('div');
+keyboard.setAttribute('id', 'keyboard');
+
+document.body.append(powerLay);
+document.body.append(mod);
+document.body.append(main);
+
+mod.append(modalTitle);
+mod.append(modalWord);
+mod.append(button);
+
+main.append(title);
+main.append(puzzleWrapper);
+puzzleWrapper.append(gallowsWrapper);
+gallowsWrapper.append(imag);
+
+puzzleWrapper.append(quizWrapper);
+quizWrapper.append(quizWrd);
+quizWrapper.append(quizQuest);
+quizWrapper.append(quizCounterWrapper);
+quizWrapper.append(keyboard);
+
+quizCounterWrapper.append(quizCounterText);
+quizCounterWrapper.append(quizCounter);
+
+for (let i = 0; i < alphabet.length; i++) {
+    const key = document.createElement('div');
+    key.setAttribute('id', `${alphabet[i]}`);
+    key.textContent = `${alphabet[i]}`.toUpperCase();
+    keyboard.append(key);
+}
 
 
 // document.body.innerHTML = `
@@ -53,7 +119,7 @@ let keyboard = document.createElement('div');
 // <div id="modal" class="hidden-modal">
 //     <p id="modal-title"></p>
 //     <p id="modal-word"></p>
-//     <button>Try again?</button>
+//     <button>Play again</button>
 // </div>
 
 // <main>

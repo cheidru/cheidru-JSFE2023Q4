@@ -40,8 +40,9 @@ const keyBTN = document.getElementById('keyboard');
 const gallowsIMG = document.getElementById('gallows-img');
 const powerLayer = document.getElementById('power-layer');
 const modal = document.getElementById('modal');
+const modalHead = document.getElementById('modal-title');
 const modalText = document.getElementById('modal-word');
-const button = document.querySelector('button');
+const btn = document.querySelector('button');
 
 attemptNo.textContent = "0 / 6";
 
@@ -78,8 +79,12 @@ function checkGuess(letter) {
     seeModal('wrong button', letter)
     return;
   }
+  const keyhandle = document.getElementById(`${letter}`);
+  keyhandle.classList.add('key-disabled');
   keyDisabled.push(letter);
+
   // updateVirtualKBD(letter);
+
 
   // Check if the letter presented in the word
   let indices = [];
@@ -112,41 +117,50 @@ function seeModal(status, letter) {
 
   switch (status) {
     case 'win':
-      mTitle = 'You win!';
-      mTxt = `Your attempts ${attempt} / 6 ${'\n'}
-      Secret word "${secretWord.toUpperCase()}"`;
+      mTitle = 'Congrats! You win!';
+      mTxt = `Your attempts ${attempt} / 6` + "<br>" + `Secret word "${secretWord.toUpperCase()}"`;
       break;
     case 'loose':
       mTitle = 'You loose!'
-      mTxt = `Your attempts ${attempt} / 6 ${'\n'}
-      Secret word "${secretWord.toUpperCase()}"`;
+      mTxt = `Your attempts ${attempt} / 6` + "<br>" + `Secret word "${secretWord.toUpperCase()}"`;
       break;
     case 'wrong button':
-      mTxt = `You already pressed the button '${letter.toUpperCase()}' before`;
+      mTxt = `You already pressed` + "<br>" + `the button '${letter.toUpperCase()}' before`;
       showPlayAgain = false;
+      modalHead.classList.add('hidden-modal');
       break;
     default:
       break;
   }
 
-  modalText.textContent = mTxt;
+  modalHead.textContent = mTitle;
+  modalText.innerHTML = mTxt;
   modal.classList.remove('hidden-modal');
+  modal.classList.add('modal');
   powerLayer.classList.remove('hidden-modal');
 
 
   if (showPlayAgain) {
-    button.addEventListener('click', () => {
+    btn.addEventListener('click', () => {
       selectNewWord();
       attemptNo.textContent = "0 / 6";
       modal.classList.add('hidden-modal');
+      modal.classList.remove('modal');
       powerLayer.classList.add('hidden-modal');
+      for(let i = 0; i < keyDisabled.length; i++) {
+        const keyhandle = document.getElementById(`${keyDisabled[i]}`);
+        keyhandle.classList.remove('key-disabled');
+      }
+      keyDisabled.length = 0;
     }, true);
   } else {
-    button.classList.add('hidden-modal')
+    btn.classList.add('hidden-modal')
     powerLayer.addEventListener('click', () => {
       modal.classList.add('hidden-modal');
+      modal.classList.remove('modal');
       powerLayer.classList.add('hidden-modal');
-      button.classList.remove('hidden-modal')
+      btn.classList.remove('hidden-modal');
+      modalHead.classList.remove('hidden-modal');
     }, true);
   }
 }
@@ -165,4 +179,6 @@ function selectNewWord() {
   quizWord.textContent = guess;
   quizQuestion.textContent = wordObj.descr;
   secretWordArr = secretWord.split('');
+  attempt = 0;
+  gallowsIMG.src = hangmanIMG[attempt];
 }
