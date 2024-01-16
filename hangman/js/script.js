@@ -123,7 +123,7 @@ function seeModal(status, letter) {
       mTxt = `Your incorrect guesses ${attempt} / 6` + "<br>" + `Secret word "${secretWord.toUpperCase()}"`;
       break;
     case 'loose':
-      mTitle = 'You loose!'
+      mTitle = 'You lose!'
       mTxt = `Your incorrect guesses ${attempt} / 6` + "<br>" + `Secret word "${secretWord.toUpperCase()}"`;
       break;
     case 'wrong button':
