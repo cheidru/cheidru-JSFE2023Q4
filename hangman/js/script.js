@@ -61,8 +61,6 @@ const PHYSICAL_KBD = 0;
 
 selectNewWord();
 
-console.log('secret word is "', secretWord, '"');
-
 // PC keyboard press
 document.addEventListener('keypress', (event) => {
   const letter = event.code[3].toLowerCase();
@@ -113,6 +111,7 @@ function checkGuess(letter, kbd) {
 
 // Показать модальное окно
 function seeModal(status, letter) {
+  // ToDo Add times sign to close locked-button-click modal
   let showPlayAgain = true;
   let mTitle = '';
   let mTxt = '';
@@ -167,9 +166,6 @@ function seeModal(status, letter) {
   }
 }
 
-
-
-
 function selectNewWord() {
   while(actWordIndex === newWordIndex) {
     newWordIndex = Math.floor(Math.random() * word.length);
@@ -177,6 +173,7 @@ function selectNewWord() {
   actWordIndex = newWordIndex;  
   wordObj = word[actWordIndex];
   secretWord = wordObj.codeword;
+  console.log('secret word is "', secretWord, '"');
   guess = '_'.repeat(secretWord.length);
   quizWord.textContent = guess;
   quizQuestion.textContent = "Hint: " + wordObj.descr;
