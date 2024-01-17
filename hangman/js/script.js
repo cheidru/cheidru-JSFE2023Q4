@@ -111,6 +111,7 @@ function checkGuess(letter, kbd) {
 
 // Показать модальное окно
 function seeModal(status, letter) {
+  // ToDo Add times sign to close locked-button-click modal
   let showPlayAgain = true;
   let mTitle = '';
   let mTxt = '';
