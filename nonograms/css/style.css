@@ -1,0 +1,36 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100%;
+}
+
+header {
+    display: flex;
+    position: fixed;
+    height: 5rem;
+    width: 100vw;
+    background-color: lightslategray;
+}
+
+main {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: bisque;
+}
+#play-ground-wrapper {
+    width: auto;
+    height: 100%;
+    padding: 10%;
+}
+
+footer {
+    display: flex;
+    position: sticky;
+    height: 5rem;
+    width: 100vw;
+    background-color: lightslategray;
+}
