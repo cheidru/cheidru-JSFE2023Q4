@@ -4,19 +4,20 @@ html, body, * {
     padding: 0;
 }
 
-body {
+body {    
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     height: 100vh;
+    color: var(--text-color);
 }
 
 header {
     display: flex;
     height: 5vh;
     width: 100%;
-    background-color: #747264;
+    background-color: var(--header-bg-color);
 }
 
 main {
@@ -26,9 +27,8 @@ main {
     flex-grow: 2;
     width: 100%;
     padding: 10px;
-    background-color: #EEEDEB;
+    background-color: var(--main-bg-color);
 }
-
 
 #play-ground-wrapper {    
     display: grid;
@@ -38,8 +38,8 @@ main {
     width: fit-content;
     height: fit-content;
     padding: 20px;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 2rem);
+    grid-template-rows: repeat(6, 2rem);
     font-size: 2vw;
 }
 
@@ -48,18 +48,12 @@ main {
 }
 
 .item {
-    background-color: #E0CCBE;
-    border: solid gray 1px;
+    background-color: var(--cell-bg-color);
+    border: solid var(--cell-border-color) 1px;
 }
 
 .guess-item {
-    background-color: #212529;
-}
-
-.cross-item {
-    background-color: #E0CCBE;    
-    background-image: url("../assets/img/cross-small.svg");
-    background-size: contain;
+    background-color: var(--guess-bg-color);
 }
 
 .hidden-item {
@@ -69,7 +63,7 @@ main {
 [class^="clue-"] {
     display: flex;
     align-items: center;
-    background-color:chocolate;
+    background-color: var(--clue-bg-color);
 }
 
 .item:is(.clue-left) {
@@ -99,6 +93,5 @@ footer {
     height: 5rem;
     height: 5vh;
     width: 100%;
-
-    background-color: #747264;
+    background-color: var(--header-bg-color);
 }

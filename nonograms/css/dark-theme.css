@@ -1,0 +1,17 @@
+:root {
+  --text-color: #bcdaf7;
+  --header-bg-color: #031d2a;
+  --main-bg-color: #305768;
+  --cell-border-color: #747264;
+  --guess-bg-color: #E0CCBE;
+  --cell-bg-color: #29375b;
+  --clue-bg-color: #5e3019;
+}
+
+.cross-item {
+  background-color: var(--cell-bg-color);    
+  background-image: url("../assets/img/cross-small.svg");
+  background-size: contain;
+}
+
+

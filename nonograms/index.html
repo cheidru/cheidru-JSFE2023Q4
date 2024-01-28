@@ -4,13 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/light-theme.css">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <title>Nomograms main page</title>
 </head>
 <body>
+    <div id="power-layar"></div>
+    <div id="modal-window"></div>    
     <header>
     </header>
     <main>
+        <div id="top-controls-wrapper">
+            <button id="random"></button>
+            <button id="restart"></button>
+            <button id="save-game"></button>
+        </div>
         <div id="play-ground-wrapper" class="ground5">
             <div class="clue-top empty item" id="1"></div>
             <div class="clue-top item" id="2">2</div>
@@ -19,7 +27,7 @@
             <div class="clue-top item" id="5">4</div>
             <div class="clue-top item" id="6">2</div>
             <div class="clue-left item" id="7">1 1 1</div>
-            <div class="cell item" id="8"></div>
+            <div class="cell item cross-item" id="8"></div>
             <div class="cell item" id="9"></div>
             <div class="cell item" id="10"></div>
             <div class="cell item" id="11"></div>
@@ -48,6 +56,10 @@
             <div class="cell item" id="34"></div>
             <div class="cell item" id="35"></div>
             <div class="cell item" id="36"></div>                
+        </div>
+        <div id="bottom-controls-wrapper">
+            <div id="timer"></div>
+            <button id="solution"></button>
         </div>
     </main>
     <footer></footer>

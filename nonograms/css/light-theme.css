@@ -1,3 +1,40 @@
-/* :root {
+:root {
+  --text-color: #212529;
+  --header-bg-color: #747264;
+  --main-bg-color: #EEEDEB;
+  --cell-border-color: gray;
+  --guess-bg-color: #212529;
+  --cell-bg-color: #E0CCBE;
+  --clue-bg-color: chocolate;
+}
 
-} */
+.cross-item {
+  position: relative;
+  background-image: url("../assets/img/cross-small.svg");
+  background-size: contain;
+}
+
+.cross-item::after {
+  position: absolute;
+  content: ' ';
+  width: 1.5rem;
+  height: 0.2rem;
+  border-radius: 3px;
+  background-color: black;
+  top: calc(50% - 0.3rem / 2);
+  transform: translateX(-50%);
+  /* left: 0.05rem; */
+  transform: rotate(-45deg);
+}
+
+.cross-item::before {
+  position: absolute;
+  content: ' ';
+  width: 1.5rem;
+  height: 0.2rem;
+  border-radius: 3px;
+  background-color: black;
+  top: calc(50% - 0.3rem / 2);
+  left: 0.05rem;
+  transform: rotate(45deg);
+}
