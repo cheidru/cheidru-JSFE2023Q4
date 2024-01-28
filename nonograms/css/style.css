@@ -9,12 +9,11 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    height: 100vh;
 }
 
 header {
     display: flex;
-    position: fixed;    
-    height: 5rem;
     height: 5vh;
     width: 100%;
     background-color: #747264;
@@ -26,28 +25,72 @@ main {
     align-items: center;
     flex-grow: 2;
     width: 100%;
-    min-height: 95vh;
     padding: 10px;
     background-color: #EEEDEB;
 }
-#play-ground-wrapper {
+
+
+#play-ground-wrapper {    
     display: grid;
-    width: auto;
-    height: auto;
-    padding: 10%;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    gap: 12px;
-    border-radius: 1rem;
-    background-color: aquamarine;
+    justify-content: stretch;
+    align-items: center;
+    gap: 0;
+    width: fit-content;
+    height: fit-content;
+    padding: 20px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    font-size: 2vw;
+}
+
+#play-ground-wrapper > .item {
+    aspect-ratio: 1 / 1;
 }
 
 .item {
-    background-color: #E0CCBE ;
+    background-color: #E0CCBE;
+    border: solid gray 1px;
 }
 
-.empty {
+.guess-item {
+    background-color: #212529;
+}
+
+.cross-item {
+    background-color: #E0CCBE;    
+    background-image: url("../assets/img/cross-small.svg");
+    background-size: contain;
+}
+
+.hidden-item {
+    display: none;
+}
+
+[class^="clue-"] {
+    display: flex;
+    align-items: center;
+    background-color:chocolate;
+}
+
+.item:is(.clue-left) {
+    min-width: fit-content;
+    justify-content: right;
+    padding: 0 2px;
+}
+
+.item:is(.clue-top) {
+    min-width: fit-content;
+    justify-content: center;
+    padding: 0 2px;
+}
+
+.item:is(.empty) {
     background-color: transparent;
+    border: none;
+}
+
+.cell {
+    cursor: pointer;
 }
 
 footer {
