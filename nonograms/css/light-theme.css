@@ -17,24 +17,24 @@
 .cross-item::after {
   position: absolute;
   content: ' ';
-  width: 1.5rem;
-  height: 0.2rem;
+  width: 0.5rem;
+  height: 0.1rem;
   border-radius: 3px;
   background-color: black;
-  top: calc(50% - 0.3rem / 2);
+  top: calc(50% - 0.1rem / 2);
   transform: translateX(-50%);
-  /* left: 0.05rem; */
+  left: 25%;
   transform: rotate(-45deg);
 }
 
 .cross-item::before {
   position: absolute;
   content: ' ';
-  width: 1.5rem;
-  height: 0.2rem;
+  width: 0.5rem;
+  height: 0.1rem;
   border-radius: 3px;
   background-color: black;
-  top: calc(50% - 0.3rem / 2);
-  left: 0.05rem;
+  top: calc(50% - 0.1rem / 2);
+  left: 25%;
   transform: rotate(45deg);
 }

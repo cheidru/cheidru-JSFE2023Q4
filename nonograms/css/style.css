@@ -22,6 +22,7 @@ header {
 
 main {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-grow: 2;
@@ -30,24 +31,61 @@ main {
     background-color: var(--main-bg-color);
 }
 
+button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 5rem;
+    height: 1rem;
+    font-size: 0.5rem;
+    padding: 2px 5px;
+    cursor: pointer;
+    border: 0.5px solid var(--guess-bg-color);
+    border-radius: 1rem;
+}
+
+button:hover:not(#timer) {
+    background-color: lightgray;
+}
+
+#timer {
+    cursor: unset;
+}
+
+#top-controls-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#bottom-controls-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 #play-ground-wrapper {    
     display: grid;
     justify-content: stretch;
     align-items: center;
+    padding: 10px;
     gap: 0;
-    width: fit-content;
-    height: fit-content;
+    width: 10rem;
+    height: min-content;
     padding: 20px;
-    grid-template-columns: repeat(6, 2rem);
-    grid-template-rows: repeat(6, 2rem);
-    font-size: 2vw;
+    grid-template-columns: 3fr repeat(5, 1fr);
+    grid-template-rows: 2fr repeat(5, 1fr);
+    font-size: 0.8rem;
 }
 
-#play-ground-wrapper > .item {
+#play-ground-wrapper .cell {
     aspect-ratio: 1 / 1;
 }
 
 .item {
+    height: 100%;
     background-color: var(--cell-bg-color);
     border: solid var(--cell-border-color) 1px;
 }
@@ -61,21 +99,28 @@ main {
 }
 
 [class^="clue-"] {
-    display: flex;
+    /* display: flex;
+    width: 100%;
+    height: 100%;
     align-items: center;
+    justify-content: center; */
+
     background-color: var(--clue-bg-color);
 }
 
-.item:is(.clue-left) {
-    min-width: fit-content;
-    justify-content: right;
-    padding: 0 2px;
-}
+/* .clue-left {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+} */
 
 .item:is(.clue-top) {
-    min-width: fit-content;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
     justify-content: center;
-    padding: 0 2px;
 }
 
 .item:is(.empty) {
@@ -85,6 +130,12 @@ main {
 
 .cell {
     cursor: pointer;
+}
+
+.svg-btn-icon {
+    width: 0.8rem;
+    height: 0.8rem;
+    stroke: var(--text-color);
 }
 
 footer {
