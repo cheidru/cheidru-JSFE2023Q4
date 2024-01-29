@@ -14,6 +14,7 @@ user.bestResults = {};
 const game = {}
 game.difficulty = 0;
 game.number = 0;
+game.level = 0;
 game.name = '';
 game.template = [];
 game.guesses = [];
@@ -41,26 +42,27 @@ function startGame() {
 }
 
 function drawNonogram() {
+  console.log('select template',game.number,game.level, game.template);
   switch(game.level) {
     case 0:
-      game.template = easyTemplate[game.number].pictire;
+      game.template = [...easyTemplate[game.number].picture];
       game.name = easyTemplate[game.number].name;
       break;
     case 1:
-      game.template = mediumTemplate[game.number].pictire;
+      game.template = [...mediumTemplate[game.number].picture];
       game.name = easyTemplate[game.number].name;
       break;
     case 2:
-      game.template = hardTemplate[game.number].pictire;
+      game.template = [...hardTemplate[game.number].picture];
       game.name = easyTemplate[game.number].name;
       break;
   }
 
   const nonoField = document.getElementById('play-ground-wrapper');
-  console.log('start drawing');
+  console.log('start drawing',game.number,game.level, game.template.length);
   let nonoItemID = 1;
-  for (let i = 0; i < game.template.pictire.length + 1; i++) {
-    for (let j = 0; j < game.template.pictire.length + 1; j++) {   
+  for (let i = 0; i < game.template.length + 1; i++) {
+    for (let j = 0; j < game.template.length + 1; j++) {   
       const nonoItem = document.createElement('div');
       nonoItem.classList.add('item');
       if (i === 0) {
@@ -75,6 +77,7 @@ function drawNonogram() {
           nonoItemID++;
         }
       }
+
       nonoField.append(nonoItem);
     }
   }
@@ -82,7 +85,7 @@ function drawNonogram() {
   const topClues = document.querySelectorAll('.clue-top');
   const leftClues = document.querySelectorAll('.clue-left');
 
-  for (let i = 0; i < game.template.clueTop.length; i++) {
+  for (let i = 0; i < topClues.length; i++) {
     topClues[i + 1].textContent = game.template.clueTop[i].join(' ');
     leftClues[i].textContent = game.template.clueLeft[i].join(' ');
   }

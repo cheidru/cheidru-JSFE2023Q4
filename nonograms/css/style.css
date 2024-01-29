@@ -15,7 +15,7 @@ body {
 
 header {
     display: flex;
-    height: 5vh;
+    height: 40px;
     width: 100%;
     background-color: var(--header-bg-color);
 }
@@ -37,13 +37,17 @@ button {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    width: 5rem;
-    height: 1rem;
-    font-size: 0.5rem;
-    padding: 2px 5px;
+    width: 10rem;
+    height: 2.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
     cursor: pointer;
     border: 0.5px solid var(--guess-bg-color);
     border-radius: 1rem;
+}
+
+.hidden {
+    display: none;
 }
 
 button:hover:not(#timer) {
@@ -57,27 +61,26 @@ button:hover:not(#timer) {
 #top-controls-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 #bottom-controls-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
 #play-ground-wrapper {    
     display: grid;
     justify-content: stretch;
     align-items: center;
-    padding: 10px;
     gap: 0;
-    width: 10rem;
+    width: 35rem;
     height: min-content;
-    padding: 20px;
+    padding: 3rem;
     grid-template-columns: 3fr repeat(5, 1fr);
     grid-template-rows: 2fr repeat(5, 1fr);
-    font-size: 0.8rem;
+    font-size: 2rem;
 }
 
 #play-ground-wrapper .cell {
@@ -99,21 +102,8 @@ button:hover:not(#timer) {
 }
 
 [class^="clue-"] {
-    /* display: flex;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center; */
-
     background-color: var(--clue-bg-color);
 }
-
-/* .clue-left {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-} */
 
 .item:is(.clue-top) {
     display: flex;
@@ -133,8 +123,8 @@ button:hover:not(#timer) {
 }
 
 .svg-btn-icon {
-    width: 0.8rem;
-    height: 0.8rem;
+    width: 1.5rem;
+    height: 1.5rem;
     stroke: var(--text-color);
 }
 
@@ -142,7 +132,7 @@ footer {
     display: flex;
     position: sticky;
     height: 5rem;
-    height: 5vh;
+    height: 40px;
     width: 100%;
     background-color: var(--header-bg-color);
 }
