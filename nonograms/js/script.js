@@ -1,5 +1,8 @@
 const field = document.getElementById('play-ground-wrapper');
 const templScript = document.getElementById('templates');
+const startGameSound = document.getElementById('new-attampt-sound');
+const checkSound = document.getElementById('check-sound');
+const uncheckSound = document.getElementById('uncheck-sound');
 
 const NEW_GAME = false;
 user = {};
@@ -41,11 +44,11 @@ function startGame() {
       e.target.classList.remove('cross-item');
       e.target.classList.toggle('guess-item');
 
-      // check cell backgound color to change user guesses array
       let cellNo = Number(e.target.id) -1;
       let x = Math.floor(cellNo / ((game.level + 1) * 5));
       let y = cellNo - (x * ((game.level + 1) * 5));
       game.guesses[x][y] = e.target.classList.contains('guess-item') ? 1 : 0;
+      game.guesses[x][y] === 1 ? checkSound.play() : uncheckSound.play();    
       console.log(x, y, game.guesses, game.template);
       const checkResult = checkUserGuess();
       console.log(checkResult);
@@ -86,6 +89,9 @@ function drawNonogram() {
     topClues[i].textContent = game.clueTop[i].join(' ');
     leftClues[i].textContent = game.clueLeft[i].join(' ');
   }
+
+  
+  startGameSound.onload = () => {startGameSound.play();}
 }
 
 function loadTemplate() {
