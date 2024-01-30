@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../assets/fonts/Inter-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Forum';
+    src: url('../assets/fonts/Forum-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 html, body, * {
     box-sizing: border-box;
     margin: 0;
@@ -10,6 +25,7 @@ body {
     align-items: center;
     justify-content: space-between;
     height: 100vh;
+    font-family: Inter;
     color: var(--text-color);
 }
 
@@ -89,8 +105,12 @@ button:hover:not(#timer) {
 
 .item {
     height: 100%;
-    background-color: var(--cell-bg-color);
     border: solid var(--cell-border-color) 1px;
+}
+
+.cell {
+    background-color: var(--cell-bg-color);
+    cursor: pointer;
 }
 
 .guess-item {
@@ -102,24 +122,30 @@ button:hover:not(#timer) {
 }
 
 [class^="clue-"] {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3rem;
     background-color: var(--clue-bg-color);
 }
 
 .item:is(.clue-top) {
     display: flex;
-    width: 100%;
+    width: 100%;    
     height: 100%;
-    align-items: center;
+    padding: 5px 30%;
+    align-items: flex-end;
     justify-content: center;
+}
+
+.item:is(.clue-left) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 5px;
 }
 
 .item:is(.empty) {
     background-color: transparent;
     border: none;
-}
-
-.cell {
-    cursor: pointer;
 }
 
 .svg-btn-icon {
@@ -136,3 +162,33 @@ footer {
     width: 100%;
     background-color: var(--header-bg-color);
 }
+
+
+.cross-item {
+    position: relative;
+  }
+  
+  .cross-item::after {
+    position: absolute;
+    content: ' ';
+    width: 2rem;
+    height: 0.3rem;
+    border-radius: 3px;
+    background-color: black;
+    top: calc(50% - 0.3rem / 2);
+    transform: translateX(-50%);
+    left: calc(25% - 0.3rem / 2);
+    transform: rotate(-45deg);
+  }
+  
+  .cross-item::before {
+    position: absolute;
+    content: ' ';
+    width: 2rem;
+    height: 0.3rem;
+    border-radius: 3px;
+    background-color: black;
+    top: calc(50% - 0.3rem / 2);
+    left: calc(25% - 0.3rem / 2);
+    transform: rotate(45deg);
+  }
