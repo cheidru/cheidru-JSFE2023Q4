@@ -12,6 +12,8 @@ const solutionBTN = document.getElementById('solution');
 const lastGameBTN = document.getElementById('last-game');
 const timerDisplay = document.getElementById('timer');
 
+const body = document.querySelector('body');
+
 
 const NEW_GAME = false;
 const RANDOM_GAME = true;
@@ -170,8 +172,11 @@ function loadTemplate() {
 }
 
 function selectRandomGame(randomGame) {
-  if(randomGame) game.level = randomChoice(3);
-  game.number = randomChoice(5);
+  if(randomGame) {
+    game.level = randomChoice(2);
+    body.style.setProperty("--templ-col-num", `${(game.level +1) * 5}`); 
+  }
+  game.number = randomChoice(4);
 
   function randomChoice(range) {
     return Math.round(Math.random() * range);
@@ -208,5 +213,69 @@ function endGame() {
   saveResult();
   resetGame();
 };
+
+
+
+// Check if localStorage has reader with keys/values contained in keyObject
+// Returns an array with object from localStore which meets keyObject keys, otherwise empty array
+function checkLocalStore(keyObject) {
+  let result = [];
+  // There's no 'readers' key in localStorage
+  if (localStorage.getItem('readers') === null) return result;
+
+  let arrReaders = JSON.parse(localStorage.getItem('readers'));
+
+  // search in each reader record
+  for (let reader of arrReaders) {
+      // True only if every reader's key meets keyObject key
+      let allParametersFit = false;
+      for (let parameter in keyObject) {
+          allParametersFit = keyObject[parameter] == reader[parameter] ? true : false;
+
+          // The first mismatch means this readers object doesn't fit
+          if (allParametersFit == false) break;
+      }
+
+      if (allParametersFit == true) {
+          result.push(reader);
+
+          return result;
+      }
+  }
+  return result;
+}
+
+// Update user profile data
+function updateLocalStorageData() {
+  let arrReaders = [];
+
+  if (localStorage.getItem('readers') === null) {
+      // There's no 'readers' key in localStorage
+      arrReaders.push(activeUser);
+  } else {    
+      let storedReaders = JSON.parse(localStorage.getItem('readers'))
+
+      // check each reader against activeUser
+      for(reader of storedReaders) {
+          if (reader.firstName == activeUser.firstName 
+              && reader.lastName == activeUser.lastName
+              && reader.password == activeUser.password
+              && reader.cardCode == activeUser.cardCode) {
+                  // Update with activeUser data
+                  arrReaders.push(activeUser);
+          } else {
+                  arrReaders.push(reader);
+          }
+      }
+  }
+  let newReadersString = JSON.stringify(arrReaders)   
+  localStorage.setItem('readers', newReadersString);
+}
+
+
+
+
+
+
 
 startGame(NEW_GAME);
