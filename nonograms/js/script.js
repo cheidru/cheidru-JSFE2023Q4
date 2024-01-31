@@ -14,6 +14,7 @@ const timerDisplay = document.getElementById('timer');
 
 
 const NEW_GAME = false;
+const RANDOM_GAME = true;
 user = {};
 user.lastGame = {};
 user.lastGame.level = 0;
@@ -36,12 +37,10 @@ game.guesses = [];
 game.timerON = false;
 game.timer = {};
 
-function startGame() {
-  selectRandomGame(NEW_GAME);
+function startGame(newOrRandom) {
+  selectRandomGame(newOrRandom);
   loadTemplate();
   drawNonogram();
-
-  console.log('start game ', game.guesses, game.template);
 
   field.addEventListener('contextmenu', (e) => {
     e.preventDefault();
@@ -74,6 +73,20 @@ restartBTN.addEventListener('click', () => {
   restartGame();
 })
 
+solutionBTN.addEventListener('click', () => {
+  restartGame();
+  showSolution();
+})
+
+randomBTN.addEventListener('click', () => {
+  game.timerON = false;
+  timerDisplay.textContent = '00:00';
+  clearInterval(game.timer.id);
+  game.timerON = false;
+  nonoField.innerHTML = '';
+  startGame(RANDOM_GAME);
+})
+
 function restartGame() {
   game.timerON = false;
   timerDisplay.textContent = '00:00';
@@ -82,11 +95,6 @@ function restartGame() {
   nonoField.innerHTML = '';
   drawNonogram();
 }
-
-solutionBTN.addEventListener('click', () => {
-  restartGame();
-  showSolution();
-})
 
 function showSolution() {
   for (let i = 0; i < game.template.length; i++) {
@@ -161,8 +169,8 @@ function loadTemplate() {
   return true;
 }
 
-function selectRandomGame(randomButtonPressed) {
-  if(randomButtonPressed) game.level = randomChoice(3);
+function selectRandomGame(randomGame) {
+  if(randomGame) game.level = randomChoice(3);
   game.number = randomChoice(5);
 
   function randomChoice(range) {
@@ -201,4 +209,4 @@ function endGame() {
   resetGame();
 };
 
-startGame();
+startGame(NEW_GAME);
