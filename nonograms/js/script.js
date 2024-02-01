@@ -17,15 +17,16 @@ const body = document.querySelector('body');
 
 const NEW_GAME = false;
 const RANDOM_GAME = true;
-user = {};
+let user = {};
 user.lastGame = {};
 user.lastGame.level = 0;
 user.lastGame.number = 0;
-user.lastGame.result = [];
+user.lastGame.guesses = [];
+user.lastGame.time = [];
 user.default = {};
 user.default.level = 0;
 user.default.theme = 'light-theme';
-user.bestResults = {};
+user.bestResults = [];
 
 const game = {}
 game.difficulty = 0;
@@ -40,6 +41,7 @@ game.timerON = false;
 game.timer = {};
 
 function startGame(newOrRandom) {
+  user = (loadUserData() || user);
   selectRandomGame(newOrRandom);
   loadTemplate();
   drawNonogram();
@@ -216,40 +218,47 @@ function endGame() {
 
 
 
-// Check if localStorage has reader with keys/values contained in keyObject
-// Returns an array with object from localStore which meets keyObject keys, otherwise empty array
-function checkLocalStore(keyObject) {
-  let result = [];
-  // There's no 'readers' key in localStorage
-  if (localStorage.getItem('readers') === null) return result;
+function loadUserData() {
+  let userObj = {};
+  // There's no 'nonograms' key in localStorage
+  if (localStorage.getItem('nonograms') === null) return false;
 
-  let arrReaders = JSON.parse(localStorage.getItem('readers'));
+  userObj = JSON.parse(localStorage.getItem('nonograms'));
 
-  // search in each reader record
-  for (let reader of arrReaders) {
-      // True only if every reader's key meets keyObject key
-      let allParametersFit = false;
-      for (let parameter in keyObject) {
-          allParametersFit = keyObject[parameter] == reader[parameter] ? true : false;
-
-          // The first mismatch means this readers object doesn't fit
-          if (allParametersFit == false) break;
-      }
-
-      if (allParametersFit == true) {
-          result.push(reader);
-
-          return result;
-      }
-  }
-  return result;
+  return userObj;
 }
 
 // Update user profile data
 function updateLocalStorageData() {
   let arrReaders = [];
 
-  if (localStorage.getItem('readers') === null) {
+
+  user = {};
+  user.lastGame = {};
+  user.lastGame.level = 0;
+  user.lastGame.number = 0;
+  user.lastGame.guesses = [];
+  user.lastGame.time = [];
+  user.default = {};
+  user.default.level = 0;
+  user.default.theme = 'light-theme';
+  user.bestResults = [];
+
+
+  const game = {}
+  game.difficulty = 0;
+  game.number = 0;
+  game.level = 0;
+  game.name = '';
+  game.template = [];
+  game.clueTop = [];
+  game.clueLeft = [];
+  game.guesses = [];
+  game.timerON = false;
+  game.timer = {};
+
+
+  if (localStorage.getItem('nonograms') === null) {
       // There's no 'readers' key in localStorage
       arrReaders.push(activeUser);
   } else {    
@@ -271,6 +280,10 @@ function updateLocalStorageData() {
   let newReadersString = JSON.stringify(arrReaders)   
   localStorage.setItem('readers', newReadersString);
 }
+
+
+
+
 
 
 
