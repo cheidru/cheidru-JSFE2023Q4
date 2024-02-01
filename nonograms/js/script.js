@@ -38,7 +38,8 @@ game.clueTop = [];
 game.clueLeft = [];
 game.guesses = [];
 game.timerON = false;
-game.timer = {};
+game.theme = 'light-theme';
+game.timer = 0;
 
 function startGame(newOrRandom) {
   user = (loadUserData() || user);
@@ -219,7 +220,7 @@ function endGame() {
 
 
 function loadUserData() {
-  let userObj = {};
+  let userObj = (game.timer || 0);
   // There's no 'nonograms' key in localStorage
   if (localStorage.getItem('nonograms') === null) return false;
 
@@ -232,30 +233,16 @@ function loadUserData() {
 function updateLocalStorageData() {
   let arrReaders = [];
 
-
-  user = {};
-  user.lastGame = {};
-  user.lastGame.level = 0;
-  user.lastGame.number = 0;
-  user.lastGame.guesses = [];
-  user.lastGame.time = [];
-  user.default = {};
-  user.default.level = 0;
-  user.default.theme = 'light-theme';
   user.bestResults = [];
 
 
-  const game = {}
-  game.difficulty = 0;
-  game.number = 0;
-  game.level = 0;
-  game.name = '';
-  game.template = [];
-  game.clueTop = [];
-  game.clueLeft = [];
-  game.guesses = [];
-  game.timerON = false;
-  game.timer = {};
+  user.lastGame.level = game.level;
+  user.lastGame.number = game.number;
+  user.lastGame.name = game.name;
+  ser.lastGame.guesses.length = 0;
+  user.lastGame.guesses = [...game.guesses];
+  user.lastGame.time = game.timer;
+
 
 
   if (localStorage.getItem('nonograms') === null) {
