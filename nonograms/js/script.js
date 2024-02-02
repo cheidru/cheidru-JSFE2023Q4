@@ -7,7 +7,7 @@ const nonoField = document.getElementById('play-ground-wrapper');
 
 const restartBTN = document.getElementById('restart');
 const randomBTN = document.getElementById('random');
-const saveBTN = document.getElementById('save');
+const saveBTN = document.getElementById('save-game');
 const solutionBTN = document.getElementById('solution');
 const lastGameBTN = document.getElementById('last-game');
 const timerDisplay = document.getElementById('timer');
@@ -18,18 +18,8 @@ const body = document.querySelector('body');
 const NEW_GAME = false;
 const RANDOM_GAME = true;
 let user = {};
-user.lastGame = {};
-user.lastGame.level = 0;
-user.lastGame.number = 0;
-user.lastGame.guesses = [];
-user.lastGame.time = [];
-user.default = {};
-user.default.level = 0;
-user.default.theme = 'light-theme';
-user.bestResults = [];
 
 const game = {}
-game.difficulty = 0;
 game.number = 0;
 game.level = 0;
 game.name = '';
@@ -40,6 +30,9 @@ game.guesses = [];
 game.timerON = false;
 game.theme = 'light-theme';
 game.timer = 0;
+game.timer.id = '';
+
+let timerID = '';
 
 function startGame(newOrRandom) {
   user = (loadUserData() || user);
@@ -78,9 +71,16 @@ restartBTN.addEventListener('click', () => {
   restartGame();
 })
 
-solutionBTN.addEventListener('click', () => {
-  restartGame();
+solutionBTN.addEventListener('mousedown', () => {
+  // restartGame();
+  clearInterval(timerID);
   showSolution();
+})
+
+solutionBTN.addEventListener('mouseup', () => {
+  // ToDo stop the clock while watching solution
+  showSolution('guesses');
+  startGameTimer(game.timer);
 })
 
 randomBTN.addEventListener('click', () => {
@@ -92,6 +92,10 @@ randomBTN.addEventListener('click', () => {
   startGame(RANDOM_GAME);
 })
 
+saveBTN.addEventListener('click', () => {
+  updateLocalStorageData();
+})
+
 function restartGame() {
   game.timerON = false;
   timerDisplay.textContent = '00:00';
@@ -101,10 +105,20 @@ function restartGame() {
   drawNonogram();
 }
 
-function showSolution() {
-  for (let i = 0; i < game.template.length; i++) {
-    for (let j = 0; j < game.template.length; j++) {
-      if(game.template[i][j] === 1) {
+function showSolution(showWhat) {
+  let showWhatArr = [];
+  if (!showWhat) {
+    nonoField.innerHTML = '';
+    drawNonogram('keepGuesses')
+    showWhatArr = [...game.template];
+  } else {
+    showWhatArr = [...game.guesses];
+    nonoField.innerHTML = '';
+    drawNonogram('keepGuesses');
+  }
+  for (let i = 0; i < showWhatArr.length; i++) {
+    for (let j = 0; j < showWhatArr.length; j++) {
+      if(showWhatArr[i][j] === 1) {
         const filledCell = document.getElementById(`${(i * (game.level + 1) * 5) + j + 1}`);
         filledCell.classList.add('guess-item');
       }
@@ -112,11 +126,11 @@ function showSolution() {
   }  
 }
 
-function drawNonogram() {
+function drawNonogram(keepGuesses) {
   let nonoItemID = 1;
-  game.guesses.length = 0;
+  if(!keepGuesses) game.guesses.length = 0;
   for (let i = 0; i < game.template.length + 1; i++) {
-      if (i > 0) game.guesses.push(new Array(game.template.length).fill(0)); // generate empty user gueses array, skip first clue row
+      if (i > 0 && !keepGuesses) game.guesses.push(new Array(game.template.length).fill(0)); // generate empty user gueses array, skip first clue row
     for (let j = 0; j < game.template.length + 1; j++) {   
       const nonoItem = document.createElement('div');
       if (i === 0) {
@@ -197,9 +211,10 @@ function checkUserGuess() {
   return true;
 }
 
-function startGameTimer() {
-  let gameRunSec = 0;
-  game.timer.id = setInterval(() => {
+function startGameTimer(time) {  
+  let gameRunSec = 1;
+  if(time) gameRunSec = time;
+  timerID = setInterval(() => {
     const runMinutes = Math.floor(gameRunSec / 60);
     const runSeconds = gameRunSec % 60;
     let minStr = runMinutes.toString();
@@ -208,6 +223,7 @@ function startGameTimer() {
     secStr = secStr.length == 1 ? '0' + runSeconds : runSeconds;
     timerDisplay.textContent = minStr + ':' + secStr;
     gameRunSec++;
+    game.timer = gameRunSec;
   }, 1000)
 }
 
@@ -217,16 +233,23 @@ function endGame() {
   resetGame();
 };
 
-
-
 function loadUserData() {
-  let userObj = (game.timer || 0);
   // There's no 'nonograms' key in localStorage
-  if (localStorage.getItem('nonograms') === null) return false;
+  if (localStorage.getItem('nonograms') === null) {
+    // Assign and save default user data
+    user.lastGame = {};
+    user.default = {};
+    user.default.level = 0;
+    user.default.theme = 'light-theme';
+    user.bestResults = [];
 
-  userObj = JSON.parse(localStorage.getItem('nonograms'));
+    updateLocalStorageData();
+  }
 
-  return userObj;
+  user = JSON.parse(localStorage.getItem('nonograms'));
+
+  game.level = user.default.level;
+  game.theme = user.default.theme;
 }
 
 // Update user profile data
@@ -239,10 +262,13 @@ function updateLocalStorageData() {
   user.lastGame.level = game.level;
   user.lastGame.number = game.number;
   user.lastGame.name = game.name;
-  ser.lastGame.guesses.length = 0;
+  user.lastGame.guesses.length = 0;
   user.lastGame.guesses = [...game.guesses];
   user.lastGame.time = game.timer;
 
+
+
+ 
 
 
   if (localStorage.getItem('nonograms') === null) {
@@ -267,15 +293,5 @@ function updateLocalStorageData() {
   let newReadersString = JSON.stringify(arrReaders)   
   localStorage.setItem('readers', newReadersString);
 }
-
-
-
-
-
-
-
-
-
-
 
 startGame(NEW_GAME);
