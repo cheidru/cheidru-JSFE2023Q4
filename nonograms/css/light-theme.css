@@ -6,4 +6,7 @@
   --guess-bg-color: rgb(33, 37, 41);
   --cell-bg-color: rgb(224, 204, 190);
   --clue-bg-color: rgb(210, 105, 30);
+  --power-layer-color: rgba(52, 67, 39, 0.7);
+  --modal-heading-bg-color: rgb(33, 37, 41);
+  --modal-heading-color: rgb(238, 237, 235);
 }

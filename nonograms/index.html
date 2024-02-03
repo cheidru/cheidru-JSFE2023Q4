@@ -14,17 +14,22 @@
     <!-- <audio src="./assets/audio/selebration.ogg" id="win-sound"></audio>
     <audio src="./assets/audio/divine.ogg" id="divine-sound"></audio>
     <audio src="./assets/audio/new-attampt.ogg" id="new-attampt-sound"></audio> -->
-    <div id="power-layar" class="hidden"></div>
-    <div id="modal-window" class="hidden"></div>
-    <div id="select-game" class="hidden">
+
+    <!-- <div id="power-layer" class="hidden"></div>
+    <div id="modal-window" class="hidden modal"></div>
+    <div id="select-game" class="hidden modal"> -->
+
+    <div id="power-layer"></div>
+    <div id="modal-window" class="hidden modal"></div>
+    <div id="select-game" class="modal">
         <div id="heading-wrapper">
             <p id="heading">Click picture to select the game</p>
             <div id="times"></div>
         </div>
         <div id="game-lvl-wrapper">
-            <button id="easy-lvl-btn"></button>
-            <button id="medium-lvl-btn"></button>
-            <button id="hard-lvl-btn"></button>
+            <div id="easy" class="lvl-btn active">Easy</div>
+            <div id="medium" class="lvl-btn">Medium</div>
+            <div id="hard" class="lvl-btn">Hard</div>
         </div>
         <div id="nono-wrapper"></div>
     </div>

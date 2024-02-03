@@ -78,9 +78,8 @@ solutionBTN.addEventListener('mousedown', () => {
 })
 
 solutionBTN.addEventListener('mouseup', () => {
-  // ToDo stop the clock while watching solution
   showSolution('guesses');
-  startGameTimer(game.timer);
+  if (game.timer > 0) startGameTimer(game.timer);
 })
 
 randomBTN.addEventListener('click', () => {
@@ -256,8 +255,9 @@ function updateLocalStorageData() {
   user.lastGame.name = game.name;
   user.lastGame.guesses = [...game.guesses];
   user.lastGame.time = game.timer;
-  
-  localStorage.setItem('nonograms', user);
+ 
+  let updatedRecord = JSON.stringify(user)   
+  localStorage.setItem('nonograms', updatedRecord);
 }
 
 startGame(NEW_GAME);
