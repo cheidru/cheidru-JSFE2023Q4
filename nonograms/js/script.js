@@ -242,56 +242,22 @@ function loadUserData() {
     user.default.level = 0;
     user.default.theme = 'light-theme';
     user.bestResults = [];
-
-    updateLocalStorageData();
+  } else {
+    user = JSON.parse(localStorage.getItem('nonograms'));
+    game.level = user.default.level;
+    game.theme = user.default.theme;
+    console.log(user);
   }
-
-  user = JSON.parse(localStorage.getItem('nonograms'));
-
-  game.level = user.default.level;
-  game.theme = user.default.theme;
 }
 
-// Update user profile data
 function updateLocalStorageData() {
-  let arrReaders = [];
-
-  user.bestResults = [];
-
-
   user.lastGame.level = game.level;
   user.lastGame.number = game.number;
   user.lastGame.name = game.name;
-  user.lastGame.guesses.length = 0;
   user.lastGame.guesses = [...game.guesses];
   user.lastGame.time = game.timer;
-
-
-
- 
-
-
-  if (localStorage.getItem('nonograms') === null) {
-      // There's no 'readers' key in localStorage
-      arrReaders.push(activeUser);
-  } else {    
-      let storedReaders = JSON.parse(localStorage.getItem('readers'))
-
-      // check each reader against activeUser
-      for(reader of storedReaders) {
-          if (reader.firstName == activeUser.firstName 
-              && reader.lastName == activeUser.lastName
-              && reader.password == activeUser.password
-              && reader.cardCode == activeUser.cardCode) {
-                  // Update with activeUser data
-                  arrReaders.push(activeUser);
-          } else {
-                  arrReaders.push(reader);
-          }
-      }
-  }
-  let newReadersString = JSON.stringify(arrReaders)   
-  localStorage.setItem('readers', newReadersString);
+  
+  localStorage.setItem('nonograms', user);
 }
 
 startGame(NEW_GAME);
