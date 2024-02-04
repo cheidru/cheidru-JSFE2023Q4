@@ -14,6 +14,17 @@ const timerDisplay = document.getElementById('timer');
 
 const body = document.querySelector('body');
 
+const powerLayer = document.getElementById('power-layer');
+const winModal = document.getElementById('win-window');
+const winModalClose = document.getElementById('win-times');
+const selectGameModal = document.getElementById('select-game');
+const selectGameModalClose = document.getElementById('select-game-times');
+
+const easyLevelBTN = document.getElementById('easy');
+const mediumLevelBTN = document.getElementById('medium');
+const hardLevelBTN = document.getElementById('hard');
+
+
 
 const NEW_GAME = false;
 const RANDOM_GAME = true;
@@ -83,12 +94,9 @@ solutionBTN.addEventListener('mouseup', () => {
 })
 
 randomBTN.addEventListener('click', () => {
-  game.timerON = false;
-  timerDisplay.textContent = '00:00';
-  clearInterval(game.timer.id);
-  game.timerON = false;
-  nonoField.innerHTML = '';
-  startGame(RANDOM_GAME);
+  // clearGameSession();
+  // startGame(RANDOM_GAME);
+  resetGame();
 })
 
 saveBTN.addEventListener('click', () => {
@@ -96,12 +104,16 @@ saveBTN.addEventListener('click', () => {
 })
 
 function restartGame() {
+  clearGameSession();
+  drawNonogram();
+}
+
+function clearGameSession() {
   game.timerON = false;
   timerDisplay.textContent = '00:00';
   clearInterval(game.timer.id);
   game.timerON = false;
   nonoField.innerHTML = '';
-  drawNonogram();
 }
 
 function showSolution(showWhat) {
@@ -158,9 +170,7 @@ function drawNonogram(keepGuesses) {
     topClues[i].textContent = game.clueTop[i].join(' ');
     leftClues[i].textContent = game.clueLeft[i].join(' ');
   }
-  
   // startGameSound.onload = () => {startGameSound.play();}
-
 }
 
 function loadTemplate() {
@@ -188,11 +198,15 @@ function loadTemplate() {
 }
 
 function selectRandomGame(randomGame) {
-  if(randomGame) {
-    game.level = randomChoice(2);
-    body.style.setProperty("--templ-col-num", `${(game.level +1) * 5}`); 
+  const oldGameNumber = game.number;
+  const oldGameLavel = game.level;
+  while (game.number === oldGameNumber && game.level === oldGameLavel) {
+    if(randomGame) {
+      game.level = randomChoice(2);
+      body.style.setProperty("--templ-col-num", `${(game.level +1) * 5}`); 
+    }
+    game.number = randomChoice(4);
   }
-  game.number = randomChoice(4);
 
   function randomChoice(range) {
     return Math.round(Math.random() * range);
@@ -227,10 +241,31 @@ function startGameTimer(time) {
 }
 
 function endGame() {
+  clearInterval(game.timer.id);
   showWinModal();
   saveResult();
   resetGame();
 };
+
+function showWinModal() {
+  powerLayer.style.display = 'flex';
+  winModal.style.display = 'flex';
+}
+
+winModalClose.addEventListener('click', () => {
+  powerLayer.style.display = 'none';
+  winModal.style.display = 'none';
+})
+
+function resetGame() {
+  clearGameSession();
+  startGame(RANDOM_GAME);
+}
+
+function saveResult() {
+  // ToDo user.bestResults
+  updateLocalStorageData();
+}
 
 function loadUserData() {
   // There's no 'nonograms' key in localStorage

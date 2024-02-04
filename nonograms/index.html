@@ -20,18 +20,44 @@
     <div id="select-game" class="hidden modal"> -->
 
     <div id="power-layer"></div>
-    <div id="modal-window" class="hidden modal"></div>
+    <div id="win-window" class="modal">
+        <div class="heading-wrapper">
+            <div id="win-times" class="times"></div>
+        </div>
+        <p>Congratulations! You win!</p>
+    </div>
     <div id="select-game" class="modal">
-        <div id="heading-wrapper">
+        <div class="heading-wrapper">
             <p id="heading">Click picture to select the game</p>
-            <div id="times"></div>
+            <div id="select-game-times" class="times"></div>
         </div>
         <div id="game-lvl-wrapper">
             <div id="easy" class="lvl-btn active">Easy</div>
             <div id="medium" class="lvl-btn">Medium</div>
             <div id="hard" class="lvl-btn">Hard</div>
         </div>
-        <div id="nono-wrapper"></div>
+        <div id="nono-wrapper">
+            <div id="templ-1" class="teml-wrapper">
+                <p class="templ-head">dog</p>
+                <img src="./assets/img/easy-dog.png" class="templ-pic" alt="dog-template"></img>
+            </div>
+            <div id="templ-2" class="teml-wrapper">
+                <p class="templ-head">flag</p>
+                <img src="./assets/img/easy-flag.png" class="templ-pic" alt="flag-template"></img>
+            </div>
+            <div id="templ-3" class="teml-wrapper">
+                <p class="templ-head">tower</p>
+                <img src="./assets/img/easy-tower.png" class="templ-pic" alt="tower-template"></img>
+            </div>
+            <div id="templ-4" class="teml-wrapper">
+                <p class="templ-head">rune</p>
+                <img src="./assets/img/easy-rune.png" class="templ-pic" alt="rune-template"></img>
+            </div>
+            <div id="templ-5" class="teml-wrapper">
+                <p class="templ-head">tree</p>
+                <img src="./assets/img/easy-tree.png" class="templ-pic" alt="tree-template"></img>
+            </div>
+        </div>
     </div>
 
 
@@ -48,7 +74,7 @@
             <button id="restart">Restart</button>
             <button id="save-game">Save</button>
         </div>
-        <div id="play-ground-wrapper" class="ground5">
+        <div id="play-ground-wrapper">
             <!-- <div class="clue-top empty item" id="1"></div>
             <div class="clue-top item" id="2">2</div>
             <div class="clue-top item" id="3">4</div>
