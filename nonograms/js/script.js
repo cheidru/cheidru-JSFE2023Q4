@@ -20,9 +20,16 @@ const winModalClose = document.getElementById('win-times');
 const selectGameModal = document.getElementById('select-game');
 const selectGameModalClose = document.getElementById('select-game-times');
 
-const easyLevelBTN = document.getElementById('easy');
-const mediumLevelBTN = document.getElementById('medium');
-const hardLevelBTN = document.getElementById('hard');
+const levelBTN = document.getElementById('game-lvl-wrapper');
+
+const settingsBTN = document.getElementById('settings');
+const settingMNU = document.getElementById('setting-menu');
+const showSelectGameBTN = document.getElementById('select-mnu-game');
+const showSelectThemeBTN = document.getElementById('select-mnu-theme');
+const showResultsBTN = document.getElementById('show-mnu-results');
+const closeSettingMnuBTN = document.getElementById('setting-menu-times');
+
+
 
 
 
@@ -78,9 +85,72 @@ function startGame(newOrRandom) {
   })
 }
 
+levelBTN.addEventListener('click', (e) => {
+  const easyLVL = document.getElementById('easy');
+  const mediumLVL = document.getElementById('medium');
+  const hardLVL = document.getElementById('hard');
+
+  easyLVL.classList.remove('active');
+  mediumLVL.classList.remove('active');
+  mediumLVL.classList.remove('active');
+
+  switch(e.target.id) {
+    case easy:
+      easyLVL.classList.add('active');
+      loadTemplPics(easyTemplate);
+      break;
+    case medium:
+      mediumLVL.classList.add('active');
+      loadTemplPics(mediumTemplate);
+      break;
+    case hard:
+      hardLVL.classList.add('active');
+      loadTemplPics(hardTemplate);
+      break;
+  }
+
+  function loadTemplPics(templArr) {
+    const teplateSet = document.querySelectorAll('.teml-wrapper');
+    for(let i = 0; i < 5; i++) {
+      const templText = teplateSet[i].querySelector('.templ-head');
+      templText.textContent = templArr[i].name;
+      const templIMG = teplateSet[i].querySelector('.templ-pic');
+      templIMG.src = templArr[i].src;
+    }
+  }
+
+})
+
 restartBTN.addEventListener('click', () => {
   restartGame();
 })
+
+settingsBTN.addEventListener('click', () => {  
+
+  powerLayer.style.display = 'block';
+  settingMNU.style.display = 'flex';
+
+  showSelectGameBTN.addEventListener('click', () => {
+    showSelectGameModal();
+  }, true)
+
+  closeSettingMnuBTN.addEventListener('click', () => {
+    powerLayer.style.display = 'none';
+    closeSettingMNU()
+  }, true)
+
+
+})
+
+function closeSettingMNU() {
+  settingMNU.style.display = 'none';
+}
+
+function showSelectGameModal() {
+  closeSettingMNU();
+  powerLayer.style.display = 'block';
+  selectGameModal.style.display = 'flex';
+}
 
 solutionBTN.addEventListener('mousedown', () => {
   // restartGame();
@@ -248,7 +318,7 @@ function endGame() {
 };
 
 function showWinModal() {
-  powerLayer.style.display = 'flex';
+  powerLayer.style.display = 'block';
   winModal.style.display = 'flex';
 }
 
