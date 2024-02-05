@@ -1,0 +1,14 @@
+:root {
+  --text-color: rgb(33, 37, 41);
+  --header-bg-color: rgb(116, 114, 100);
+  --light-bg-color: rgb(221, 216, 176);
+  --main-bg-color: rgb(238, 237, 235);
+  --cell-border-color: rgb(128, 128, 128);
+  --guess-bg-color: rgb(33, 37, 41);
+  --cell-bg-color: rgb(224, 204, 190);
+  --clue-bg-color: rgb(210, 105, 30);
+  --power-layer-color: rgba(52, 67, 39, 0.7);
+  --modal-heading-bg-color: rgb(33, 37, 41);
+  --modal-heading-color: rgb(238, 237, 235);
+  --stats-background-color: rgb(41, 69, 53);  
+}
