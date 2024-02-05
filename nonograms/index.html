@@ -20,12 +20,11 @@
     <div id="select-game" class="hidden modal"> -->
 
     <div id="power-layer"></div>
-    <div id="win-window" class="modal">
-        
+    <div id="win-window" class="modal">        
         <div class="heading-wrapper">
             <div id="win-times" class="times"></div>
         </div>
-        <p>Congratulations! You win!</p>
+        <p>Congratulations! You win! Your time is <span id="game-time"></span></p>        
     </div>
 
     <div id="select-game" class="modal">
@@ -39,31 +38,107 @@
             <div id="hard" class="lvl-btn">Hard</div>
         </div>
         <div id="nono-wrapper">
-            <div id="templ-1" class="teml-wrapper">
+            <div id="templ-1" class="templ-wrapper">
                 <p class="templ-head">dog</p>
                 <img src="./assets/img/easy-dog.png" class="templ-pic" alt="dog-template"></img>
             </div>
-            <div id="templ-2" class="teml-wrapper">
+            <div id="templ-2" class="templ-wrapper">
                 <p class="templ-head">flag</p>
                 <img src="./assets/img/easy-flag.png" class="templ-pic" alt="flag-template"></img>
             </div>
-            <div id="templ-3" class="teml-wrapper">
+            <div id="templ-3" class="templ-wrapper">
                 <p class="templ-head">tower</p>
                 <img src="./assets/img/easy-tower.png" class="templ-pic" alt="tower-template"></img>
             </div>
-            <div id="templ-4" class="teml-wrapper">
+            <div id="templ-4" class="templ-wrapper">
                 <p class="templ-head">rune</p>
                 <img src="./assets/img/easy-rune.png" class="templ-pic" alt="rune-template"></img>
             </div>
-            <div id="templ-5" class="teml-wrapper">
+            <div id="templ-5" class="templ-wrapper">
                 <p class="templ-head">tree</p>
                 <img src="./assets/img/easy-tree.png" class="templ-pic" alt="tree-template"></img>
             </div>
         </div>
     </div>
 
+    <div id="select-theme" class="modal">
+        <div class="heading-wrapper">
+            <div id="theme-title">Click on the preferable theme</div><div id="theme-times" class="times"></div>
+        </div>
+        
+        <div id="themes-wrapper">
+            <div id="light-theme" class="theme-wrapper">
+                <p>Ligth</p>
+                <div class="color-mixes">
+                    <div class="color" style="background-color: rgb(116, 114, 100);"></div>
+                    <div class="color" style="background-color: rgb(221, 216, 176);"></div>
+                    <div class="color" style="background-color: rgb(224, 204, 190);"></div>
+                    <div class="color" style="background-color: rgb(210, 105, 30);"></div>
+                </div>
+            </div>
+            <div id="dark-theme" class="theme-wrapper">
+                <p>Dark</p>
+                <div class="color-mixes">
+                    <div class="color" style="background-color: rgb(128, 128, 128);"></div>
+                    <div class="color" style="background-color: rgb(48, 87, 104);"></div>
+                    <div class="color" style="background-color: rgba(52, 67, 39, 0.7);"></div>
+                    <div class="color" style="background-color: rgb(94, 48, 25);"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="show-results" class="modal">
+        <div class="heading-wrapper">
+            <div id="result-title">See five last results <br><span>sorted by level & time</span></div><div id="theme-times" class="times"></div>
+        </div>
+
+        <p id="no-results">No results saved</p>
+
+        <table>
+            <tr id="result-teader">
+                <th>#</th><th>Game title</th><th>Gale Level</th><th>Time</th>
+            </tr>
+            <tr id="place-1">
+                <td>1</td><td>ambulance</td><td>3</td><td>02:35</td>
+            </tr>
+            <tr id="place-2">
+                <td></td><td></td><td></td><td></td>
+            </tr>
+            <tr id="place-3">
+                <td></td><td></td><td></td><td></td>
+            </tr>
+            <tr id="place-4">
+                <td></td><td></td><td></td><td></td>
+            </tr>
+            <tr id="place-5">
+                <td></td><td></td><td></td><td></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="warning" class="modal">
+        <div class="heading-wrapper">
+            <div id="warning-times" class="times"></div>
+        </div>
+        <p>If you click Solution button to show the puzzle, your result will not be saved</p>
+    </div>
+
+
     <header>
         <div id="title">Nonograms Game</div>
+
+        <div id="game-stats">
+            <div id="game-level" class="stats">
+                <p>Game Level</p>
+                <div id="stats-level" class="stat-value">1</div>
+            </div>
+            <div id="game-name" class="stats">
+                <p>Name</p>
+                <div id="stats-name" class="stat-value">dog</div>
+            </div>
+        </div>
+
         <div id="settings-wrapper">
             <div id="settings">
                 <p>Settings</p>
@@ -82,9 +157,8 @@
                 </ul>
             </div>
         </div>
-
-
     </header>
+
     <main>
         <div id="top-controls-wrapper">
             <button id="random">Random game</button>
@@ -92,42 +166,6 @@
             <button id="save-game">Save</button>
         </div>
         <div id="play-ground-wrapper">
-            <!-- <div class="clue-top empty item" id="1"></div>
-            <div class="clue-top item" id="2">2</div>
-            <div class="clue-top item" id="3">4</div>
-            <div class="clue-top item" id="4">3 1</div>
-            <div class="clue-top item" id="5">4</div>
-            <div class="clue-top item" id="6">2</div>
-            <div class="clue-left item" id="7"></div>
-            <div class="cell item 1cross-item" id="8"></div>
-            <div class="cell item" id="9"></div>
-            <div class="cell item" id="10"></div>
-            <div class="cell item" id="11"></div>
-            <div class="cell item" id="12"></div>
-            <div class="clue-left item" id="13">5</div>
-            <div class="cell item" id="14"></div>
-            <div class="cell item" id="15"></div>
-            <div class="cell item" id="16"></div>
-            <div class="cell item" id="17"></div>
-            <div class="cell item" id="18"></div>
-            <div class="clue-left item" id="19">3</div>
-            <div class="cell item" id="20"></div>
-            <div class="cell item" id="21"></div>
-            <div class="cell item" id="22"></div>
-            <div class="cell item" id="23"></div>
-            <div class="cell item" id="24"></div>
-            <div class="clue-left item" id="25">1 1</div>
-            <div class="cell item" id="26"></div>
-            <div class="cell item" id="27"></div>
-            <div class="cell item" id="28"></div>
-            <div class="cell item" id="29"></div>
-            <div class="cell item" id="30"></div>
-            <div class="clue-left item" id="31">3</div>
-            <div class="cell item" id="32"></div>
-            <div class="cell item" id="33"></div>
-            <div class="cell item" id="34"></div>
-            <div class="cell item" id="35"></div>
-            <div class="cell item" id="36"></div>                 -->
         </div>
         <div id="bottom-controls-wrapper">
             <button id="timer">00:00</button>

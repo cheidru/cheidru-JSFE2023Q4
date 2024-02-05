@@ -28,10 +28,7 @@ const showSelectGameBTN = document.getElementById('select-mnu-game');
 const showSelectThemeBTN = document.getElementById('select-mnu-theme');
 const showResultsBTN = document.getElementById('show-mnu-results');
 const closeSettingMnuBTN = document.getElementById('setting-menu-times');
-
-
-
-
+const selectThemeModal = document.getElementById('select-theme');
 
 const NEW_GAME = false;
 const RANDOM_GAME = true;
@@ -110,7 +107,7 @@ levelBTN.addEventListener('click', (e) => {
   }
 
   function loadTemplPics(templArr) {
-    const teplateSet = document.querySelectorAll('.teml-wrapper');
+    const teplateSet = document.querySelectorAll('.templ-wrapper');
     for(let i = 0; i < 5; i++) {
       const templText = teplateSet[i].querySelector('.templ-head');
       templText.textContent = templArr[i].name;
@@ -126,13 +123,20 @@ restartBTN.addEventListener('click', () => {
 })
 
 settingsBTN.addEventListener('click', () => {  
-
   powerLayer.style.display = 'block';
   settingMNU.style.display = 'flex';
 
   showSelectGameBTN.addEventListener('click', () => {
     showSelectGameModal();
   }, true)
+
+  showSelectThemeBTN.addEventListener('click', () => {
+    showSelectThemeModal();
+  }, true)
+
+
+
+
 
   closeSettingMnuBTN.addEventListener('click', () => {
     powerLayer.style.display = 'none';
@@ -148,8 +152,13 @@ function closeSettingMNU() {
 
 function showSelectGameModal() {
   closeSettingMNU();
-  powerLayer.style.display = 'block';
+  // powerLayer.style.display = 'block';
   selectGameModal.style.display = 'flex';
+}
+
+function showSelectThemeModal() {
+  closeSettingMNU();
+  selectThemeModal.style.display = 'flex';
 }
 
 solutionBTN.addEventListener('mousedown', () => {

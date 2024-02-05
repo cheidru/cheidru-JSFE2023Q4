@@ -47,8 +47,33 @@ header #title {
     font-size: 3rem;
 }
 
-#settings-wrapper {
+#game-stats, .stats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+#game-stats {
+    gap: 5rem;
+}
+
+.stats {
+    gap: 2rem;
+}
+
+.stat-value {
+    background-color: var(--stats-background-color);
+    padding: 0.2rem 1.5rem;
+    border-radius: 2rem;
+}
+
+#settings-wrapper {    
     position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
     font-size: 1.5rem;
     cursor: pointer;
 }
@@ -74,7 +99,7 @@ header #title {
 
 #setting-menu {
     position: absolute;
-    bottom: -0.8rem;
+    bottom: 0;
     left: 0;
     display: none;
     flex-direction: column;
@@ -256,7 +281,7 @@ button:hover:not(#timer) {
     height: 0.2rem;
     border-radius: 2px;
     top: calc(50% - 0.2rem / 2);
-     left: calc(25% - 0.2rem / 2);
+    left: calc(25% - 0.2rem / 2);
     transform: translateX(-50%);
     background-color: var(--modal-heading-color);
 }
@@ -317,7 +342,7 @@ button:hover:not(#timer) {
     padding: 1rem;
 }
 
-.teml-wrapper {
+.templ-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -331,7 +356,7 @@ button:hover:not(#timer) {
     transition: 0.3s;
 }
 
-.teml-wrapper:hover {
+.templ-wrapper:hover {
     transform: scale(1.05);
 }
 
@@ -349,6 +374,120 @@ button:hover:not(#timer) {
 
 #win-window p {
     padding: 2rem 5rem;
+}
+
+#heading-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+}
+
+#select-theme {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    width: auto;
+    padding-bottom: 1rem;
+    overflow: hidden; 
+}
+
+#theme-title {
+    width: fit-content;
+    padding: 0 3rem;
+}
+
+#themes-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    padding: 0 2rem;
+    height: auto;
+}
+
+.theme-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 5rem;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: var(--light-bg-color);
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.theme-wrapper:hover {
+    transform: scale(1.03);
+}
+
+.color-mixes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 2rem;
+    border: none;
+    overflow: hidden;
+}
+
+.color {
+    width: 100%;
+    height: 25%;
+}
+
+#show-results {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    width: auto;
+    padding-bottom: 1rem;
+    overflow: hidden; 
+}
+
+#show-results table {
+    padding: 0 3rem;
+}
+
+#no-results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10rem;
+}
+
+#show-results tr {
+    display: none;
+}
+
+#show-results td {
+    width: fit-content;
+    padding: 0.5rem 1rem;
+}
+
+#warning {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 20rem;
+    height: auto;
+    padding-bottom: 1rem;
+    overflow: hidden; 
+}
+
+#warning p {
+    padding: 0 3rem;
 }
 
 #bottom-controls-wrapper {

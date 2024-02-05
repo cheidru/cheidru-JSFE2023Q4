@@ -1,17 +1,16 @@
 :root {
-  --text-color: #bcdaf7;
-  --header-bg-color: #031d2a;
-  --main-bg-color: #305768;
-  --cell-border-color: #747264;
-  --guess-bg-color: #E0CCBE;
-  --cell-bg-color: #29375b;
-  --clue-bg-color: #5e3019;
-}
-
-.cross-item {
-  background-color: var(--cell-bg-color);    
-  background-image: url("../assets/img/cross-small.svg");
-  background-size: contain;
+  --text-color: rgb(188, 218, 247);
+  --header-bg-color: rgb(116, 114, 100);
+  --light-bg-color: rgb(128, 128, 128);
+  --main-bg-color: rgb(48, 87, 104);
+  --cell-border-color: rgb(221, 216, 176);
+  --guess-bg-color: rgb(224, 204, 190);
+  --cell-bg-color: rgba(52, 67, 39, 0.7);
+  --clue-bg-color: rgb(94, 48, 25);
+  --power-layer-color: rgba(77, 80, 74, 0.7);
+  --modal-heading-bg-color: rrgb(221, 216, 176);
+  --modal-heading-color: rgb(33, 37, 41);
+  --stats-background-color: rgb(134, 160, 146);  
 }
 
 
