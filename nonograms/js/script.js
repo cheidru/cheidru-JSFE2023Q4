@@ -51,7 +51,6 @@ game.guesses = [];
 game.timerON = false;
 game.theme = 'light-theme';
 game.timer = 0;
-game.timer.id = '';
 
 let timerID = '';
 
@@ -63,12 +62,13 @@ function startGame(newOrRandom) {
 }
 
 field.addEventListener('contextmenu', (e) => {
+  console.log('must be');
   e.preventDefault();
   if(e.target.classList.contains('cell')) {
     e.target.classList.remove('guess-item');
     e.target.classList.toggle('cross-item');
   }
-}, true);
+})
 
 field.addEventListener('click', (e) => {
   console.log('left-click', e);
@@ -215,8 +215,7 @@ function restartGame() {
 function clearGameSession() {
   game.timerON = false;
   timerDisplay.textContent = '00:00';
-  clearInterval(game.timer.id);
-  game.timerON = false;
+  clearInterval(timerID);
   nonoField.innerHTML = '';
 }
 
@@ -346,10 +345,13 @@ function startGameTimer(time) {
     gameRunSec++;
     game.timer = gameRunSec;
   }, 1000)
+  console.log(timerID);
 }
 
 function endGame() {
-  clearInterval(game.timer.id);
+  game.timerON = false;
+  timerDisplay.textContent = '00:00';
+  clearInterval(timerID);
   showWinModal();
   saveResult();
   resetGame();
