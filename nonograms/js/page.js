@@ -154,7 +154,7 @@ selectTheme.classList.add('modal');
         lightTheme.classList.add('theme-wrapper');
 
             const light = document.createElement('p');
-            light.textContent = 'Ligth';
+            light.textContent = 'Light';
 
             const lightColorMixes = document.createElement('div');
             lightColorMixes.classList.add('color-mixes');

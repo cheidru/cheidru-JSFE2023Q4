@@ -31,6 +31,10 @@ const selectThemeModal = document.getElementById('select-theme');
 const gameLevelDisplay = document.getElementById('stats-level');
 const gameNameDisplay = document.getElementById('stats-name');
 
+const lightColorTheme = document.getElementById('light-theme');
+const darkColorTheme = document.getElementById('dark-theme');
+const themeLink = document.getElementById('theme-css');
+const closeThemeModal = document.getElementById('theme-times');
 
 const NEW_GAME = false;
 const RANDOM_GAME = true;
@@ -64,7 +68,7 @@ field.addEventListener('contextmenu', (e) => {
     e.target.classList.remove('guess-item');
     e.target.classList.toggle('cross-item');
   }
-});
+}, true);
 
 field.addEventListener('click', (e) => {
   console.log('left-click', e);
@@ -122,9 +126,9 @@ function showSelectGameModal() {
 
   const levelBTN = document.getElementById('game-lvl-wrapper');
 
-  levelBTN.addEventListener('click', loadTemplateChoice,true)
+  levelBTN.addEventListener('click', loadTemplateChoice, true)
 
-  const templates = selectGameModal.getElementById('nono-wrapper');
+  const templates = document.getElementById('nono-wrapper');
   templates.addEventListener('click', updateGame, true)
 }
 
@@ -163,13 +167,29 @@ function loadTemplateChoice(e) {
   }
 }
 
+function updateGame(e) {
+  console.log(e.target);
+}
+
 function showSelectThemeModal() {
   closeSettingMNU();
   selectThemeModal.style.display = 'flex';
 }
 
+lightColorTheme.addEventListener('click', () => {
+  themeLink.setAttribute('href', './css/light-theme.css')
+});
+
+darkColorTheme.addEventListener('click', () => {
+  themeLink.setAttribute('href', './css/dark-theme.css') 
+});
+
+closeThemeModal.addEventListener('click', () => {
+  powerLayer.style.display = 'none';
+  selectThemeModal.style.display = 'none';
+})
+
 solutionBTN.addEventListener('mousedown', () => {
-  // restartGame();
   clearInterval(timerID);
   showSolution();
 })
@@ -180,8 +200,6 @@ solutionBTN.addEventListener('mouseup', () => {
 })
 
 randomBTN.addEventListener('click', () => {
-  // clearGameSession();
-  // startGame(RANDOM_GAME);
   resetGame();
 })
 
@@ -262,13 +280,6 @@ function drawNonogram(keepGuesses) {
   gameLevelDisplay.textContent = (game.level + 1) + '';
   gameNameDisplay.textContent = game.name;
 }
-
-
-
-
-
-
-
 
 function loadTemplate() {
   switch(game.level) {

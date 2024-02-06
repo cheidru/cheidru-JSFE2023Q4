@@ -42,7 +42,7 @@ header {
     background-color: var(--header-bg-color);
 }
 
-header #title {
+#title {
     font-family: Forum;
     font-size: 2.8rem;
 }
@@ -604,9 +604,6 @@ button:hover:not(#timer) {
     border-radius: 3px;
     background-color: var(--guess-bg-color);
     top: calc(50% - 0.3rem / 2);
-    /* top: calc(50% - 0.3rem / 2);
-     left: calc(25% - 0.3rem / 2); */
-    /* transform: translateX(-80%); */
   }
   
   .cross-item::after {
@@ -633,11 +630,20 @@ button:hover:not(#timer) {
         height: auto;
         width: 100%;
         gap: 1rem;
-        padding: 1rem 2rem;
+        padding: 0 2rem;
+    }
+
+    #title {
+        padding-top: 0.5rem;
+    }
+
+        
+    #settings {
+        padding-bottom: 0.5rem;
     }
     
     #play-ground-wrapper {    
-        padding: 1rem 2rem;
+        padding: 0.5rem 2rem;
     }
 
     
@@ -650,9 +656,7 @@ button:hover:not(#timer) {
     #bottom-controls-wrapper {
         flex-direction: row;
         gap: 20px;
-        padding: 1rem 0;
+        padding: 0.5rem 0;
     }
-
-
   }
 
