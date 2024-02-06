@@ -44,7 +44,7 @@ header {
 
 header #title {
     font-family: Forum;
-    font-size: 3rem;
+    font-size: 2.8rem;
 }
 
 #game-stats, .stats {
@@ -592,15 +592,6 @@ button:hover:not(#timer) {
     stroke: var(--text-color);
 }
 
-footer {
-    display: flex;
-    position: sticky;
-    height: 4rem;
-    width: 100%;
-    background-color: var(--header-bg-color);
-}
-
-
 .cross-item {
     position: relative;
   }
@@ -625,3 +616,43 @@ footer {
   .cross-item::before {
     transform: rotate(45deg);
   }
+
+  @media (max-width: 1200px) {    
+    #game-stats {
+        gap: 2rem;
+    }
+
+    .stats {
+        gap: 1rem;
+    }
+  }
+
+  @media (max-width: 1000px) { 
+    header {
+        flex-direction: column;
+        height: auto;
+        width: 100%;
+        gap: 1rem;
+        padding: 1rem 2rem;
+    }
+    
+    #play-ground-wrapper {    
+        padding: 1rem 2rem;
+    }
+
+    
+    main {
+        display: flex;
+        flex-direction: column;
+    }
+        
+    #top-controls-wrapper,
+    #bottom-controls-wrapper {
+        flex-direction: row;
+        gap: 20px;
+        padding: 1rem 0;
+    }
+
+
+  }
+

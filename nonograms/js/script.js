@@ -122,10 +122,10 @@ function showSelectGameModal() {
 
   const levelBTN = document.getElementById('game-lvl-wrapper');
 
-  levelBTN.addEventListener('click', loadTemplateChoice(e),true)
+  levelBTN.addEventListener('click', loadTemplateChoice,true)
 
   const templates = selectGameModal.getElementById('nono-wrapper');
-  templates.addEventListener('click', updateGame(e), true)
+  templates.addEventListener('click', updateGame, true)
 }
 
 function loadTemplateChoice(e) {  
