@@ -244,8 +244,10 @@ function drawNonogram(keepGuesses) {
           nonoItem.setAttribute('id',`${nonoItemID}`);
           nonoItemID++;
         }
-      }
+      }      
       nonoItem.classList.add('item');
+      if(j === 6 || j === 11) nonoItem.classList.add('border-left');
+      if(i === 6 || i === 11) nonoItem.classList.add('border-top');
       nonoField.append(nonoItem);
     }
   }

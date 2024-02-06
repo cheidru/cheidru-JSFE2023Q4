@@ -534,6 +534,14 @@ button:hover:not(#timer) {
     border: solid var(--cell-border-color) 1px;
 }
 
+.border-left {
+    border-left: 3px solid var(--cell-border-color);
+}
+
+.border-top {
+    border-top: 3px solid var(--cell-border-color);
+}
+
 .cell {
     background-color: var(--cell-bg-color);
     cursor: pointer;
@@ -564,6 +572,7 @@ button:hover:not(#timer) {
 }
 
 .item:is(.clue-left) {
+    box-sizing: border-box;
     display: flex;
     height: 100%;
     min-width: max-content;
