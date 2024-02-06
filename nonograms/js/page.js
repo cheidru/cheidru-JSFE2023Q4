@@ -257,7 +257,7 @@ const header = document.createElement('header');
         headerGameLevel.classList.add('stats');
 
             const headerGameLevelText = document.createElement('p');
-            headerGameLevelText.textContent = 'Game Level';
+            headerGameLevelText.textContent = 'Level';
 
             const headerGameLevelValue = document.createElement('div');
             headerGameLevelValue.setAttribute('id', 'stats-level');
@@ -347,8 +347,6 @@ const main = document.createElement('main');
         const bottomControlsLastGame = document.createElement('button');
         bottomControlsLastGame.setAttribute('id', 'last-game');
         bottomControlsLastGame.textContent = 'Continue last game';
-
-const footer = document.createElement('footer');
 
 document.body.append(checkAudio);
 document.body.append(uncheckAudio);
@@ -457,4 +455,3 @@ document.body.append(main);
         bottomControlsWrapper.append(bottomControlsSolution);
         bottomControlsWrapper.append(bottomControlsLastGame);
 
-document.body.append(footer);
