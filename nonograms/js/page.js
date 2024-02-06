@@ -273,7 +273,7 @@ const header = document.createElement('header');
             headerGameNameText.textContent = 'Name';
 
             const headerGameNameValue = document.createElement('div');
-            headerGameNameValue.setAttribute('id', 'stats-level');
+            headerGameNameValue.setAttribute('id', 'stats-name');
             headerGameNameValue.classList.add('stat-value');
             headerGameNameValue.textContent = 'dog';
 
