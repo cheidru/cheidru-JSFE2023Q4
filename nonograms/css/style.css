@@ -97,6 +97,12 @@ header #title {
     fill: var(--main-bg-color);
 }
 
+.svg-volume-icon {
+    width: 2rem;
+    height: 2rem;
+    fill: var(--main-bg-color);
+}
+
 #setting-menu {
     position: absolute;
     bottom: 0;
@@ -395,6 +401,9 @@ button:hover:not(#timer) {
 }
 
 #theme-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: fit-content;
     padding: 0 3rem;
 }

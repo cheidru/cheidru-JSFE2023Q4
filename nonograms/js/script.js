@@ -7,7 +7,7 @@ const nonoField = document.getElementById('play-ground-wrapper');
 
 const restartBTN = document.getElementById('restart');
 const randomBTN = document.getElementById('random');
-const saveBTN = document.getElementById('save-game');
+const saveBTN = document.getElementById('save');
 const solutionBTN = document.getElementById('solution');
 const lastGameBTN = document.getElementById('last-game');
 const timerDisplay = document.getElementById('timer');
