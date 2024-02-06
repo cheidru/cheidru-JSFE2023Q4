@@ -20,8 +20,6 @@ const winModalClose = document.getElementById('win-times');
 const selectGameModal = document.getElementById('select-game');
 const selectGameModalClose = document.getElementById('select-game-times');
 
-const levelBTN = document.getElementById('game-lvl-wrapper');
-
 const settingsBTN = document.getElementById('settings');
 const settingMNU = document.getElementById('setting-menu');
 const showSelectGameBTN = document.getElementById('select-mnu-game');
@@ -82,25 +80,73 @@ function startGame(newOrRandom) {
   })
 }
 
-levelBTN.addEventListener('click', (e) => {
+
+
+restartBTN.addEventListener('click', () => {
+  restartGame();
+})
+
+settingsBTN.addEventListener('click', () => {  
+  powerLayer.style.display = 'block';
+  settingMNU.style.display = 'flex';
+
+  showSelectGameBTN.addEventListener('click', () => {
+    showSelectGameModal();
+  }, true)
+
+  selectGameModalClose.addEventListener('click', () => {
+    powerLayer.style.display = 'none';
+    selectGameModal.style.display = 'none';
+  }, true)
+
+  showSelectThemeBTN.addEventListener('click', () => {
+    showSelectThemeModal();
+  }, true)
+
+  closeSettingMnuBTN.addEventListener('click', () => {
+    powerLayer.style.display = 'none';
+    closeSettingMNU()
+  }, true)
+})
+
+function closeSettingMNU() {
+  settingMNU.style.display = 'none';
+}
+
+
+
+
+function showSelectGameModal() {
+  closeSettingMNU();
+  selectGameModal.style.display = 'flex';
+
+  const levelBTN = document.getElementById('game-lvl-wrapper');
+
+  levelBTN.addEventListener('click', loadTemplateChoice(e),true)
+
+  const templates = selectGameModal.getElementById('nono-wrapper');
+  templates.addEventListener('click', updateGame(e), true)
+}
+
+function loadTemplateChoice(e) {  
   const easyLVL = document.getElementById('easy');
   const mediumLVL = document.getElementById('medium');
   const hardLVL = document.getElementById('hard');
 
   easyLVL.classList.remove('active');
   mediumLVL.classList.remove('active');
-  mediumLVL.classList.remove('active');
+  hardLVL.classList.remove('active');
 
   switch(e.target.id) {
-    case easy:
+    case 'easy':
       easyLVL.classList.add('active');
       loadTemplPics(easyTemplate);
       break;
-    case medium:
+    case 'medium':
       mediumLVL.classList.add('active');
       loadTemplPics(mediumTemplate);
       break;
-    case hard:
+    case 'hard':
       hardLVL.classList.add('active');
       loadTemplPics(hardTemplate);
       break;
@@ -115,45 +161,6 @@ levelBTN.addEventListener('click', (e) => {
       templIMG.src = templArr[i].src;
     }
   }
-
-})
-
-restartBTN.addEventListener('click', () => {
-  restartGame();
-})
-
-settingsBTN.addEventListener('click', () => {  
-  powerLayer.style.display = 'block';
-  settingMNU.style.display = 'flex';
-
-  showSelectGameBTN.addEventListener('click', () => {
-    showSelectGameModal();
-  }, true)
-
-  showSelectThemeBTN.addEventListener('click', () => {
-    showSelectThemeModal();
-  }, true)
-
-
-
-
-
-  closeSettingMnuBTN.addEventListener('click', () => {
-    powerLayer.style.display = 'none';
-    closeSettingMNU()
-  }, true)
-
-
-})
-
-function closeSettingMNU() {
-  settingMNU.style.display = 'none';
-}
-
-function showSelectGameModal() {
-  closeSettingMNU();
-  // powerLayer.style.display = 'block';
-  selectGameModal.style.display = 'flex';
 }
 
 function showSelectThemeModal() {

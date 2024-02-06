@@ -56,7 +56,7 @@ selectGame.classList.add('modal');
         mediumGameLevel.textContent = 'Medium';
         
         const hardGameLevel = document.createElement('div');
-        hardGameLevel.setAttribute('id', 'easy');
+        hardGameLevel.setAttribute('id', 'hard');
         hardGameLevel.classList.add('lvl-btn');
         hardGameLevel.textContent = 'Hard';
 
