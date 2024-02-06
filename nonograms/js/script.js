@@ -28,6 +28,10 @@ const showResultsBTN = document.getElementById('show-mnu-results');
 const closeSettingMnuBTN = document.getElementById('setting-menu-times');
 const selectThemeModal = document.getElementById('select-theme');
 
+const gameLevelDisplay = document.getElementById('stats-level');
+const gameNameDisplay = document.getElementById('stats-name');
+
+
 const NEW_GAME = false;
 const RANDOM_GAME = true;
 let user = {};
@@ -35,7 +39,7 @@ let user = {};
 const game = {}
 game.number = 0;
 game.level = 0;
-game.name = '';
+game.name = 'dog';
 game.template = [];
 game.clueTop = [];
 game.clueLeft = [];
@@ -52,35 +56,34 @@ function startGame(newOrRandom) {
   selectRandomGame(newOrRandom);
   loadTemplate();
   drawNonogram();
-
-  field.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-    if(e.target.classList.contains('cell')) {
-      e.target.classList.remove('guess-item');
-      e.target.classList.toggle('cross-item');
-    }
-  });
-
-  field.addEventListener('click', (e) => {
-    if(e.target.classList.contains('cell')) {
-      if (!game.timerON) {
-        game.timerON = true;
-        startGameTimer();        
-      }
-      e.target.classList.remove('cross-item');
-      e.target.classList.toggle('guess-item');
-
-      let cellNo = Number(e.target.id) -1;
-      let x = Math.floor(cellNo / ((game.level + 1) * 5));
-      let y = cellNo - (x * ((game.level + 1) * 5));
-      game.guesses[x][y] = e.target.classList.contains('guess-item') ? 1 : 0;
-      game.guesses[x][y] === 1 ? checkSound.play() : uncheckSound.play();    
-      const checkResult = checkUserGuess();
-    }
-  })
 }
 
+field.addEventListener('contextmenu', (e) => {
+  e.preventDefault();
+  if(e.target.classList.contains('cell')) {
+    e.target.classList.remove('guess-item');
+    e.target.classList.toggle('cross-item');
+  }
+});
 
+field.addEventListener('click', (e) => {
+  console.log('left-click', e);
+  if(e.target.classList.contains('cell')) {
+    if (!game.timerON) {
+      game.timerON = true;
+      startGameTimer();        
+    }
+    e.target.classList.remove('cross-item');
+    e.target.classList.toggle('guess-item');
+
+    let cellNo = Number(e.target.id) -1;
+    let x = Math.floor(cellNo / ((game.level + 1) * 5));
+    let y = cellNo - (x * ((game.level + 1) * 5));
+    game.guesses[x][y] = e.target.classList.contains('guess-item') ? 1 : 0;
+    game.guesses[x][y] === 1 ? checkSound.play() : uncheckSound.play();    
+    const checkResult = checkUserGuess();
+  }
+})
 
 restartBTN.addEventListener('click', () => {
   restartGame();
@@ -112,9 +115,6 @@ settingsBTN.addEventListener('click', () => {
 function closeSettingMNU() {
   settingMNU.style.display = 'none';
 }
-
-
-
 
 function showSelectGameModal() {
   closeSettingMNU();
@@ -258,8 +258,17 @@ function drawNonogram(keepGuesses) {
     topClues[i].textContent = game.clueTop[i].join(' ');
     leftClues[i].textContent = game.clueLeft[i].join(' ');
   }
-  // startGameSound.onload = () => {startGameSound.play();}
+
+  gameLevelDisplay.textContent = (game.level + 1) + '';
+  gameNameDisplay.textContent = game.name;
 }
+
+
+
+
+
+
+
 
 function loadTemplate() {
   switch(game.level) {
@@ -362,11 +371,13 @@ function loadUserData() {
     user.lastGame = {};
     user.default = {};
     user.default.level = 0;
+    user.default.name = 'dog';
     user.default.theme = 'light-theme';
     user.bestResults = [];
   } else {
     user = JSON.parse(localStorage.getItem('nonograms'));
     game.level = user.default.level;
+    game.name = user.default.name;
     game.theme = user.default.theme;
     console.log(user);
   }
