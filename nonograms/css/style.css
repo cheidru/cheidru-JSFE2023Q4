@@ -84,23 +84,28 @@ header #title {
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    transition: 0.3s;
-}
-
-#settings:hover {
-    transform: scale(0.9);
 }
 
 .svg-setting-icon {
     width: 2rem;
     height: 2rem;
     fill: var(--main-bg-color);
+    transition: 0.3s;
+}
+
+.svg-setting-icon:hover {
+    transform: scale(0.9);
 }
 
 .svg-volume-icon {
-    width: 2rem;
-    height: 2rem;
-    fill: var(--main-bg-color);
+    width: 3rem;
+    height: 3rem;
+    stroke: var(--main-bg-color);
+    transition: 0.3s;
+}
+
+.svg-volume-icon:hover {
+    transform: scale(0.9);
 }
 
 #setting-menu {
