@@ -1,9 +1,8 @@
 const field = document.getElementById('play-ground-wrapper');
-const templScript = document.getElementById('templates');
 const startGameSound = document.getElementById('new-attampt-sound');
 const checkSound = document.getElementById('check-sound');
 const uncheckSound = document.getElementById('uncheck-sound');
-const nonoField = document.getElementById('play-ground-wrapper');
+let nonoField = document.getElementById('play-ground-wrapper');
 
 const restartBTN = document.getElementById('restart');
 const randomBTN = document.getElementById('random');
@@ -31,6 +30,10 @@ const selectThemeModal = document.getElementById('select-theme');
 const gameLevelDisplay = document.getElementById('stats-level');
 const gameNameDisplay = document.getElementById('stats-name');
 
+const lightColorTheme = document.getElementById('light-theme');
+const darkColorTheme = document.getElementById('dark-theme');
+const themeLink = document.getElementById('theme-css');
+const closeThemeModal = document.getElementById('theme-times');
 
 const NEW_GAME = false;
 const RANDOM_GAME = true;
@@ -47,9 +50,9 @@ game.guesses = [];
 game.timerON = false;
 game.theme = 'light-theme';
 game.timer = 0;
-game.timer.id = '';
 
 let timerID = '';
+let choiceLVL = 0;
 
 function startGame(newOrRandom) {
   user = (loadUserData() || user);
@@ -59,12 +62,13 @@ function startGame(newOrRandom) {
 }
 
 field.addEventListener('contextmenu', (e) => {
+  console.log('must be');
   e.preventDefault();
   if(e.target.classList.contains('cell')) {
     e.target.classList.remove('guess-item');
     e.target.classList.toggle('cross-item');
   }
-});
+})
 
 field.addEventListener('click', (e) => {
   console.log('left-click', e);
@@ -122,9 +126,9 @@ function showSelectGameModal() {
 
   const levelBTN = document.getElementById('game-lvl-wrapper');
 
-  levelBTN.addEventListener('click', loadTemplateChoice,true)
+  levelBTN.addEventListener('click', loadTemplateChoice, true)
 
-  const templates = selectGameModal.getElementById('nono-wrapper');
+  const templates = document.getElementById('nono-wrapper');
   templates.addEventListener('click', updateGame, true)
 }
 
@@ -141,14 +145,17 @@ function loadTemplateChoice(e) {
     case 'easy':
       easyLVL.classList.add('active');
       loadTemplPics(easyTemplate);
+      choiceLVL = 0;
       break;
     case 'medium':
       mediumLVL.classList.add('active');
       loadTemplPics(mediumTemplate);
+      choiceLVL = 1;
       break;
     case 'hard':
       hardLVL.classList.add('active');
       loadTemplPics(hardTemplate);
+      choiceLVL = 2;
       break;
   }
 
@@ -163,13 +170,38 @@ function loadTemplateChoice(e) {
   }
 }
 
+function updateGame(e) {
+  let parent = e.target.parentElement;
+  if(parent.tagName === 'DIV') {
+    game.level = choiceLVL;
+    game.number = parent.id[parent.id.length - 1] - 1;
+    selectGameModal.style.display = 'none';
+    powerLayer.style.display = 'none';
+    body.style.setProperty("--templ-col-num", `${(game.level + 1) * 5}`); 
+    restartGame();
+  }
+
+}
+
 function showSelectThemeModal() {
   closeSettingMNU();
   selectThemeModal.style.display = 'flex';
 }
 
+lightColorTheme.addEventListener('click', () => {
+  themeLink.setAttribute('href', './css/light-theme.css')
+});
+
+darkColorTheme.addEventListener('click', () => {
+  themeLink.setAttribute('href', './css/dark-theme.css') 
+});
+
+closeThemeModal.addEventListener('click', () => {
+  powerLayer.style.display = 'none';
+  selectThemeModal.style.display = 'none';
+})
+
 solutionBTN.addEventListener('mousedown', () => {
-  // restartGame();
   clearInterval(timerID);
   showSolution();
 })
@@ -180,8 +212,6 @@ solutionBTN.addEventListener('mouseup', () => {
 })
 
 randomBTN.addEventListener('click', () => {
-  // clearGameSession();
-  // startGame(RANDOM_GAME);
   resetGame();
 })
 
@@ -191,18 +221,20 @@ saveBTN.addEventListener('click', () => {
 
 function restartGame() {
   clearGameSession();
+  loadTemplate();
   drawNonogram();
 }
 
 function clearGameSession() {
   game.timerON = false;
   timerDisplay.textContent = '00:00';
-  clearInterval(game.timer.id);
-  game.timerON = false;
+  clearInterval(timerID);
+  let nonoField = document.getElementById('play-ground-wrapper');
   nonoField.innerHTML = '';
 }
 
 function showSolution(showWhat) {
+  let nonoField = document.getElementById('play-ground-wrapper');
   let showWhatArr = [];
   if (!showWhat) {
     nonoField.innerHTML = '';
@@ -224,6 +256,7 @@ function showSolution(showWhat) {
 }
 
 function drawNonogram(keepGuesses) {
+  console.log('field empty', game.template.length);
   let nonoItemID = 1;
   if(!keepGuesses) game.guesses.length = 0;
   for (let i = 0; i < game.template.length + 1; i++) {
@@ -261,16 +294,13 @@ function drawNonogram(keepGuesses) {
 
   gameLevelDisplay.textContent = (game.level + 1) + '';
   gameNameDisplay.textContent = game.name;
+  console.log('field full', nonoField);
 }
 
-
-
-
-
-
-
-
 function loadTemplate() {
+      game.template.length = 0;
+      game.clueTop.length = 0;
+      game.clueLeft.length = 0;
   switch(game.level) {
     case 0:
       game.template = [...easyTemplate[game.number].picture];
@@ -300,7 +330,7 @@ function selectRandomGame(randomGame) {
   while (game.number === oldGameNumber && game.level === oldGameLavel) {
     if(randomGame) {
       game.level = randomChoice(2);
-      body.style.setProperty("--templ-col-num", `${(game.level +1) * 5}`); 
+      body.style.setProperty("--templ-col-num", `${(game.level + 1) * 5}`); 
     }
     game.number = randomChoice(4);
   }
@@ -335,10 +365,13 @@ function startGameTimer(time) {
     gameRunSec++;
     game.timer = gameRunSec;
   }, 1000)
+  console.log(timerID);
 }
 
 function endGame() {
-  clearInterval(game.timer.id);
+  game.timerON = false;
+  timerDisplay.textContent = '00:00';
+  clearInterval(timerID);
   showWinModal();
   saveResult();
   resetGame();
