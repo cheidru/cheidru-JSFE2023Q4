@@ -19,12 +19,13 @@ winWindow.classList.add('modal');
 
         const winTimes = document.createElement('div');
         winTimes.setAttribute('id', 'win-times');
-        winWindow.classList.add('times');
+        winTimes.classList.add('times');
 
     const congrats = document.createElement('p');
     congrats.textContent = 'Congratulations! You win! Your time is ';
 
         const gameTime = document.createElement('span');
+        gameTime.setAttribute('id', 'game-time');
 
 const selectGame = document.createElement('div');
 selectGame.setAttribute('id', 'select-game');
