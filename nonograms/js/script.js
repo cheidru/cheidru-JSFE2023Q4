@@ -24,8 +24,10 @@ const selectGameModalClose = document.getElementById('select-game-times');
 const gameTimeInd = document.getElementById('game-time');
 const solutionOpenMessage = document.getElementById('solution-open');
 
-const settingsBTN = document.getElementById('settings');
+const settingsBTN = document.querySelector('.svg-setting-icon');
 const settingMNU = document.getElementById('setting-menu');
+const soundON = document.querySelector('.svg-volume-icon');
+const soundOFF = document.querySelector('.svg-volume-off-icon');
 const showSelectGameBTN = document.getElementById('select-mnu-game');
 const showSelectThemeBTN = document.getElementById('select-mnu-theme');
 const showResultsBTN = document.getElementById('show-mnu-results');
@@ -60,6 +62,7 @@ let timerID = '';
 let timerTime = 0;
 let choiceLVL = 0;
 let solutionOpen = false;
+let soundSwitchedOn = true;
 
 function startGame(newOrRandom) {
   user = (loadUserData() || user);
@@ -73,7 +76,7 @@ field.addEventListener('contextmenu', (e) => {
   if(e.target.classList.contains('cell')) {
     e.target.classList.remove('guess-item');
     e.target.classList.toggle('cross-item');
-    crossSound.play();
+    if (soundSwitchedOn) crossSound.play();
   }
 })
 
@@ -90,10 +93,21 @@ field.addEventListener('click', (e) => {
     let x = Math.floor(cellNo / ((game.level + 1) * 5));
     let y = cellNo - (x * ((game.level + 1) * 5));
     game.guesses[x][y] = e.target.classList.contains('guess-item') ? 1 : 0;
-    game.guesses[x][y] === 1 ? checkSound.play() : uncheckSound.play();
-    console.log(game.guesses, 'template', game.template);
-    const checkResult = checkUserGuess();
+    if (soundSwitchedOn) game.guesses[x][y] === 1 ? checkSound.play() : uncheckSound.play();
+    checkUserGuess();
   }
+})
+
+soundON.addEventListener('click', () => {
+  soundON.style.display = 'none';
+  soundOFF.style.display = 'block';
+  soundSwitchedOn = false;
+})
+
+soundOFF.addEventListener('click', () => {
+  soundON.style.display = 'block';
+  soundOFF.style.display = 'none';
+  soundSwitchedOn = true;
 })
 
 restartBTN.addEventListener('click', () => {
@@ -419,14 +433,14 @@ function endGame() {
 };
 
 function showWinModal() {
-  winSound.play();
+  if(soundSwitchedOn) winSound.play();
   powerLayer.style.display = 'block';
   winModal.style.display = 'flex';
   gameTimeInd.textContent = timerTime + ' sec';
   if (solutionOpen === true) {
     solutionOpenMessage.style.display = 'block';
   } else {
-    setTimeout(() => divineSound.play(), 1700);
+    if(soundSwitchedOn) setTimeout(() => divineSound.play(), 1700);
   }
 }
 
