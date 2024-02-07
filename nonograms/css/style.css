@@ -95,11 +95,13 @@ header {
 }
 
 
-.svg-setting-icon:hover {
+.svg-setting-icon:hover,
+.svg-volume-icon:hover,
+.svg-volume-off-icon:hover {
     transform: scale(0.9);
 }
 
-.svg-volume-icon {
+.svg-volume-icon, .svg-volume-off-icon {
     width: 3rem;
     height: 3rem;
     stroke: var( --header-color);
@@ -107,8 +109,12 @@ header {
     cursor: pointer;
 }
 
-.svg-volume-icon:hover {
-    transform: scale(0.9);
+.svg-volume-icon {
+    display: block;
+}
+
+.svg-volume-off-icon {
+    display: none;
 }
 
 #setting-menu {
