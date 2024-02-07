@@ -6,6 +6,14 @@ const uncheckAudio = document.createElement('audio');
 uncheckAudio.setAttribute('src', './assets/audio/uncheck.ogg');
 uncheckAudio.setAttribute('id', 'uncheck-sound');
 
+const winAudio = document.createElement('audio');
+winAudio.setAttribute('src', './assets/audio/celebration.ogg');
+winAudio.setAttribute('id', 'win-sound');
+
+const winAudioDivine = document.createElement('audio');
+winAudioDivine.setAttribute('src', './assets/audio/divine.ogg');
+winAudioDivine.setAttribute('id', 'win-sound-divine');
+
 const pwrLayer = document.createElement('div');
 pwrLayer.setAttribute('id', 'power-layer');
 
@@ -22,10 +30,14 @@ winWindow.classList.add('modal');
         winTimes.classList.add('times');
 
     const congrats = document.createElement('p');
-    congrats.textContent = 'Congratulations! You win! Your time is ';
+    congrats.textContent = 'Great! You have solved the nonogram! Your time is ';
 
         const gameTime = document.createElement('span');
         gameTime.setAttribute('id', 'game-time');
+
+    const noRecordMSG = document.createElement('p');
+    noRecordMSG.setAttribute('id', 'solution-open');
+    noRecordMSG.textContent = "You opened solution while playing. Your result will not be recorder."
 
 const selectGame = document.createElement('div');
 selectGame.setAttribute('id', 'select-game');
@@ -351,6 +363,9 @@ const main = document.createElement('main');
 
 document.body.append(checkAudio);
 document.body.append(uncheckAudio);
+document.body.append(winAudio);
+document.body.append(winAudioDivine);
+
 document.body.append(pwrLayer);
 
 document.body.append(winWindow);
@@ -358,6 +373,7 @@ document.body.append(winWindow);
         winWindowHeadingWrapper.append(winTimes);
     winWindow.append(congrats);
     congrats.append(gameTime);
+    winWindow.append(noRecordMSG);
 
 document.body.append(selectGame);
     selectGame.append(selectGameHeadingWrapper);

@@ -2,6 +2,8 @@ const field = document.getElementById('play-ground-wrapper');
 const startGameSound = document.getElementById('new-attampt-sound');
 const checkSound = document.getElementById('check-sound');
 const uncheckSound = document.getElementById('uncheck-sound');
+const winSound = document.getElementById('win-sound');
+const divineSound = document.getElementById('win-sound-divine');
 let nonoField = document.getElementById('play-ground-wrapper');
 
 const restartBTN = document.getElementById('restart');
@@ -19,6 +21,7 @@ const winModalClose = document.getElementById('win-times');
 const selectGameModal = document.getElementById('select-game');
 const selectGameModalClose = document.getElementById('select-game-times');
 const gameTimeInd = document.getElementById('game-time');
+const solutionOpenMessage = document.getElementById('solution-open');
 
 const settingsBTN = document.getElementById('settings');
 const settingMNU = document.getElementById('setting-menu');
@@ -55,6 +58,7 @@ game.timer = 0;
 let timerID = '';
 let timerTime = 0;
 let choiceLVL = 0;
+let solutionOpen = false;
 
 function startGame(newOrRandom) {
   user = (loadUserData() || user);
@@ -182,7 +186,6 @@ function updateGame(e) {
     body.style.setProperty("--templ-col-num", `${(game.level + 1) * 5}`); 
     restartGame();
   }
-
 }
 
 function showSelectThemeModal() {
@@ -191,14 +194,19 @@ function showSelectThemeModal() {
 }
 
 lightColorTheme.addEventListener('click', () => {
+  selectThemeModal.style.display = 'none';
+  powerLayer.style.display = 'none';
   themeLink.setAttribute('href', './css/light-theme.css')
 });
 
 darkColorTheme.addEventListener('click', () => {
+  selectThemeModal.style.display = 'none';
+  powerLayer.style.display = 'none';
   themeLink.setAttribute('href', './css/dark-theme.css') 
 });
 
 closeThemeModal.addEventListener('click', () => {
+  selectThemeModal.style.display = 'none';
   powerLayer.style.display = 'none';
   selectThemeModal.style.display = 'none';
 })
@@ -236,6 +244,7 @@ function clearGameSession() {
 }
 
 function showSolution(showWhat) {
+  solutionOpen = true;
   let nonoField = document.getElementById('play-ground-wrapper');
   let showWhatArr = [];
   if (!showWhat) {
@@ -373,29 +382,51 @@ function endGame() {
   timerDisplay.textContent = '00:00';
   clearInterval(timerID);
   showWinModal();
-  saveResult();
-  resetGame();
+  if(solutionOpen === false) {
+    let newResult = {
+      level: game.level,
+      time: game.timer,
+      name: game.name
+    }
+    user.lastResults.push(newResult);
+    user.lastResults.sort(sortResults);
+    user.lastResults.splice(-1, 1); // Remove last result after sorting
+  }
+
+  updateLocalStorageData();
+
+  function sortResults(obj1, obj2) {
+    if(obj1.level > obj2.level) return 1;
+    if(obj1.level < obj2.level) return -1;
+    if(obj1.timer > obj2.timer) return 1;
+    if(obj1.timer < obj2.timer) return -1;
+    return 0;
+  }
 };
 
 function showWinModal() {
+  winSound.play();
   powerLayer.style.display = 'block';
   winModal.style.display = 'flex';
   gameTimeInd.textContent = timerTime + ' sec';
+  if (solutionOpen === true) {
+    solutionOpenMessage.style.display = 'block';
+  } else {
+    setTimeout(() => divineSound.play(), 1700);
+  }
 }
 
 winModalClose.addEventListener('click', () => {
   powerLayer.style.display = 'none';
   winModal.style.display = 'none';
+  solutionOpen = false;
+  solutionOpenMessage.style.display = 'none';
+  resetGame();
 })
 
 function resetGame() {
   clearGameSession();
   startGame(RANDOM_GAME);
-}
-
-function saveResult() {
-  // ToDo user.bestResults
-  updateLocalStorageData();
 }
 
 function loadUserData() {
@@ -407,7 +438,7 @@ function loadUserData() {
     user.default.level = 0;
     user.default.name = 'dog';
     user.default.theme = 'light-theme';
-    user.bestResults = [];
+    user.lastResults = [];
   } else {
     user = JSON.parse(localStorage.getItem('nonograms'));
     game.level = user.default.level;
@@ -418,11 +449,11 @@ function loadUserData() {
 }
 
 function updateLocalStorageData() {
-  user.lastGame.level = game.level;
-  user.lastGame.number = game.number;
-  user.lastGame.name = game.name;
-  user.lastGame.guesses = [...game.guesses];
-  user.lastGame.time = game.timer;
+  // user.lastGame.level = game.level;
+  // user.lastGame.number = game.number;
+  // user.lastGame.name = game.name;
+  // user.lastGame.guesses = [...game.guesses];
+  // user.lastGame.time = game.timer;
  
   let updatedRecord = JSON.stringify(user)   
   localStorage.setItem('nonograms', updatedRecord);
