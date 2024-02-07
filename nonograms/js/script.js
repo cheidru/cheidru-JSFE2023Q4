@@ -18,6 +18,7 @@ const winModal = document.getElementById('win-window');
 const winModalClose = document.getElementById('win-times');
 const selectGameModal = document.getElementById('select-game');
 const selectGameModalClose = document.getElementById('select-game-times');
+const gameTimeInd = document.getElementById('game-time');
 
 const settingsBTN = document.getElementById('settings');
 const settingMNU = document.getElementById('setting-menu');
@@ -52,6 +53,7 @@ game.theme = 'light-theme';
 game.timer = 0;
 
 let timerID = '';
+let timerTime = 0;
 let choiceLVL = 0;
 
 function startGame(newOrRandom) {
@@ -71,7 +73,6 @@ field.addEventListener('contextmenu', (e) => {
 })
 
 field.addEventListener('click', (e) => {
-  console.log('left-click', e);
   if(e.target.classList.contains('cell')) {
     if (!game.timerON) {
       game.timerON = true;
@@ -84,7 +85,8 @@ field.addEventListener('click', (e) => {
     let x = Math.floor(cellNo / ((game.level + 1) * 5));
     let y = cellNo - (x * ((game.level + 1) * 5));
     game.guesses[x][y] = e.target.classList.contains('guess-item') ? 1 : 0;
-    game.guesses[x][y] === 1 ? checkSound.play() : uncheckSound.play();    
+    game.guesses[x][y] === 1 ? checkSound.play() : uncheckSound.play();
+    console.log(game.guesses, 'template', game.template);
     const checkResult = checkUserGuess();
   }
 })
@@ -256,7 +258,6 @@ function showSolution(showWhat) {
 }
 
 function drawNonogram(keepGuesses) {
-  console.log('field empty', game.template.length);
   let nonoItemID = 1;
   if(!keepGuesses) game.guesses.length = 0;
   for (let i = 0; i < game.template.length + 1; i++) {
@@ -294,7 +295,6 @@ function drawNonogram(keepGuesses) {
 
   gameLevelDisplay.textContent = (game.level + 1) + '';
   gameNameDisplay.textContent = game.name;
-  console.log('field full', nonoField);
 }
 
 function loadTemplate() {
@@ -364,8 +364,8 @@ function startGameTimer(time) {
     timerDisplay.textContent = minStr + ':' + secStr;
     gameRunSec++;
     game.timer = gameRunSec;
+    timerTime = gameRunSec;
   }, 1000)
-  console.log(timerID);
 }
 
 function endGame() {
@@ -380,6 +380,7 @@ function endGame() {
 function showWinModal() {
   powerLayer.style.display = 'block';
   winModal.style.display = 'flex';
+  gameTimeInd.textContent = timerTime + ' sec';
 }
 
 winModalClose.addEventListener('click', () => {
