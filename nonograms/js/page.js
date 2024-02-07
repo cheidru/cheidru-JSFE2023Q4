@@ -6,6 +6,10 @@ const uncheckAudio = document.createElement('audio');
 uncheckAudio.setAttribute('src', './assets/audio/uncheck.ogg');
 uncheckAudio.setAttribute('id', 'uncheck-sound');
 
+const crossOutAudio = document.createElement('audio');
+crossOutAudio.setAttribute('src', './assets/audio/cross.mp3');
+crossOutAudio.setAttribute('id', 'cross-out');
+
 const winAudio = document.createElement('audio');
 winAudio.setAttribute('src', './assets/audio/celebration.ogg');
 winAudio.setAttribute('id', 'win-sound');
@@ -363,6 +367,7 @@ const main = document.createElement('main');
 
 document.body.append(checkAudio);
 document.body.append(uncheckAudio);
+document.body.append(crossOutAudio);
 document.body.append(winAudio);
 document.body.append(winAudioDivine);
 

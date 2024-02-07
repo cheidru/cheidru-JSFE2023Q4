@@ -2,7 +2,6 @@ const field = document.getElementById('play-ground-wrapper');
 const startGameSound = document.getElementById('new-attampt-sound');
 const checkSound = document.getElementById('check-sound');
 const uncheckSound = document.getElementById('uncheck-sound');
-const crossSound = document.getElementById('cross-out');
 const winSound = document.getElementById('win-sound');
 const divineSound = document.getElementById('win-sound-divine');
 let nonoField = document.getElementById('play-ground-wrapper');
@@ -69,11 +68,11 @@ function startGame(newOrRandom) {
 }
 
 field.addEventListener('contextmenu', (e) => {
+  console.log('must be');
   e.preventDefault();
   if(e.target.classList.contains('cell')) {
     e.target.classList.remove('guess-item');
     e.target.classList.toggle('cross-item');
-    crossSound.play();
   }
 })
 
