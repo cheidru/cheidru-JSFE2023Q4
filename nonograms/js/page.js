@@ -230,7 +230,7 @@ showResults.classList.add('modal');
         showResultsResultTitle.innerHTML = 'See five last results <br><span>sorted by level & time</span>';
 
         const showResultsTimes = document.createElement('div');
-        showResultsTimes.setAttribute('id', 'theme-times');
+        showResultsTimes.setAttribute('id', 'result-times');
         showResultsTimes.classList.add('times');
 
     const showResultsNoResults = document.createElement('p');
@@ -238,14 +238,8 @@ showResults.classList.add('modal');
     showResultsNoResults.textContent = 'No results saved';
 
     const showResultsTable = document.createElement('table');
-    showResultsTable.innerHTML = `
-                <tr id="result-teader">
-                    <th>#</th><th>Game title</th><th>Gale Level</th><th>Time</th>
-                </tr>
-                <tr id="place-1">
-                    <td>1</td><td>ambulance</td><td>3</td><td>02:35</td>
-                </tr>`;
-
+        const showResultsTbody = document.createElement('tbody');
+        
 const showWarning = document.createElement('div');
 showWarning.setAttribute('id', 'warning'); 
 showWarning.classList.add('modal');
@@ -331,7 +325,7 @@ const header = document.createElement('header');
                 settingsMenuLiTwo.textContent = 'Theme';
                 
                 const settingsMenuLiThree = document.createElement('li');
-                settingsMenuLiThree.setAttribute('id', 'select-mnu-game');
+                settingsMenuLiThree.setAttribute('id', 'show-mnu-results');
                 settingsMenuLiThree.textContent = 'Results';
 
 const main = document.createElement('main');
@@ -440,8 +434,11 @@ document.body.append(selectTheme);
 document.body.append(showResults);
     showResults.append(showResultsHeadingWrapper);
         showResultsHeadingWrapper.append(showResultsResultTitle);
+        showResultsHeadingWrapper.append(showResultsTimes);
+        
     showResults.append(showResultsNoResults);
     showResults.append(showResultsTable);
+        showResultsTable.append(showResultsTbody);  
 
 document.body.append(showWarning);
     showWarning.append(showWarningHeadingWrapper);
