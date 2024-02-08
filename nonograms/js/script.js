@@ -263,7 +263,6 @@ closeResultsModal.addEventListener('click', () => {
   powerLayer.style.display = 'none';
   noResultsToShow.style.display = 'block';
   showResultsTbody.innerHTML = '';
-  resultHeader.style.display = 'none';
 })
 
 solutionBTN.addEventListener('mousedown', () => {
@@ -281,13 +280,27 @@ randomBTN.addEventListener('click', () => {
 })
 
 saveBTN.addEventListener('click', () => {
-
-
+  user.lastGame.number = game.number;
+  user.lastGame.level = game.level;
+  user.lastGame.guesses = game.guesses;
+  user.lastGame.timer = timerTime;
   updateLocalStorageData();
 })
 
-
-
+lastGameBTN.addEventListener('click', () => {
+  if (localStorage.getItem('nonograms') !== null) {
+    user = JSON.parse(localStorage.getItem('nonograms'));
+    game.level = user.lastGame.level;
+    game.number = user.lastGame.number;
+    game.guesses = user.lastGame.guesses;
+    game.timer = user.lastGame.timer;
+    clearGameSession();
+    loadTemplate();
+    drawNonogram();    
+    showSolution('guesses');
+    startGameTimer(game.timer);
+  }
+})
 
 function restartGame() {
   clearGameSession();
@@ -449,21 +462,18 @@ function endGame() {
       name: game.name
     }
     user.lastResults.push(newResult);
-    user.lastResults.sort(sortResults);
-    if (user.lastResults.length > 5) user.lastResults.splice(-1, 1); // Remove last result after sorting
-    console.log('end game user = ', user, 'newresult = ', newResult, 'lastresults = ', user.lastResults);
-  }
+    let reaultArr = [];
+    user.lastResults.sort((x , y) => {
+      if((y.level - x.level) < 0) return -1;
+      if((y.level - x.level) > 0) return 1;
+      return x.timer - y.timer;
+    
+    });
 
+    if (user.lastResults.length > 5) user.lastResults.splice(-1, 1); // Remove last result after sorting
+  }
 
   updateLocalStorageData();
-
-  function sortResults(obj1, obj2) {
-    if(obj1.level > obj2.level) return 1;
-    if(obj1.level < obj2.level) return -1;
-    if(obj1.timer > obj2.timer) return 1;
-    if(obj1.timer < obj2.timer) return -1;
-    return 0;
-  }
 };
 
 function showWinModal() {
