@@ -23,6 +23,10 @@ const selectGameModal = document.getElementById('select-game');
 const selectGameModalClose = document.getElementById('select-game-times');
 const gameTimeInd = document.getElementById('game-time');
 const solutionOpenMessage = document.getElementById('solution-open');
+const showResultsModal = document.getElementById('show-results');
+const closeResultsModal = document.getElementById('result-times');
+const noResultsToShow = document.getElementById('no-results');
+const resultHeader = document.getElementById('result-header');
 
 const settingsBTN = document.querySelector('.svg-setting-icon');
 const settingMNU = document.getElementById('setting-menu');
@@ -131,19 +135,34 @@ settingsBTN.addEventListener('click', () => {
   showSelectThemeBTN.addEventListener('click', () => {
     showSelectThemeModal();
   }, true)
+  
+  showResultsBTN.addEventListener('click', () => {
+      settingMNU.style.display = 'none';
+      showResultsModal.style.display = 'flex';
+      if(user.lastResults.length > 0) {
+        noResultsToShow.style.display = 'none';
+        let headTabRow = document.createElement('tr');
+        headTabRow.innerHTML = `<tr id="result-header" class='result-row'><th>#</th><th>Game title</th><th>Game Level</th><th>Time</th></tr>`
+        showResultsTbody.append(headTabRow);
+        
+        for(let i = 0; i < user.lastResults.length; i++) {
+          let tbRow = document.createElement('tr');
+          tbRow.classList.add('result-row');
+          tbRow.innerHTML = `<td>${(i + 1)}</td><td>${user.lastResults[i].name}</td><td>${user.lastResults[i].level + 1}</td>
+          <td>${user.lastResults[i].time} sec</td>`;
+          showResultsTbody.append(tbRow);
+        }
+      }
+  })
 
   closeSettingMnuBTN.addEventListener('click', () => {
     powerLayer.style.display = 'none';
-    closeSettingMNU()
+    settingMNU.style.display = 'none';
   }, true)
 })
 
-function closeSettingMNU() {
-  settingMNU.style.display = 'none';
-}
-
 function showSelectGameModal() {
-  closeSettingMNU();
+  settingMNU.style.display = 'none';
   selectGameModal.style.display = 'flex';
   body.style.overflowY = 'hidden';
 
@@ -214,11 +233,10 @@ function updateGame(e) {
     body.style.setProperty("--templ-col-num", `${(game.level + 1) * 5}`); 
     restartGame();
   }
-
 }
 
 function showSelectThemeModal() {
-  closeSettingMNU();
+  settingMNU.style.display = 'none';
   selectThemeModal.style.display = 'flex';
 }
 
@@ -240,6 +258,14 @@ closeThemeModal.addEventListener('click', () => {
   selectThemeModal.style.display = 'none';
 })
 
+closeResultsModal.addEventListener('click', () => {
+  showResultsModal.style.display = 'none';
+  powerLayer.style.display = 'none';
+  noResultsToShow.style.display = 'block';
+  showResultsTbody.innerHTML = '';
+  resultHeader.style.display = 'none';
+})
+
 solutionBTN.addEventListener('mousedown', () => {
   clearInterval(timerID);
   showSolution();
@@ -254,12 +280,7 @@ randomBTN.addEventListener('click', () => {
   resetGame();
 })
 
-
 saveBTN.addEventListener('click', () => {
-
-
-
-
 
 
   updateLocalStorageData();
@@ -411,8 +432,8 @@ function startGameTimer(time) {
     secStr = secStr.length == 1 ? '0' + runSeconds : runSeconds;
     timerDisplay.textContent = minStr + ':' + secStr;
     gameRunSec++;
-    game.timer = gameRunSec;
-    timerTime = gameRunSec;
+    game.timer = gameRunSec - 1;
+    timerTime = gameRunSec - 1;
   }, 1000)
 }
 
@@ -429,11 +450,12 @@ function endGame() {
     }
     user.lastResults.push(newResult);
     user.lastResults.sort(sortResults);
-    user.lastResults.splice(-1, 1); // Remove last result after sorting
+    if (user.lastResults.length > 5) user.lastResults.splice(-1, 1); // Remove last result after sorting
+    console.log('end game user = ', user, 'newresult = ', newResult, 'lastresults = ', user.lastResults);
   }
 
-  console.log('user = ', user);
-  // updateLocalStorageData();
+
+  updateLocalStorageData();
 
   function sortResults(obj1, obj2) {
     if(obj1.level > obj2.level) return 1;
@@ -484,7 +506,7 @@ function loadUserData() {
     game.level = user.default.level;
     game.name = user.default.name;
     game.theme = user.default.theme;
-    console.log(user);
+    console.log('load user', user);
   }
 }
 

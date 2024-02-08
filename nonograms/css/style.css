@@ -478,8 +478,14 @@ button:hover:not(#timer) {
     overflow: hidden; 
 }
 
-#show-results table {
+table {
     padding: 0 3rem;
+    border: 1px solid balck;
+}
+
+td, th {
+    width: auto;
+    padding: 0.5rem 1rem;
 }
 
 #no-results {
@@ -489,11 +495,11 @@ button:hover:not(#timer) {
     padding: 0 10rem;
 }
 
-#show-results tr {
+#result-header {
     display: none;
 }
 
-#show-results td {
+.result-row {
     width: fit-content;
     padding: 0.5rem 1rem;
 }
