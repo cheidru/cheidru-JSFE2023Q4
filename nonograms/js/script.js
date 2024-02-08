@@ -125,6 +125,7 @@ settingsBTN.addEventListener('click', () => {
   selectGameModalClose.addEventListener('click', () => {
     powerLayer.style.display = 'none';
     selectGameModal.style.display = 'none';
+    body.style.overflowY = 'visible';
   }, true)
 
   showSelectThemeBTN.addEventListener('click', () => {
@@ -144,6 +145,7 @@ function closeSettingMNU() {
 function showSelectGameModal() {
   closeSettingMNU();
   selectGameModal.style.display = 'flex';
+  body.style.overflowY = 'hidden';
 
   const levelBTN = document.getElementById('game-lvl-wrapper');
 
@@ -193,14 +195,26 @@ function loadTemplateChoice(e) {
 
 function updateGame(e) {
   let parent = e.target.parentElement;
-  if(parent.tagName === 'DIV') {
+  if(parent.tagName === 'DIV' && parent.classList.contains('templ-wrapper')) {
     game.level = choiceLVL;
     game.number = parent.id[parent.id.length - 1] - 1;
     selectGameModal.style.display = 'none';
+    body.style.overflowY = 'visible';
     powerLayer.style.display = 'none';
     body.style.setProperty("--templ-col-num", `${(game.level + 1) * 5}`); 
     restartGame();
   }
+
+  if(e.target.classList.contains('templ-wrapper')) {
+    game.level = choiceLVL;
+    game.number = e.target.id[e.target.id.length - 1] - 1;
+    selectGameModal.style.display = 'none';
+    body.style.overflowY = 'visible';
+    powerLayer.style.display = 'none';
+    body.style.setProperty("--templ-col-num", `${(game.level + 1) * 5}`); 
+    restartGame();
+  }
+
 }
 
 function showSelectThemeModal() {
@@ -239,8 +253,6 @@ solutionBTN.addEventListener('mouseup', () => {
 randomBTN.addEventListener('click', () => {
   resetGame();
 })
-
-
 
 
 saveBTN.addEventListener('click', () => {

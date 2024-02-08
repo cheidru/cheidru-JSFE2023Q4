@@ -262,7 +262,9 @@ button:hover:not(#timer) {
     flex-direction: column;
     justify-content: space-between;
     gap: 1rem;
-    width: 40rem;
+    max-width: 40rem;
+    width: 100%;
+    margin: 0 2rem;
     overflow: hidden;
 }
 
@@ -666,3 +668,20 @@ button:hover:not(#timer) {
     }
   }
 
+  @media (max-width: 550px) {
+    #play-ground-wrapper {    
+        width: calc(18 * 5.3vw);
+        padding: 1rem;
+        font-size: 1.5vw;
+    }
+    
+    button {
+        width: 26vw;
+        padding: 1rem 0.8rem;
+        font-size: 1rem;
+    }
+
+    .item:is(.clue-left) {
+        line-height: 1.5vw;
+    }
+}
