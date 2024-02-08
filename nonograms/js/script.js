@@ -294,9 +294,11 @@ lastGameBTN.addEventListener('click', () => {
     game.number = user.lastGame.number;
     game.guesses = user.lastGame.guesses;
     game.timer = user.lastGame.timer;
+
     clearGameSession();
+    body.style.setProperty("--templ-col-num", `${(game.level + 1) * 5}`);
     loadTemplate();
-    drawNonogram();    
+    // drawNonogram();
     showSolution('guesses');
     startGameTimer(game.timer);
   }
@@ -466,8 +468,7 @@ function endGame() {
     user.lastResults.sort((x , y) => {
       if((y.level - x.level) < 0) return -1;
       if((y.level - x.level) > 0) return 1;
-      return x.timer - y.timer;
-    
+      return x.timer - y.timer;    
     });
 
     if (user.lastResults.length > 5) user.lastResults.splice(-1, 1); // Remove last result after sorting
