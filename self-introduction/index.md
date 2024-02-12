@@ -1,4 +1,4 @@
-[My Self-Introduction] (https://youtu.be/z0Fitgf_PSU)
+[My Self-Introduction](https://youtu.be/z0Fitgf_PSU)
 
 Hello! My name is Igor Checheurov. I live in Moscow. Thank you for your time watching my video CV. It is first time I shoot video CV and I’m a bit nervous. So, be lenient, please.
 
