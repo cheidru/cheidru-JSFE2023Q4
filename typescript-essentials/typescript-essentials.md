@@ -16,4 +16,4 @@ Here are badges I earned from Microsoft Learn's TypeScript modules:
 
 ## Reflections
 
-[Add your personal reflections on what you learned in each module and how it contributes to your development skills]
+[Good for the very beginning of TypeScript study. But it lacks of explanations.]
