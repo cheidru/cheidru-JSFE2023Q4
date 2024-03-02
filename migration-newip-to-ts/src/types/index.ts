@@ -74,6 +74,12 @@ export enum sortbyOption {
     publishedAt,
 }
 
+export enum endpoints {
+    everything = '/v2/everything',
+    topHeadlines = '/v2/top-headlines',
+    sources = '/v2/top-headlines/sources',
+}
+
 interface sourceRequestParams {
     apiKey: string;
     category?: string;
