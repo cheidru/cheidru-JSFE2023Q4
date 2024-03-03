@@ -17,13 +17,12 @@ class Sources {
                     const sourceItem = sourceClone.querySelector('.source__item');
                     if (sourceItem !== null) sourceItem.setAttribute('data-source-id', item.id);
                 }
-   
                 fragment.append(sourceClone);
             }
         });
 
         const sources = document.querySelector('.sources');
-        if(sources !== null) sources.append(fragment);
+        if (sources !== null) sources.append(fragment);
     }
 }
 

@@ -6,7 +6,7 @@ class AppLoader extends Loader {
             // 'https://newsapi.org/v2/top-headlines/',
             'https://newsapi.org',
 
-            { apiKey: 'a2db0eb7b478479fb9dce3efcd99e978', }
+            { apiKey: 'a2db0eb7b478479fb9dce3efcd99e978' }
         );
     }
 }

@@ -3,14 +3,16 @@ export type CallbackFunction<T> = (data: T) => void;
 class Loader {
     _baseLink: string;
     _options: object;
-   
     constructor(baseLink: string, options: object) {
         this._baseLink = baseLink;
         this._options = options;
     }
 
-    getResp<T>({ endpoint, options = {} }: {endpoint: string, options?: object},
-        callback: CallbackFunction<T> = () => {console.error('No callback for GET response');}
+    getResp<T>(
+        { endpoint, options = {} }: { endpoint: string; options?: object },
+        callback: CallbackFunction<T> = () => {
+            console.error('No callback for GET response');
+        }
     ) {
         this.load('GET', endpoint, callback, options);
     }

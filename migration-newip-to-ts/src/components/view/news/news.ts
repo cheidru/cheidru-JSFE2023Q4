@@ -9,29 +9,27 @@ class News {
         const newsItemTemp = document.querySelector('#newsItemTemp');
 
         news.forEach((item, idx) => {
-            if(newsItemTemp !== null && newsItemTemp instanceof HTMLTemplateElement) {
+            if (newsItemTemp !== null && newsItemTemp instanceof HTMLTemplateElement) {
                 const newsClone = newsItemTemp.content.cloneNode(true) as HTMLElement;
-                
-                if(newsClone !== null) {
+                if (newsClone !== null) {
                     if (idx % 2) {
                         const newsItem = newsClone.querySelector('.news__item');
                         if (newsItem !== null) newsItem.classList.add('alt');
                     }
 
                     const newsMetaPhoto = newsClone.querySelector('.news__meta-photo') as HTMLElement;
-                    if (newsMetaPhoto !== null) newsMetaPhoto.style.backgroundImage = `url(${
-                        item.urlToImage || 'img/news_placeholder.jpg'})`;
-                    
+                    if (newsMetaPhoto !== null) {
+                        newsMetaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
+                    }
                     const newsMetaAuthor = newsClone.querySelector('.news__meta-author');
-                    if (newsMetaAuthor !== null) newsMetaAuthor.textContent = item.author || item.source.name;
+                    if (newsMetaAuthor !== null) {
+                        newsMetaAuthor.textContent = item.author || item.source.name;
+                    }
 
                     const newsMetaDate = newsClone.querySelector('.news__meta-date');
-                    if (newsMetaDate !== null) newsMetaDate.textContent = item.publishedAt
-                        .slice(0, 10)
-                        .split('-')
-                        .reverse()
-                        .join('-');
-        
+                    if (newsMetaDate !== null) {
+                        newsMetaDate.textContent = item.publishedAt.slice(0, 10).split('-').reverse().join('-');
+                    }
                     const newsDescriptionTitle = newsClone.querySelector('.news__description-title');
                     if (newsDescriptionTitle !== null) newsDescriptionTitle.textContent = item.title;
 
@@ -43,11 +41,9 @@ class News {
 
                     const newsReadMore = newsClone.querySelector('.news__read-more a');
                     if (newsReadMore !== null) newsReadMore.setAttribute('href', item.url);
-        
                     fragment.append(newsClone);
                 }
-                }
-
+            }
         });
 
         const newsElement = document.querySelector('.news');

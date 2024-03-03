@@ -4,10 +4,7 @@ import { responseContent, sourceResponseContent } from '../../types/index';
 
 class AppController extends AppLoader {
     getSources(callback: CallbackFunction<sourceResponseContent>) {
-        super.getResp(
-            {endpoint: 'sources',},
-            callback
-        );
+        super.getResp({ endpoint: 'sources' }, callback);
     }
 
     getNews(e: Event, callback: CallbackFunction<responseContent>) {
