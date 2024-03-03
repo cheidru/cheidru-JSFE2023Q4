@@ -2,6 +2,7 @@ body {
     color: #fff;
     background: #1d1f28;
     font-family: sans-serif;
+    user-select: none;
 }
 
 header {
@@ -35,6 +36,18 @@ footer .copyright:before {
     content: '©';
 }
 
+#footer-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(149, 147, 147);;
+    width: 60%;
+    margin: 0 auto;
+    padding: 0;
+    text-decoration: none;
+}
+
 #footer-wrapper p {
     text-align: center;
     font-family: Inter;
@@ -54,18 +67,6 @@ footer .copyright:before {
     color: #555;
 }
 
-#footer-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    color: rgb(149, 147, 147);;
-    width: 60%;
-    margin: 0 auto;
-    padding: 0;
-    text-decoration: none;
-}
-
 #rsschool {
     width: 7vw;
     height: auto;
@@ -77,4 +78,31 @@ footer .copyright:before {
 
 #rsschool:hover {
     background-color: rgba(245, 245, 220, 0.462);
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 10px 10px;
+    }
+    
+    header h1 {
+        font-size: 10vw;
+    }
+    
+    #footer-wrapper {
+        flex-direction: column;
+        justify-content: start;
+        gap: 1rem;
+    }
+
+    #footer-wrapper p {
+        margin: 0;
+        line-height: 1rem; /* 100% */
+        width: 100%;
+    }
+
+    #rsschool {
+        width: 80%;
+    }
+    
 }
