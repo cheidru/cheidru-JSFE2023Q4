@@ -1,5 +1,5 @@
 import './sources.css';
-import { sourceResponseContent } from '../../../types/index';
+import { sourceResponseContent } from '../../../types/types';
 
 class Sources {
     draw(data: sourceResponseContent[]) {

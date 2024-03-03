@@ -1,6 +1,6 @@
 import AppLoader from './appLoader';
 import { CallbackFunction } from 'loader';
-import { responseContent, sourceResponseContent } from '../../types/index';
+import { responseContent, sourceResponseContent } from '../../types/types';
 
 class AppController extends AppLoader {
     getSources(callback: CallbackFunction<sourceResponseContent>) {

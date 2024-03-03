@@ -1,5 +1,5 @@
 import './news.css';
-import { responseContent } from '../../../types/index';
+import { responseContent } from '../../../types/types';
 
 class News {
     draw(data: responseContent[]) {
