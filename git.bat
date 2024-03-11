@@ -1,1 +1,0 @@
-C:\LocalProgs\GitPortable\App\Git\bin\git %1 %2 %3 %4 %5
