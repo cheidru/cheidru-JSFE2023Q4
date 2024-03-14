@@ -1,28 +1,35 @@
 @font-face {
   font-family: 'Forum';
-  src: url('./assets/fonts/Forum-Regular.ttf');
+  src: url('../fonts/Forum-Regular.ttf');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Forum Bold';
-  src: url('./assets/fonts/Forum-Regular.ttf');
+  src: url('../fonts/Forum-Regular.ttf');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Inter';
-  src: url('./assets/fonts/Inter-Regular.ttf');
+  src: url('../fonts/Inter-Regular.ttf');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Inter Bold';
-  src: url('./assets/fonts/Inter-Bold.ttf');
+  src: url('../fonts/Inter-Bold.ttf');
   font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Kill-Switch';
+  src: url('../fonts/Kill-Switch.ttf');
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -31,14 +38,17 @@
   --modal-button-color: rgb(253, 164, 3);
   --modal-button-color-disabled: rgba(253, 164, 3, 0.6);
   --input-background-color: lightgray;
-  --input-txt-color: gray;
-  --input-txt-focus: black;
-  --warning-color: red;
+  --disabled-txt-color: gray;
+  --input-txt-color: black;
+  --warning-color: lightpink;
+  --header-color: rgb(249, 240, 122);  
 }
 
-/* * {
-  box-sizing: border-box;
-} */
+html {
+  background-size: 100% 100vh;
+  background-repeat: no-repeat;
+  background-image: url(../assets/img/background4.jpeg);
+}
 
 body {
   margin: 0;
@@ -46,14 +56,11 @@ body {
   width: 100%;
   height: 100%;
   font-family: 'Inter';
-  background-size:cover;
-  background: url(../assets/img/background4.jpeg);
-  background-size: cover;
-  background-repeat: no-repeat;
+
   user-select: none;
 }
 
-#input-wrapper {
+#login-wrapper {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -63,7 +70,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
+  gap: 2rem;
   padding: 4rem;
   padding-top: 5rem;
   border-radius: 2rem;
@@ -75,6 +82,38 @@ body {
   background-color: var(--modal-bg-color);
 }
 
+.modal #header {
+  width: 100%;
+  height: auto;
+  color: var(--header-color);
+  padding-bottom: 1rem;
+  font-family: 'Kill-Switch';
+  font-size: 4.5rem;
+  text-align: center;
+}
+
+.input-wrap {
+  position: relative;
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.input-wrap label {
+  align-self: flex-start;
+  padding-left: 0.8rem;
+  font-size: 1.7rem;
+  font-family: 'Inter';
+}
+
+.input-wrap:nth-child(3) {
+  padding-bottom: 2rem;
+}
+
 .modal button {
   /* display: none; */  
   width: 10rem;
@@ -82,7 +121,7 @@ body {
   padding: 1rem;
   line-height: 1.5rem;
   font-size: 1.5rem;
-  color: var(--input-txt-focus);
+  color: var(--input-txt-color);
   background-color: var(--modal-button-color);
   border-radius: 1rem;
   border: 0px solid transparent;
@@ -95,10 +134,11 @@ body {
 }
 
 .modal button:disabled {
-  color: var(--input-txt-color);
+  color: var(--disabled-txt-color);
   background-color: var(--modal-button-color-disabled);
   cursor: default;
 }
+
 .user-input {
   width: 30rem;
   height: auto;
@@ -111,33 +151,35 @@ body {
   cursor: pointer;
 }
 
-.user-input:focus::placeholder {
-  color: var(--input-txt-focus);
-}
-
 .user-input:focus {
-  color: var(--input-txt-focus);
+  color: var(--input-txt-color);
   outline: none;
 }
 
-.warn {
-  border: 5px solid var(--warning-color);
-}
+/* 
+input:invalid {
+  background-color: var(--warning-color);
+} */
+/* 
+input .warn {
+  background-color: var(--warning-color);
+} */
 
 /* Tooltip container */
 .tooltip {
   position: absolute;
-  top: 100px;
-  left: 100px;
+  bottom: 0;
+  left: 15px;
   visibility: visible;
   width: auto;
   height: auto;
   color: #fff;
-  font-size: 2rem;
+  font-size: 1.2rem;
   text-align: center;
-  padding: 0.5rem 1rem;
-  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
   background-color: black;
+  transform: translateY(120%);
   z-index: 1;
 }
 
@@ -152,11 +194,28 @@ body {
   border-color: transparent transparent black transparent;
 }
 
-@media (max-width: 900px) {
-  #input-wrapper {
+@media (max-width: 1400px) {
+  #login-wrapper {
+    width: 50vw;
+    padding: 1.5rem 3rem;
+    gap: 1.5rem;
+    padding-top: 1rem;
+  }
+}
+
+@media (max-width: 1130px) {
+  #login-wrapper {
     width: 60vw;
-    padding: 3rem;
-    padding-top: 4rem;
+    padding: 1.5rem 3rem;
+  }
+}
+
+@media (max-width: 930px) {
+  #login-wrapper {
+    width: 70vw;
+    padding: 1.5rem 2rem;
+    gap: 1.5rem;
+    padding-top: 1rem;
   }
 
   .user-input {
@@ -165,8 +224,8 @@ body {
     font-size: 1.8rem;
   }
 
-  body {
-    background-size: 150vmax;
+  html {
+    background-size: 150vh;
   }
 
   
