@@ -88,21 +88,28 @@ function checkInput(event: Event | FocusEvent, inputObj: HTMLInputElement) {
     // if(event.target.value.length == 0) return;
     if (inputObj.validity.patternMismatch) {
         event.preventDefault();
-        issueWarning(event, inputObj);
-        inputObj.focus();
-        closeWarnForCorrection(inputObj);
-    } else {
-        if (inputObj === lastNameInput) {
-            userData.lastName = inputObj.value;
-            // userData.lastName = event.target.value;
-            userDataValid.lastName = true;
-            if (userDataValid.firstName === true) loginBTN.removeAttribute('disabled');
+        if (issueWarning(event, inputObj)) {
+            inputObj.focus();
+            closeWarnForCorrection(inputObj);
         } else {
-            userData.firstName = inputObj.value;
-            // userData.firstName = event.target.value;
-            userDataValid.firstName = true;
-            if (userDataValid.lastName === true) loginBTN.removeAttribute('disabled');
+            checkDataIsComplete(inputObj);
         }
+    } else {
+        checkDataIsComplete(inputObj);
+    }
+}
+
+function checkDataIsComplete(inputObj: HTMLInputElement) {
+    if (inputObj === lastNameInput) {
+        userData.lastName = inputObj.value;
+        // userData.lastName = event.target.value;
+        userDataValid.lastName = true;
+        if (userDataValid.firstName === true) loginBTN.removeAttribute('disabled');
+    } else {
+        userData.firstName = inputObj.value;
+        // userData.firstName = event.target.value;
+        userDataValid.firstName = true;
+        if (userDataValid.lastName === true) loginBTN.removeAttribute('disabled');
     }
 }
 
@@ -121,17 +128,19 @@ function issueWarning(event: Event, inputObj: HTMLInputElement) {
     const string = inputObj.value;
     // let string = event.target.value;
     const inputLenLimit = inputObj === lastNameInput ? 4 : 3;
-    const regxLatin = /[^a-z-]/;
+    const regxLatin = /[a-z]/;
     const regxUpper = /^[A-Z]/;
     let warning = '';
+    console.log(regxLatin, string, regxLatin.test(string));
     loginBTN.setAttribute('disabled', '');
     if (string.length < inputLenLimit) warning = warningMessage[0] + inputLenLimit + ' caracters. ';
-    if (regxLatin.test(string)) {
+    if (!regxLatin.test(string)) {
         warning += warningMessage[1] + '. ';
     }
     if (!regxUpper.test(string)) {
         warning += warningMessage[2] + '. ';
     }
+    if (warning.length === 0) return false;
     showCollout(warning, inputObj);
 }
 
@@ -141,4 +150,17 @@ function showCollout(message: string, targetObj: HTMLInputElement) {
     // compensate surname input bottom padding
     if (targetObj.parentElement === inputWrapperLast) warningTip.style.bottom = '2rem';
     if (targetObj.parentElement !== null) targetObj.parentElement.append(warningTip);
+}
+
+loginBTN.addEventListener('click', () => {
+    saveInLocalStorage();
+});
+
+function saveInLocalStorage() {
+    const userData = {
+        firstName: firstNameInput.value,
+        lastName: lastNameInput.value,
+    };
+
+    localStorage.setItem('rss-puzzle-user', JSON.stringify(userData));
 }
