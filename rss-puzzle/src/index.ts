@@ -33,13 +33,13 @@ logOutBTNWrapper.append(logOutConfirmBTN);
 const startScreen = document.createElement('div');
 startScreen.setAttribute('id', 'start-screen-wrapper');
 startScreen.classList.add('modal');
-// startScreen.classList.add('hidden-modal');
+startScreen.classList.add('hidden-modal');
 document.body.append(startScreen);
 
 const startScreenHeader = document.createElement('h1');
 startScreenHeader.setAttribute('id', 'start-screen-header');
 startScreenHeader.setAttribute('id', 'header');
-startScreenHeader.textContent = 'RSS PUZZLE GAME';
+startScreenHeader.textContent = 'RSS PUZZLE';
 startScreen.append(startScreenHeader);
 
 const startScreenMain = document.createElement('div');
@@ -61,6 +61,10 @@ sentences from jumbled words, inspired by Lingualeo's Phrase Constructor
 training. The game integrates various levels of difficulty, hint options, 
 and a unique puzzle-like experience with artwork.`;
 startScreenMain.append(startScreenTxt);
+
+const startGameBTN = document.createElement('button');
+startGameBTN.innerText = 'Start Plying';
+startScreen.append(startGameBTN);
 
 // let userData = {
 //     firstName: '',
@@ -116,6 +120,9 @@ function checkLocalStorage() {
 
 function showStartScreen() {
     header.style.display = 'flex';
+    startScreen.classList.remove('hidden-modal');
+    startGameBTN.addEventListener('click', () => {
+    }, true)
 
     // const header = document.createElement('header');
     // document.body.append(header);

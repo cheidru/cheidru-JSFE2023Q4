@@ -230,6 +230,7 @@ h1 {
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+  padding-bottom: 1rem;
 }
 
 .start-img {
@@ -245,6 +246,10 @@ h1 {
   font-size: 1.5rem;
   line-height: 2rem;
   color: var(--header-color);
+}
+
+#start-screen-wrapper button {
+  width: 15rem;
 }
 
 .tooltip {
