@@ -30,6 +30,38 @@ const logOutConfirmBTN = document.createElement('button');
 logOutConfirmBTN.innerText = 'Log Out';
 logOutBTNWrapper.append(logOutConfirmBTN);
 
+const startScreen = document.createElement('div');
+startScreen.setAttribute('id', 'start-screen-wrapper');
+startScreen.classList.add('modal');
+// startScreen.classList.add('hidden-modal');
+document.body.append(startScreen);
+
+const startScreenHeader = document.createElement('h1');
+startScreenHeader.setAttribute('id', 'start-screen-header');
+startScreenHeader.setAttribute('id', 'header');
+startScreenHeader.textContent = 'RSS PUZZLE GAME';
+startScreen.append(startScreenHeader);
+
+const startScreenMain = document.createElement('div');
+startScreenMain.setAttribute('id', 'start-screen-main-wrapper');
+startScreen.append(startScreenMain);
+
+const startScreenIMG1 = document.createElement('img');
+startScreenIMG1.setAttribute('id', 'start-screen-img1');
+startScreenIMG1.setAttribute('src', '../src/assets/img/candy_girl.png');
+startScreenIMG1.setAttribute('alt', 'funny-girl-image');
+startScreenIMG1.classList.add('start-img');
+startScreenMain.append(startScreenIMG1);
+
+const startScreenTxt = document.createElement('p');
+startScreenTxt.setAttribute('id', 'start-screen-txt');
+startScreenTxt.textContent = `RSS Puzzle is an interactive 
+mini-game aimed at enhancing English language skills. Players assemble 
+sentences from jumbled words, inspired by Lingualeo's Phrase Constructor 
+training. The game integrates various levels of difficulty, hint options, 
+and a unique puzzle-like experience with artwork.`;
+startScreenMain.append(startScreenTxt);
+
 // let userData = {
 //     firstName: '',
 //     lastName: '',
@@ -84,7 +116,6 @@ function checkLocalStorage() {
 
 function showStartScreen() {
     header.style.display = 'flex';
-    
 
     // const header = document.createElement('header');
     // document.body.append(header);

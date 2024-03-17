@@ -164,10 +164,6 @@ header button:hover {
   padding: 0 1rem;
 }
 
-/* #login-wrapper {
-
-} */
-
 #logout-btn-wrap {
   display: flex;
   flex-direction: row;
@@ -216,16 +212,41 @@ header button:hover {
   outline: none;
 }
 
-/* 
-input:invalid {
-  background-color: var(--warning-color);
-} */
-/* 
-input .warn {
-  background-color: var(--warning-color);
-} */
+#start-screen-wrapper {
+  width: 40vw;
+  height: auto;
+  gap: 0;
+}
 
-/* Tooltip container */
+h1 {
+  margin: 0;
+  padding-bottom: 0;  
+  font-size: 3rem;
+}
+
+#start-screen-main-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.start-img {
+  width: 30rem;
+  gap: 1rem;
+  border-radius: 2rem;
+  overflow: hidden;
+}
+
+#start-screen-txt {
+  width: 100%;
+  text-align: justify;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  color: var(--header-color);
+}
+
 .tooltip {
   position: absolute;
   bottom: 0;
