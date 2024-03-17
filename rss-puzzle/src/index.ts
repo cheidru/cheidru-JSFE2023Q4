@@ -1,166 +1,92 @@
-const inputWindow = document.createElement('div');
-inputWindow.setAttribute('id', 'login-wrapper');
-inputWindow.classList.add('modal');
-document.body.append(inputWindow);
+import { startLogin } from './login';
 
-const loginHeader = document.createElement('div');
-loginHeader.setAttribute('id', 'header');
-loginHeader.textContent = 'RSS Puzzle Login';
-inputWindow.append(loginHeader);
+// Create header with logout button
+const header = document.createElement('header');
+const logoutBTN = document.createElement('button');
+logoutBTN.textContent = 'Log Out';
 
-const inputWrapperFirst = document.createElement('div');
-inputWrapperFirst.classList.add('input-wrap');
-inputWindow.append(inputWrapperFirst);
+const logOutWindow = document.createElement('div');
+logOutWindow.setAttribute('id', 'logout-wrapper');
+logOutWindow.classList.add('modal');
+logOutWindow.classList.add('hidden-modal');
+document.body.append(logOutWindow);
 
-const firstNameLBL = document.createElement('label');
-firstNameLBL.setAttribute('for', 'first-name');
-firstNameLBL.textContent = 'First Name (min 3 characters)';
-inputWrapperFirst.append(firstNameLBL);
+const logOutText = document.createElement('p');
+logOutText.setAttribute('id', 'logout-txt');
+logOutText.classList.add('info-txt');
+logOutText.textContent =
+    'Are You sure You want to log out? Your account will be removed and You will need to log in again.';
+logOutWindow.append(logOutText);
 
-const firstNameInput = document.createElement('input');
-firstNameInput.setAttribute('type', 'text');
-firstNameInput.setAttribute('id', 'first-name');
-firstNameInput.setAttribute('autocomplete', 'off');
-firstNameInput.setAttribute('minlength', '3');
-firstNameInput.setAttribute('pattern', '^[A-Z][a-z]');
-firstNameInput.classList.add('user-input');
-inputWrapperFirst.append(firstNameInput);
+const logOutBTNWrapper = document.createElement('div');
+logOutBTNWrapper.setAttribute('id', 'logout-btn-wrap');
+logOutWindow.append(logOutBTNWrapper);
 
-const inputWrapperLast = document.createElement('div');
-inputWrapperLast.classList.add('input-wrap');
-inputWindow.append(inputWrapperLast);
+const logOutCancelBTN = document.createElement('button');
+logOutCancelBTN.innerText = 'Cancel';
+logOutBTNWrapper.append(logOutCancelBTN);
 
-const lastNameLBL = document.createElement('label');
-lastNameLBL.setAttribute('for', 'first-name');
-lastNameLBL.textContent = 'Surname (min 4 characters)';
-inputWrapperLast.append(lastNameLBL);
+const logOutConfirmBTN = document.createElement('button');
+logOutConfirmBTN.innerText = 'Log Out';
+logOutBTNWrapper.append(logOutConfirmBTN);
 
-const lastNameInput = document.createElement('input');
-lastNameInput.setAttribute('type', 'text');
-lastNameInput.setAttribute('id', 'last-name');
-lastNameInput.setAttribute('autocomplete', 'off');
-lastNameInput.setAttribute('minlength', '4');
-lastNameInput.setAttribute('pattern', '^[A-Z][a-z]');
-lastNameInput.classList.add('user-input');
-inputWrapperLast.append(lastNameInput);
+// let userData = {
+//     firstName: '',
+//     lastName: '',
+// };
 
-const warningTip = document.createElement('div');
-warningTip.classList.add('tooltip');
-warningTip.innerText = 'Test';
+prepareUser();
 
-const loginBTN = document.createElement('button');
-loginBTN.setAttribute('disabled', '');
-loginBTN.innerText = 'Login';
-inputWindow.append(loginBTN);
-
-const userDataValid = {
-    firstName: false,
-    lastName: false,
-};
-
-const userData = {
-    firstName: '',
-    lastName: '',
-};
-
-const warningMessage = [
-    'Minimum name length is ',
-    'Enter your name in latin caracters',
-    'First letter must be in upper case',
-];
-
-firstNameInput.addEventListener('blur', (e) => {
-    checkInput(e, firstNameInput);
-});
-firstNameInput.addEventListener('change', (e) => {
-    checkInput(e, firstNameInput);
-});
-
-lastNameInput.addEventListener('blur', (e) => {
-    checkInput(e, lastNameInput);
-});
-lastNameInput.addEventListener('change', (e) => {
-    checkInput(e, lastNameInput);
-});
-
-function checkInput(event: Event | FocusEvent, inputObj: HTMLInputElement) {
-    if (inputObj.value.length == 0) return;
-    // if(event.target.value.length == 0) return;
-    if (inputObj.validity.patternMismatch) {
-        event.preventDefault();
-        if (issueWarning(event, inputObj)) {
-            inputObj.focus();
-            closeWarnForCorrection(inputObj);
+function prepareUser() {
+    new Promise<void>((res) => {
+        if (checkLocalStorage() === false) {
+            startLogin().then(() => res());
         } else {
-            checkDataIsComplete(inputObj);
+            res();
         }
-    } else {
-        checkDataIsComplete(inputObj);
-    }
+    }).then(() => {
+        document.body.append(header);
+        header.append(logoutBTN);
+        logoutBTN.addEventListener('click', () => {
+            console.log('Erase user');
+            logOutWindow.classList.remove('hidden-modal');
+
+            logOutCancelBTN.addEventListener(
+                'click',
+                () => {
+                    console.log('cancel clicked');
+                    logOutWindow.classList.add('hidden-modal');
+                },
+                { once: true }
+            );
+
+            logOutConfirmBTN.addEventListener(
+                'click',
+                () => {
+                    header.style.display = 'none';
+                    logOutWindow.classList.add('hidden-modal');
+                    localStorage.removeItem('rss-puzzle-user');
+                    prepareUser();
+                },
+                { once: true }
+            );
+        });
+        showStartScreen();
+    });
 }
 
-function checkDataIsComplete(inputObj: HTMLInputElement) {
-    if (inputObj === lastNameInput) {
-        userData.lastName = inputObj.value;
-        // userData.lastName = event.target.value;
-        userDataValid.lastName = true;
-        if (userDataValid.firstName === true) loginBTN.removeAttribute('disabled');
-    } else {
-        userData.firstName = inputObj.value;
-        // userData.firstName = event.target.value;
-        userDataValid.firstName = true;
-        if (userDataValid.lastName === true) loginBTN.removeAttribute('disabled');
-    }
+function checkLocalStorage() {
+    const storageData = localStorage.getItem('rss-puzzle-user');
+    if (storageData === null) return false;
+    // userData = { ...JSON.parse(storageData) };
+    return true;
 }
 
-function closeWarnForCorrection(inputField: HTMLInputElement) {
-    inputField.addEventListener(
-        'input',
-        () => {
-            warningTip.remove();
-            inputField.style.backgroundColor = 'var(--input-background-color)';
-        },
-        { once: true }
-    );
-}
+function showStartScreen() {
+    header.style.display = 'flex';
+    
 
-function issueWarning(event: Event, inputObj: HTMLInputElement) {
-    const string = inputObj.value;
-    // let string = event.target.value;
-    const inputLenLimit = inputObj === lastNameInput ? 4 : 3;
-    const regxLatin = /[a-z]/;
-    const regxUpper = /^[A-Z]/;
-    let warning = '';
-    console.log(regxLatin, string, regxLatin.test(string));
-    loginBTN.setAttribute('disabled', '');
-    if (string.length < inputLenLimit) warning = warningMessage[0] + inputLenLimit + ' caracters. ';
-    if (!regxLatin.test(string)) {
-        warning += warningMessage[1] + '. ';
-    }
-    if (!regxUpper.test(string)) {
-        warning += warningMessage[2] + '. ';
-    }
-    if (warning.length === 0) return false;
-    showCollout(warning, inputObj);
-}
-
-function showCollout(message: string, targetObj: HTMLInputElement) {
-    targetObj.style.backgroundColor = 'var(--warning-color)';
-    warningTip.textContent = message;
-    // compensate surname input bottom padding
-    if (targetObj.parentElement === inputWrapperLast) warningTip.style.bottom = '2rem';
-    if (targetObj.parentElement !== null) targetObj.parentElement.append(warningTip);
-}
-
-loginBTN.addEventListener('click', () => {
-    saveInLocalStorage();
-});
-
-function saveInLocalStorage() {
-    const userData = {
-        firstName: firstNameInput.value,
-        lastName: lastNameInput.value,
-    };
-
-    localStorage.setItem('rss-puzzle-user', JSON.stringify(userData));
+    // const header = document.createElement('header');
+    // document.body.append(header);
+    // header.append(logoutBTN);
 }

@@ -34,14 +34,18 @@
 }
 
 :root {
+  --header-back-color: rgb(255, 64, 125);
+  --header-button-color: rgb(64, 103, 158);
   --modal-bg-color: rgb(232, 117, 26);
   --modal-button-color: rgb(253, 164, 3);
   --modal-button-color-disabled: rgba(253, 164, 3, 0.6);
   --input-background-color: lightgray;
   --disabled-txt-color: gray;
   --input-txt-color: black;
+  --txt-hightlighted: white;  
   --warning-color: lightpink;
-  --header-color: rgb(249, 240, 122);  
+  --header-color: rgb(249, 240, 122);
+  --transition-time: 0.3s;
 }
 
 html {
@@ -60,7 +64,38 @@ body {
   user-select: none;
 }
 
-#login-wrapper {
+header {
+  box-sizing: border-box;
+  width: 100%;
+  height: 4rem;
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  padding: 0.5rem 5rem;
+  background-color: var(--header-back-color);
+}
+
+header button {
+  width: auto;
+  height: auto;
+  padding: 0.3rem 1rem;
+  display: flex;
+  font-size: 1.5rem;
+  border-radius: 1rem;
+  background-color: var(--header-button-color);
+  color: var(--input-background-color);
+  cursor: pointer;
+  transition: var(--transition-time);
+}
+
+header button:hover {
+  color: var(--txt-hightlighted);
+}
+
+.modal {
   position: fixed;
   left: 50%;
   top: 50%;
@@ -75,11 +110,11 @@ body {
   padding-top: 5rem;
   border-radius: 2rem;
   transform: translate(-50%, -50%);
+  background-color: var(--modal-bg-color);
 }
 
-.modal {
-  /* display: none; */
-  background-color: var(--modal-bg-color);
+.hidden-modal {
+  display: none;
 }
 
 .modal #header {
@@ -90,6 +125,56 @@ body {
   font-family: 'Kill-Switch';
   font-size: 4.5rem;
   text-align: center;
+}
+
+.modal button {
+  /* display: none; */  
+  width: 10rem;
+  height: auto;
+  padding: 1rem;
+  line-height: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--input-txt-color);
+  background-color: var(--modal-button-color);
+  border-radius: 1rem;
+  border: 0px solid transparent;
+  cursor: pointer;
+  transition: var(--transition-time);
+}
+
+.modal button:hover:not(:disabled) {
+  font-weight: bold;
+}
+
+.modal button:disabled {
+  color: var(--disabled-txt-color);
+  background-color: var(--modal-button-color-disabled);
+  cursor: default;
+}
+
+#logout-wrapper {
+  padding: 3rem;
+}
+
+#logout-txt {
+  font-size: 1.7rem;
+  text-align: center;
+  width: 30rem;
+  height: auto;
+  padding: 0 1rem;
+}
+
+/* #login-wrapper {
+
+} */
+
+#logout-btn-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 1rem 2rem;
 }
 
 .input-wrap {
@@ -112,31 +197,6 @@ body {
 
 .input-wrap:nth-child(3) {
   padding-bottom: 2rem;
-}
-
-.modal button {
-  /* display: none; */  
-  width: 10rem;
-  height: auto;
-  padding: 1rem;
-  line-height: 1.5rem;
-  font-size: 1.5rem;
-  color: var(--input-txt-color);
-  background-color: var(--modal-button-color);
-  border-radius: 1rem;
-  border: 0px solid transparent;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.modal button:hover:not(:disabled) {
-  font-weight: bold;
-}
-
-.modal button:disabled {
-  color: var(--disabled-txt-color);
-  background-color: var(--modal-button-color-disabled);
-  cursor: default;
 }
 
 .user-input {
