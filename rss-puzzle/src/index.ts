@@ -1,4 +1,5 @@
 import { startLogin } from './login';
+import './styles/style.css';
 
 const userData = {
     firstName: '',

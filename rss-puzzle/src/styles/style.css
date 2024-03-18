@@ -46,6 +46,7 @@
   --warning-color: lightpink;
   --header-color: rgb(249, 240, 122);
   --transition-time: 0.3s;
+  --tooltip-background-color: black;
 }
 
 html {
@@ -300,7 +301,7 @@ h1 {
   text-align: center;
   padding: 1rem 1.5rem;
   border-radius: 1rem;
-  background-color: var(--header-color);
+  background-color: var(--tooltip-background-color);
   transform: translateY(120%);
   z-index: 1;
 }
@@ -313,7 +314,7 @@ h1 {
   margin-left: -0.5rem;
   border-width: 0.5rem;
   border-style: solid;
-  border-color: transparent transparent black transparent;
+  border-color: transparent transparent var(--tooltip-background-color) transparent;
 }
 
 @media (max-width: 1400px) {
