@@ -1,0 +1,241 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('./assets/fonts/Inter-Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    font-family: Inter;
+    background-color: lightgrey;
+    user-select: none;
+}
+
+#power-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(64, 63, 61, 0.80);
+    z-index: 2;
+}
+
+.hidden-modal {
+    display: none;
+}
+
+.modal {
+    display: flex;
+    box-sizing: border-box;
+    position: fixed;
+    top: 50%;
+    left: 50vw;
+    width: 30rem;
+    min-height: 10rem;
+    height: auto;
+    flex-direction: column;
+    gap: 40px;
+    padding: 3rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Inter;
+    font-style: normal;
+    color: rgb(29, 28, 28);
+    border-radius: 15px;
+    background: lightgray;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+}
+
+#modal-title {
+    height: auto;
+    width: auto;
+    font-size: 2rem;
+}
+
+#modal-word {
+    font-size: 1.5rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0 4rem;
+}
+
+button {
+    display: flex;
+    padding: 10px 10px;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    gap: 8px;
+    align-self: stretch;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 150%; /* 24px */
+    border-radius: 15px;
+    border-width: 0;
+    color: rgb(44, 42, 42);
+    cursor: pointer;
+    transition: 0.7s;
+}
+
+button:hover {
+    transform: scale(105%);
+    color: black;
+}
+
+#puzzle-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#quiz-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    gap: 2rem;
+
+}
+
+#quiz-word {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 3rem;
+    padding: 4rem;
+    font-size: 3rem;
+    letter-spacing: 0.5rem;
+    line-height: 2rem;
+    background-color: cadetblue;
+    color: lightcyan;
+    border-radius: 20px;
+}
+
+#quiz-question {
+    font-size: 1.7rem;
+    font-style: italic;
+}
+
+#quiz-counter-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+}
+
+#keyboard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    width: 20rem;
+    padding: 2rem;
+    background-color: antiquewhite;
+    border-radius: 20px;
+}
+
+#keyboard div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    padding: 10px;
+    font-size: 1.5rem;
+    color: wheat;
+    background-color: rgb(14, 29, 85);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#keyboard .key-disabled {
+    opacity: 50%;
+    cursor: unset;
+}
+
+#keyboard div:hover:not(.key-disabled) {
+    transform: scale(110%);
+}
+
+
+@media (max-width: 1439px) {
+    body {
+        padding: 1rem 0;
+        height: 100%;
+    }
+
+    main {
+        padding: 0 1rem;
+    }
+
+    #gallows-img {
+        height: auto;
+        width: 100%;
+    }
+
+    #puzzle-wrapper {
+        justify-content: space-between;
+        gap: 20px;
+        padding-right: 1rem;
+    }    
+}
+
+@media (max-width: 767px) {
+    main {
+        padding: 0;
+    }
+
+    #gallows-img {
+        height: auto;
+        width: 250px;
+    }
+    #puzzle-wrapper {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    #quiz-word {
+        height: 2rem;
+        padding: 3rem;
+        font-size: 2rem;
+        letter-spacing: 0.5rem;
+        line-height: 1rem;
+        border-radius: 20px;
+    }    
+}
+
+@media (max-width: 360px) {    
+    body {
+        min-width: 350px;
+    }
+}

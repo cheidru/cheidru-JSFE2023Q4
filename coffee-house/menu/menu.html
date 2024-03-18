@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="..">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="menu.css">
+    <link rel="icon" href="favicon4.svg" type="image/svg+xml">
+    <title>Coffee House Menu</title>
+ 
+</head>
+<body>
+    <div id="power-layer" class="hidden-modal"></div>
+
+    <div id="modal" class="hidden-modal">
+        <div id="modal-img"></div>
+        <div id="modal-wrapper">
+            <div id="head">
+                <p id="head-title" class="modal-title">Irish coffee</p>
+                <p id="recipe">Fragrant black coffee with Jameson Irish whiskey and whipped milk</p>
+            </div>
+            <div id="size" class="modal-body choose">
+                <p>Size</p>
+                <div class="modal-buttons" id="sizes">
+                    <div class="menu-modal-btn selected-btn" id="size-1">
+                        <div>S</div>
+                        <p id="s-value">200 ml</p>
+                    </div>
+                    <div class="menu-modal-btn" id="size-2">
+                        <div>M</div>
+                        <p id="m-value">300 ml</p>
+                    </div>
+                    <div class="menu-modal-btn" id="size-3">
+                        <div>L</div>
+                        <p id="l-value">400 ml</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="additive" class="modal-body choose">
+                <p>Additives</p>
+                <div class="modal-buttons" id="additives">
+                    <div class="menu-modal-btn" id="additive-1">
+                        <div>1</div>
+                        <p id="1-value">Sugar</p>
+                    </div>
+                    <div class="menu-modal-btn" id="additive-2">
+                        <div>2</div>
+                        <p id="2-value">Cinnamon</p>
+                    </div>
+                    <div class="menu-modal-btn" id="additive-3">
+                        <div>3</div>
+                        <p id="3-value">Syrup</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modal-total" class="modal-title">
+                <p>Total:</p><p id="total-price-value">$7.00</p>
+            </div>
+
+            <div id="modal-alert">
+                <div id="alert-ico">
+                </div>
+                <div id="alert-text">
+                    The cost is not final. Download our mobile app to see the final price 
+                    and place your order. Earn loyalty points and enjoy your favorite coffee 
+                    with up to 20% discount.
+                </div>
+            </div>
+            <div id="close-btn" class="modal-body">Close</div>
+        </div>
+    </div>
+
+    <div id="content-wrapper">
+        <header>
+            <div id="header-menu-wrapper">
+                <a href="./index.html"><div id="header-logo"></div></a>
+
+                <nav id="header-nav">
+                    <ul>
+                        <li><a href="./index.html#favourite">Favorite coffee</a></li>
+                        <li><a href="./index.html#about">About</a></li>
+                        <li><a href="./index.html#mobile">Mobile app</a></li>
+                        <li><a href="./menu/menu.html#contact">Contact us</a></li>
+                    </ul>
+                </nav>
+
+                <div id="header-menu-menu">
+                    <p>Menu</p>
+                    <div id="coffee-cup-svg"></div>
+                    <div id="burger-btn-bar-one"></div>
+                    <div id="burger-btn-bar-two"></div>
+                </div>              
+
+                <div id="burger-mnu">
+                    <ul>
+                        <li><a href="#favourite">Favorite coffee</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#mobile">Mobile app</a></li>
+                        <li><a href="#contact">Contact us</a></li>
+                    </ul>
+                    <a id="burger-mnu-btn" href="./menu/menu.html">
+                        <p>Menu</p>
+                        <img id="butger-mnu-cup" src="./assets/svg/burger-mnu-coffee-cup.svg" alt="cup icon">
+                    </a>
+                </div>
+            </div>
+
+        </header>
+
+        <main>
+            <section id="menu-offer">
+                <h1 class="heading">Behind each of our cups hides an <span>amazing surprise</span></h1>
+                <div class="menu-offer-btn-wrapper">
+                    <div class="menu-offer-btn selected-btn" id="coffee">
+                        <div></div>
+                        <p>Coffee</p>
+                    </div>
+                    <div class="menu-offer-btn" id="tea">
+                        <div></div>
+                        <p>Tea</p>
+                    </div>
+                    <div class="menu-offer-btn" id="dessert">
+                        <div></div>
+                        <p>Dessert</p>
+                    </div>
+                </div>
+            </section>
+
+            <div id="product-menu">
+            </div>
+
+            <template id="menu-prodict-template">
+                <div class="menu-item" id="item-">
+                    <div class="menu-item-img"></div>
+                    <div class="menu-item-descr">
+                        <p id="title">Irish coffee</p>
+                        <p id="recipe">Fragrant black coffee with Jameson Irish whiskey and whipped milk</p>
+                        <p id="price">$7.00</p>
+                    </div>
+                 </div>
+            </template>
+                 
+            <div id="refresh-btn"></div>
+
+        </main>
+
+        <footer id="contact">
+            <div id="contact-offer">
+                <div class="heading-black">
+                    Sip, Savor, Smile. <span>It’s coffee time!</span>
+                </div>
+                <div id="contact-socials">
+                    <div id="twitter-btn"></div>
+                    <div id="instagram-btn"></div>
+                    <div id="facebook-btn"></div>
+                </div>
+            </div>
+
+            <div id="contact-list">
+                <p id="contact-list-title">Contact us</p>
+
+                <div id="contacts">
+                    <div class="footer-link">
+                        <a href="https://www.google.com/maps/place/Green+Rd,+Mountville,+PA+17554,+%D0%A1%D0%A8%D0%90/@40.038001,-76.435746,17.4z/data=!4m15!1m8!3m7!1s0x89c62775463beefb:0xf1e247e0ff188fee!2zR3JlZW4gUmQsIE1vdW50dmlsbGUsIFBBIDE3NTU0LCDQodCo0JA!3b1!8m2!3d40.0381053!4d-76.4340518!16s%2Fg%2F1tf1cp_r!3m5!1s0x89c62775463beefb:0xf1e247e0ff188fee!8m2!3d40.0381053!4d-76.4340518!16s%2Fg%2F1tf1cp_r?authuser=0&entry=ttu" target="_blank" id="contacts-pin">
+                            <div class="footer-link-img"></div>
+                            <p>8558 Green Rd.,  LA</p>
+                        </a>                   
+                    </div>
+                    <div class="footer-link">
+                        <a href="tel:+1(603)555-0123" id="contacts-phone">
+                            <div class="footer-link-img"></div>
+                            <p>+1 (603) 555-0123</p>
+                        </a>
+                    </div>
+                    <div id="contacts-time">
+                        <div class="footer-link-img"></div>
+                        <p>Mon-Sat: 9:00 AM – 23:00 PM</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="./js/burger.js"></script>
+    <script src="./js/menu.js"></script>
+</body>
+</html>
