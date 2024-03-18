@@ -1,6 +1,5 @@
 import { startLogin } from './login';
 import './styles/style.css';
-import './assets/img/candy_girl.png';
 
 const userData = {
     firstName: '',
@@ -52,10 +51,8 @@ const startScreenMain = document.createElement('div');
 startScreenMain.setAttribute('id', 'start-screen-main-wrapper');
 startScreen.append(startScreenMain);
 
-const startScreenIMG1 = document.createElement('img');
+const startScreenIMG1 = document.createElement('div');
 startScreenIMG1.setAttribute('id', 'start-screen-img1');
-startScreenIMG1.setAttribute('src', '../src/assets/img/candy_girl.png');
-startScreenIMG1.setAttribute('alt', 'funny-girl-image');
 startScreenIMG1.classList.add('start-img');
 startScreenMain.append(startScreenIMG1);
 
