@@ -105,8 +105,8 @@ function prepareUser() {
 }
 
 function logUserOut() {
+    startScreen.classList.add('hidden-modal');
     logOutWindow.classList.remove('hidden-modal');
-
     logOutCancelBTN.addEventListener(
         'click',
         () => {
@@ -137,7 +137,7 @@ function checkLocalStorage() {
 }
 
 function showStartScreen() {
-    header.style.display = 'none';
+    header.style.display = 'flex';
     startScreen.classList.remove('hidden-modal');
     console.log('firstName & lastName = ', userData.firstName, userData.lastName);
     startGameBTN.addEventListener(
@@ -151,6 +151,8 @@ function showStartScreen() {
 }
 
 function startGame() {
+    header.style.display = 'none';
+    checkLocalStorage();
     greetingTxt.textContent = `Dear ${userData.firstName} ${userData.lastName} ! 
     We appreciate Your interest in RSS Puzzle game. 
     Hope You enjoy playing and learn a lot of English vocabulary.`;
