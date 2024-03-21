@@ -29,12 +29,6 @@ const baseConfig = {
         }),
         new CleanWebpackPlugin(),
         new EslingPlugin({ extensions: 'ts' }),
-        new CopyPlugin({
-            patterns: [
-              { from: "src", to: "dist" },
-            ],
-          }),
-
     ],
 };
 
