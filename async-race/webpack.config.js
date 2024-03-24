@@ -1,40 +1,42 @@
-const path = require('path');
-const { merge } = require('webpack-merge');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const DotenvWebpackPlugin = require('dotenv-webpack');
-const EslingPlugin = require('eslint-webpack-plugin');
+import { resolve as _resolve } from "path";
+import { merge } from "webpack-merge";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import DotenvWebpackPlugin from "dotenv-webpack";
+import EslingPlugin from "eslint-webpack-plugin";
 
 const baseConfig = {
-    entry: path.resolve(__dirname, './src/index'),
-    mode: 'development',
-    module: {
-        rules: [
-            { test: /\.css$/i, use: ['style-loader', 'css-loader'], },
-            { test: /\.ts$/i, use: 'ts-loader' },
-        ],
-    },
-    resolve: {
-        extensions: ['.ts', '.js'],
-    },
-    output: {
-        filename: 'index.js',
-        path: path.resolve(__dirname, './dist'),
-    },
-    plugins: [
-        new DotenvWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/index.html'),
-            filename: 'index.html',
-        }),
-        new CleanWebpackPlugin(),
-        new EslingPlugin({ extensions: 'ts' }),
+  entry: _resolve(__dirname, "./src/async-race"),
+  mode: "development",
+  module: {
+    rules: [
+      { test: /\.css$/i, use: ["style-loader", "css-loader"] },
+      { test: /\.ts$/i, use: "ts-loader" },
     ],
+  },
+  resolve: {
+    extensions: [".ts", ".js"],
+  },
+  output: {
+    filename: "index.js",
+    path: _resolve(__dirname, "./dist"),
+  },
+  plugins: [
+    new DotenvWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: _resolve(__dirname, "./src/index.html"),
+      filename: "index.html",
+    }),
+    new CleanWebpackPlugin(),
+    new EslingPlugin({ extensions: "ts" }),
+  ],
 };
 
-module.exports = ({ mode }) => {
-    const isProductionMode = mode === 'prod';
-    const envConfig = isProductionMode ? require('./webpack.prod.config') : require('./webpack.dev.config');
+export default ({ mode }) => {
+  const isProductionMode = mode === "prod";
+  const envConfig = isProductionMode
+    ? require("./webpack.prod.config")
+    : require("./webpack.dev.config");
 
-    return merge(baseConfig, envConfig);
-}
+  return merge(baseConfig, envConfig);
+};
