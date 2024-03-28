@@ -9,7 +9,13 @@ export const carListWrapper = document.createElement('div');
 
 export function createGarageUI() {
     createCommonUI();
+    createAddCarMenu();
+    createUpdateCarMenu();
+    createRaceResetGenerateMenu();
+    createInfoAndCarList();
+}
 
+function createAddCarMenu() {    
     const addCarWrapper = document.createElement('div');
     addCarWrapper.setAttribute("id", "add-car-wrapper");
     contentWrapper.append(addCarWrapper);
@@ -24,9 +30,11 @@ export function createGarageUI() {
     
     addCarBTN.setAttribute("id", "add-car-btn");
     addCarWrapper.append(addCarBTN);
-    
+}
+
+function createUpdateCarMenu() {    
     const updateCarWrapper = document.createElement('div');
-    addCarWrapper.setAttribute("id", "update-car-wrapper");
+    updateCarWrapper.setAttribute("id", "update-car-wrapper");
     contentWrapper.append(updateCarWrapper);
     
     const updateCarName = document.createElement('div');
@@ -39,7 +47,9 @@ export function createGarageUI() {
     
     updateCarBTN.setAttribute("id", "update-car-btn");
     updateCarWrapper.append(updateCarBTN);
-    
+}
+
+function createRaceResetGenerateMenu() {    
     const raceWrapper = document.createElement('div');
     raceWrapper.setAttribute("id", "race-wrapper");
     contentWrapper.append(raceWrapper);
@@ -52,7 +62,9 @@ export function createGarageUI() {
 
     generateCarsBTN.setAttribute("id", "generate-cars-btn");
     raceWrapper.append(generateCarsBTN);
+}
 
+function createInfoAndCarList() {
     const garageTitle = document.createElement('div');
     garageTitle.setAttribute("id", "garage-title");
     garageTitle.textContent = `Garage (${carsInGarage.length})`;
@@ -66,4 +78,3 @@ export function createGarageUI() {
     carListWrapper.setAttribute("id", "car-list");
     contentWrapper.append(carListWrapper);
 }
-
