@@ -19,13 +19,19 @@ export function createCommonUI() {
   stageWrapper.setAttribute('id', 'stage-wrapper');
   mainWrapper.append(stageWrapper);
 
+  const stageBTNWrapper = document.createElement('div');
+  stageBTNWrapper.setAttribute('id', 'stage-btn-wrapper');
+  stageWrapper.append(stageBTNWrapper);
+
   garageBTN.setAttribute('id', 'garage-btn');
   garageBTN.classList.add('common-btn');
-  stageWrapper.append(garageBTN);
+  garageBTN.textContent = 'Garage';
+  stageBTNWrapper.append(garageBTN);
 
   winnersBTN.setAttribute('id', 'winners-btn');
   winnersBTN.classList.add('common-btn');
-  stageWrapper.append(winnersBTN);
+  winnersBTN.textContent = 'Winnners';
+  stageBTNWrapper.append(winnersBTN);
 
   contentWrapper.setAttribute('id', 'stage-switch-wrapper');
   mainWrapper.append(contentWrapper);

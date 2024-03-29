@@ -5,5 +5,5 @@ export async function getCars(page: number) {
   const carInfo = await answer.json();
   console.log(Array.isArray(carInfo), carInfo);
   // console.log('answer = ', answer);
-  return carInfo;
+  return JSON.parse(carInfo);
 }
