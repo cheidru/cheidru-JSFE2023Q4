@@ -1,14 +1,17 @@
-import '../common';
 import { createGarageUI } from './garage-ui';
 import { addCarBTN, updateCarBTN, raceBTN, resetBTN, generateCarsBTN } from './garage-ui';
-// import { createCars } from '../cars/cars';
+import { createCars } from '../cars/cars';
 import { getCars } from '../../api/api';
 
 export function createGarage() {
   createGarageUI();
-  const carList = getCars(1);
-  console.log('garage started ', carList);
-  // createCars(carList);
+  getCars(1)
+    .then((data) => data.json())
+    .then((data) => {
+      createCars(data);
+      console.log('garage started with ', data);
+    });
+
   addCarBTN.addEventListener('click', () => {
     console.log('Car added');
   });

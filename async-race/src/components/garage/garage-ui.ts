@@ -1,4 +1,8 @@
-import { createCommonUI, carsInGarage, contentWrapper } from '../common';
+import '../../style.css';
+import { getCarsNumber } from '../../api/api';
+import { contentWrapper } from '../common';
+
+let carsInGarage: number;
 
 export const addCarBTN = document.createElement('button');
 export const updateCarBTN = document.createElement('button');
@@ -8,73 +12,112 @@ export const generateCarsBTN = document.createElement('button');
 export const carListWrapper = document.createElement('div');
 
 export function createGarageUI() {
-  createCommonUI();
+  createTitle();
   createAddCarMenu();
   createUpdateCarMenu();
   createRaceResetGenerateMenu();
-  createInfoAndCarList();
+  createCarList();
 }
 
 function createAddCarMenu() {
   const addCarWrapper = document.createElement('div');
   addCarWrapper.setAttribute('id', 'add-car-wrapper');
+  addCarWrapper.classList.add('car-list-controls');
   contentWrapper.append(addCarWrapper);
 
-  const addCarName = document.createElement('div');
+  const addCarName = document.createElement('input');
   addCarName.setAttribute('id', 'add-car-name');
+  addCarName.setAttribute('type', 'text');
+  addCarName.setAttribute('placeholder', 'car name');
+  addCarName.classList.add('car-list-txt');
   addCarWrapper.append(addCarName);
 
-  const addCarColor = document.createElement('div');
+  const addCarColor = document.createElement('input');
   addCarColor.setAttribute('id', 'add-car-color');
+  addCarColor.setAttribute('type', 'color');
+  addCarColor.setAttribute('value', '#9ae5be');
+  addCarColor.classList.add('car-list-palette');
   addCarWrapper.append(addCarColor);
 
   addCarBTN.setAttribute('id', 'add-car-btn');
+  addCarBTN.textContent = 'Create';
+  addCarBTN.classList.add('car-list-btn');
   addCarWrapper.append(addCarBTN);
 }
 
 function createUpdateCarMenu() {
   const updateCarWrapper = document.createElement('div');
   updateCarWrapper.setAttribute('id', 'update-car-wrapper');
+  updateCarWrapper.classList.add('car-list-controls');
   contentWrapper.append(updateCarWrapper);
 
-  const updateCarName = document.createElement('div');
+  const updateCarName = document.createElement('input');
   updateCarName.setAttribute('id', 'update-car-name');
+  updateCarName.setAttribute('type', 'text');
+  updateCarName.setAttribute('placeholder', 'car name');
+  updateCarName.classList.add('car-list-txt');
   updateCarWrapper.append(updateCarName);
 
-  const updateCarColor = document.createElement('div');
+  const updateCarColor = document.createElement('input');
   updateCarColor.setAttribute('id', 'update-car-color');
+  updateCarColor.setAttribute('type', 'color');
+  updateCarColor.setAttribute('value', '#9ae5be');
+  updateCarColor.classList.add('car-list-palette');
   updateCarWrapper.append(updateCarColor);
 
   updateCarBTN.setAttribute('id', 'update-car-btn');
+  updateCarBTN.textContent = 'Update';
+  updateCarBTN.classList.add('car-list-btn');
   updateCarWrapper.append(updateCarBTN);
 }
 
 function createRaceResetGenerateMenu() {
   const raceWrapper = document.createElement('div');
   raceWrapper.setAttribute('id', 'race-wrapper');
+  raceWrapper.classList.add('car-list-controls');
   contentWrapper.append(raceWrapper);
 
   raceBTN.setAttribute('id', 'race-btn');
+  raceBTN.textContent = 'Race';
   raceWrapper.append(raceBTN);
 
   resetBTN.setAttribute('id', 'reset-btn');
+  resetBTN.textContent = 'Reset';
   raceWrapper.append(resetBTN);
 
   generateCarsBTN.setAttribute('id', 'generate-cars-btn');
+  generateCarsBTN.textContent = 'Generate';
   raceWrapper.append(generateCarsBTN);
 }
 
-function createInfoAndCarList() {
+function createTitle() {
+  const garageTitleWrapper = document.createElement('div');
+  garageTitleWrapper.classList.add('title-wrapper');
+  contentWrapper.append(garageTitleWrapper);
+
   const garageTitle = document.createElement('div');
   garageTitle.setAttribute('id', 'garage-title');
-  garageTitle.textContent = `Garage (${carsInGarage.length})`;
-  contentWrapper.append(garageTitle);
+  garageTitle.classList.add('stage-title');
+  getCarsNumber()
+    .then((data) => data.headers.get('x-total-count'))
+    .then((data) => {
+      carsInGarage = Number(data);
+      garageTitle.textContent = `Garage (${carsInGarage})`;
+      console.log('carsInGarage = ', carsInGarage);
+    });
+  garageTitleWrapper.append(garageTitle);
 
   const garagePageNum = document.createElement('div');
   garagePageNum.setAttribute('id', 'garage-page');
-  garagePageNum.textContent = '1';
-  contentWrapper.append(garagePageNum);
+  garagePageNum.classList.add('page-num-title');
+  garagePageNum.textContent = 'Page #1';
+  garageTitleWrapper.append(garagePageNum);
 
+  carListWrapper.setAttribute('id', 'car-list');
+  contentWrapper.append(carListWrapper);
+}
+
+function createCarList() {
   carListWrapper.setAttribute('id', 'car-list');
   contentWrapper.append(carListWrapper);
 }

@@ -1,4 +1,5 @@
-import { createCommonUI, winnerList, contentWrapper } from '../common';
+import { createCommonUI, contentWrapper } from '../common';
+import { winnerList } from '../../api/api';
 
 export function createWinners() {
   createCommonUI();
