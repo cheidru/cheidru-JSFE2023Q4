@@ -2,8 +2,8 @@ import { CarObjMembers } from '../components/cars/cars';
 
 const serverURL = 'http://127.0.0.1:3000';
 
-export async function getCars(page: number) {
-  const answer = await fetch(serverURL + '/garage' + '?_page=' + page);
+export async function getCars() {
+  const answer = await fetch(serverURL + '/garage');
   // const carInfo = await answer.json();
   // console.log(Array.isArray(carInfo), carInfo[0]);
   return answer;

@@ -1,4 +1,5 @@
 import { carListWrapper } from '../garage/garage-ui';
+import { activeGaragePage } from '../../index';
 
 export interface CarObjMembers {
   name: string;
@@ -7,10 +8,10 @@ export interface CarObjMembers {
 }
 
 export function createCars(carsArray: []) {
-  const carsQTY = carsArray.length;
-  for (let i = 0; i < carsQTY; i++) {
+  const carsQTY = activeGaragePage * 7;
+  for (let i = activeGaragePage - 1; i < carsQTY; i++) {
     const carWrapper = document.createElement('div');
-    carWrapper.setAttribute('id', `car-no-${i}`);
+    carWrapper.setAttribute('id', `car-no-${i + 1}`);
     const carObj = carsArray[i];
     carListWrapper.append(carWrapper);
     addButtonsAndTrack(carWrapper, carObj);
@@ -53,6 +54,7 @@ function addTrack(parentElement: HTMLElement, carObj: CarObjMembers) {
   const stopCarBTN = document.createElement('div');
   stopCarBTN.classList.add('car-btn');
   stopCarBTN.classList.add('stop-btn');
+  stopCarBTN.classList.add('disabled-btn');
   stopCarBTN.textContent = 'B';
   trackWrapper.append(stopCarBTN);
 

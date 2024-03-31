@@ -15,6 +15,7 @@ export const addCarName = document.createElement('input');
 export const addCarColor = document.createElement('input');
 export const updateCarName = document.createElement('input');
 export const updateCarColor = document.createElement('input');
+export const garageTitle = document.createElement('div');
 
 export function createGarageUI() {
   createTitle();
@@ -96,16 +97,9 @@ function createTitle() {
   garageTitleWrapper.classList.add('title-wrapper');
   contentWrapper.append(garageTitleWrapper);
 
-  const garageTitle = document.createElement('div');
   garageTitle.setAttribute('id', 'garage-title');
   garageTitle.classList.add('stage-title');
-  getCarsNumber()
-    .then((data) => data.headers.get('x-total-count'))
-    .then((data) => {
-      carsInGarage = Number(data);
-      garageTitle.textContent = `Garage (${carsInGarage})`;
-      console.log('carsInGarage = ', carsInGarage);
-    });
+
   garageTitleWrapper.append(garageTitle);
 
   const garagePageNum = document.createElement('div');
@@ -113,7 +107,7 @@ function createTitle() {
   garagePageNum.classList.add('page-num-title');
   garagePageNum.textContent = 'Page #1';
   garageTitleWrapper.append(garagePageNum);
-
+  updateGarageTitle();
   carListWrapper.setAttribute('id', 'car-list');
   contentWrapper.append(carListWrapper);
 }
@@ -121,4 +115,14 @@ function createTitle() {
 function createCarList() {
   carListWrapper.setAttribute('id', 'car-list');
   contentWrapper.append(carListWrapper);
+}
+
+export function updateGarageTitle() {
+  getCarsNumber()
+    .then((data) => data.headers.get('x-total-count'))
+    .then((data) => {
+      carsInGarage = Number(data);
+      garageTitle.textContent = `Garage (${carsInGarage})`;
+      console.log('carsInGarage = ', carsInGarage);
+    });
 }

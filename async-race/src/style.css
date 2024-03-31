@@ -205,3 +205,7 @@ body {
   border: 1px solid var(--race-btn-bg-color);
   border-radius: var(--car-btn-border-radius);
 }
+
+.disabled-btn {
+  opacity: 0.5;
+}
