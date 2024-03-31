@@ -22,4 +22,12 @@ export async function addNewCar(carObj: CarObjMembers) {
   });
 }
 
+export async function updateCar(carObj: CarObjMembers, carID: number) {
+  await fetch(serverURL + '/garage/' + carID, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(carObj),
+  });
+}
+
 export const winnerList = [];
