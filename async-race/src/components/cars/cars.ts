@@ -1,6 +1,6 @@
 import { carListWrapper } from '../garage/garage-ui';
 import { activeGaragePage } from '../../index';
-import { setNameAndColor } from '../garage/garage';
+import { setNameAndColor, deleteCar } from '../garage/garage';
 
 export interface CarObjMembers {
   name: string;
@@ -13,6 +13,7 @@ let selectedCarName: string = '';
 let selectedCarColor: string = '';
 
 export function createCars(carsArray: []) {
+  console.log('activeGaragePage = ', activeGaragePage);
   const carsQTY = activeGaragePage * 7;
   for (let i = activeGaragePage - 1; i < carsQTY; i++) {
     const carWrapper = document.createElement('div');
@@ -47,6 +48,10 @@ function addButtonsAndTrack(parentElement: HTMLElement, carObj: CarObjMembers) {
   const removeCarBTN = document.createElement('button');
   removeCarBTN.classList.add('remove-btn');
   removeCarBTN.textContent = 'Remove';
+  removeCarBTN.addEventListener('click', () => {
+    selectedCarID = Number(carObj.id);
+    deleteCar();
+  });
   buttonWrapper.append(removeCarBTN);
 
   const carName = document.createElement('div');

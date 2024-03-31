@@ -30,4 +30,8 @@ export async function updateCar(carObj: CarObjMembers, carID: number) {
   });
 }
 
+export async function removeCar(carID: number) {
+  await fetch(serverURL + '/garage/' + carID, { method: 'DELETE' });
+}
+
 export const winnerList = [];

@@ -2,7 +2,7 @@ import { createGarageUI } from './garage-ui';
 import { addCarBTN, updateCarBTN, raceBTN, resetBTN, generateCarsBTN, updateGarageTitle } from './garage-ui';
 import { addCarName, addCarColor, updateCarName, updateCarColor, carListWrapper } from './garage-ui';
 import { createCars, CarObjMembers, selectedCarID } from '../cars/cars';
-import { getCars, addNewCar, updateCar } from '../../api/api';
+import { getCars, addNewCar, updateCar, removeCar } from '../../api/api';
 
 export function createGarage() {
   createGarageUI();
@@ -23,7 +23,7 @@ export function createGarage() {
   });
 }
 
-function populateCarList() {
+export function populateCarList() {
   getCars()
     .then((data) => data.json())
     .then((data) => {
@@ -50,6 +50,13 @@ function updateOneCar() {
     color: updateCarColor.value,
   };
   updateCar(updatedCar, selectedCarID);
+  carListWrapper.innerHTML = '';
+  populateCarList();
+}
+
+export function deleteCar() {
+  removeCar(selectedCarID);
+  updateGarageTitle();
   carListWrapper.innerHTML = '';
   populateCarList();
 }

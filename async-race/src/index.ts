@@ -1,10 +1,14 @@
 import './style.css';
-import { createGarage } from './components/garage/garage';
+import { createGarage, populateCarList } from './components/garage/garage';
+import { carsInGarage, carListWrapper } from './components/garage/garage-ui';
+
 // import { createWinners } from './components/winners/winners';
 import { garageBTN, winnersBTN, createCommonUI, prevPageBTN, nextPageBTN } from './components/common';
 
-export const activeGaragePage = 1;
+export let activeGaragePage = 1;
 // export let activeWinnersPage = 1;
+
+console.log('app started');
 
 createCommonUI();
 
@@ -29,6 +33,10 @@ prevPageBTN.addEventListener('click', () => {
 });
 
 nextPageBTN.addEventListener('click', () => {
-  prevPageBTN.removeAttribute('disabled');
-  nextPageBTN.setAttribute('disabled', '');
+  activeGaragePage++;
+  console.log('activeGaragePage = ', activeGaragePage);
+  if (activeGaragePage === 2) prevPageBTN.removeAttribute('disabled');
+  if (activeGaragePage == Math.ceil(carsInGarage / 7)) nextPageBTN.setAttribute('disabled', '');
+  carListWrapper.innerHTML = '';
+  populateCarList();
 });

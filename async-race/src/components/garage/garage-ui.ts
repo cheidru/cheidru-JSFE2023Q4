@@ -2,7 +2,7 @@ import '../../style.css';
 import { getCarsNumber } from '../../api/api';
 import { contentWrapper } from '../common';
 
-let carsInGarage: number;
+export let carsInGarage: number;
 
 export const addCarBTN = document.createElement('button');
 export const updateCarBTN = document.createElement('button');
