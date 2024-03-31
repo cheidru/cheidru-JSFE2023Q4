@@ -11,6 +11,11 @@ export const resetBTN = document.createElement('button');
 export const generateCarsBTN = document.createElement('button');
 export const carListWrapper = document.createElement('div');
 
+export const addCarName = document.createElement('input');
+export const addCarColor = document.createElement('input');
+export const updateCarName = document.createElement('input');
+export const updateCarColor = document.createElement('input');
+
 export function createGarageUI() {
   createTitle();
   createAddCarMenu();
@@ -25,14 +30,12 @@ function createAddCarMenu() {
   addCarWrapper.classList.add('car-list-controls');
   contentWrapper.append(addCarWrapper);
 
-  const addCarName = document.createElement('input');
   addCarName.setAttribute('id', 'add-car-name');
   addCarName.setAttribute('type', 'text');
   addCarName.setAttribute('placeholder', 'car name');
   addCarName.classList.add('car-list-txt');
   addCarWrapper.append(addCarName);
 
-  const addCarColor = document.createElement('input');
   addCarColor.setAttribute('id', 'add-car-color');
   addCarColor.setAttribute('type', 'color');
   addCarColor.setAttribute('value', '#9ae5be');
@@ -51,14 +54,12 @@ function createUpdateCarMenu() {
   updateCarWrapper.classList.add('car-list-controls');
   contentWrapper.append(updateCarWrapper);
 
-  const updateCarName = document.createElement('input');
   updateCarName.setAttribute('id', 'update-car-name');
   updateCarName.setAttribute('type', 'text');
   updateCarName.setAttribute('placeholder', 'car name');
   updateCarName.classList.add('car-list-txt');
   updateCarWrapper.append(updateCarName);
 
-  const updateCarColor = document.createElement('input');
   updateCarColor.setAttribute('id', 'update-car-color');
   updateCarColor.setAttribute('type', 'color');
   updateCarColor.setAttribute('value', '#9ae5be');

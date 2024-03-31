@@ -1,7 +1,9 @@
 import { createGarageUI } from './garage-ui';
 import { addCarBTN, updateCarBTN, raceBTN, resetBTN, generateCarsBTN } from './garage-ui';
-import { createCars } from '../cars/cars';
-import { getCars } from '../../api/api';
+// import { addCarName, addCarColor, updateCarName, updateCarColor } from './garage-ui';
+import { addCarName, addCarColor } from './garage-ui';
+import { createCars, CarObjMembers } from '../cars/cars';
+import { getCars, addNewCar } from '../../api/api';
 
 export function createGarage() {
   createGarageUI();
@@ -13,6 +15,12 @@ export function createGarage() {
     });
 
   addCarBTN.addEventListener('click', () => {
+    if (addCarName.value === '') return;
+    const newCar: CarObjMembers = {
+      name: addCarName.value,
+      color: addCarColor.value,
+    };
+    addNewCar(newCar);
     console.log('Car added');
   });
   updateCarBTN.addEventListener('click', () => {

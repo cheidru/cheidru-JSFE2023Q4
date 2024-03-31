@@ -1,9 +1,9 @@
 import { carListWrapper } from '../garage/garage-ui';
 
-interface CarObjMembers {
+export interface CarObjMembers {
   name: string;
   color: string;
-  id: number;
+  id?: number;
 }
 
 export function createCars(carsArray: []) {
