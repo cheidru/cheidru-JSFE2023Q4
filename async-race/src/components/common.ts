@@ -38,9 +38,11 @@ export function createCommonUI() {
   // populated with the content in garage-ui.ts and winners.tsd
   // respectively
   garageContentWrapper.setAttribute('id', 'garage-wrapper');
+  garageContentWrapper.classList.add('content-wrapper');
   mainWrapper.append(garageContentWrapper);
 
   winnersContentWrapper.setAttribute('id', 'winners-wrapper');
+  winnersContentWrapper.classList.add('content-wrapper');
   winnersContentWrapper.style.display = 'none';
   mainWrapper.append(winnersContentWrapper);
 

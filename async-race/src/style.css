@@ -9,6 +9,7 @@
   --input-focus-bg-color: lightgray;
   --input-focus-color: black;
   --race-btn-bg-color: #e2f9b6;
+  --winners-header-bg-color: rgb(15, 106, 203);
 }
 
 html, body {
@@ -40,6 +41,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+.content-wrapper {
+  display: flex;
+  flex-direction: column;
 }
 
 #stage-btn-wrapper,
@@ -208,4 +214,29 @@ body {
 
 .disabled-btn {
   opacity: 0.5;
+}
+
+#winners-list {
+  width: 50%;
+  height: auto;
+  margin-bottom: 2rem;
+  text-align: left;
+  font-size: 1rem;
+  color: var(--body-color);
+  border-collapse: collapse; 
+}
+
+#winners-list th,
+#winners-list td {
+  padding: 0.5rem 1rem;
+}
+
+#winners-list-first-row {
+  font-size: 1.2rem;
+  background-color: var(--winners-header-bg-color);
+}
+
+.winners-header {
+  width: auto;
+  padding: 0 2rem;
 }
