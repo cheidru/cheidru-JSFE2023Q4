@@ -1,6 +1,7 @@
 import '../../style.css';
 import { getCarsNumber } from '../../api/api';
 import { contentWrapper } from '../common';
+import { activeGaragePage } from '../../index';
 
 export let carsInGarage: number;
 
@@ -15,7 +16,9 @@ export const addCarName = document.createElement('input');
 export const addCarColor = document.createElement('input');
 export const updateCarName = document.createElement('input');
 export const updateCarColor = document.createElement('input');
-export const garageTitle = document.createElement('div');
+
+const garageTitle = document.createElement('div');
+const garagePageNum = document.createElement('div');
 
 export function createGarageUI() {
   createTitle();
@@ -102,11 +105,11 @@ function createTitle() {
 
   garageTitleWrapper.append(garageTitle);
 
-  const garagePageNum = document.createElement('div');
   garagePageNum.setAttribute('id', 'garage-page');
   garagePageNum.classList.add('page-num-title');
   garagePageNum.textContent = 'Page #1';
   garageTitleWrapper.append(garagePageNum);
+
   updateGarageTitle();
   carListWrapper.setAttribute('id', 'car-list');
   contentWrapper.append(carListWrapper);
@@ -125,4 +128,5 @@ export function updateGarageTitle() {
       garageTitle.textContent = `Garage (${carsInGarage})`;
       console.log('carsInGarage = ', carsInGarage);
     });
+  garagePageNum.textContent = `Page ${activeGaragePage}`;
 }

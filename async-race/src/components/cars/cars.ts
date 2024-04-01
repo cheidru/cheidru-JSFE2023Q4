@@ -13,9 +13,10 @@ let selectedCarName: string = '';
 let selectedCarColor: string = '';
 
 export function createCars(carsArray: []) {
-  console.log('activeGaragePage = ', activeGaragePage);
-  const carsQTY = activeGaragePage * 7;
-  for (let i = activeGaragePage - 1; i < carsQTY; i++) {
+  console.log('activeGaragePage = ', activeGaragePage, ' carsArray =', carsArray);
+  const startIndex = (activeGaragePage - 1) * 7;
+  const stopIndex = startIndex + 7 > carsArray.length ? carsArray.length : startIndex + 7;
+  for (let i = startIndex; i < stopIndex; i++) {
     const carWrapper = document.createElement('div');
     carWrapper.setAttribute('id', `car-no-${i + 1}`);
     const carObj = carsArray[i];

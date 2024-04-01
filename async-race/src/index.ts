@@ -1,6 +1,6 @@
 import './style.css';
 import { createGarage, populateCarList } from './components/garage/garage';
-import { carsInGarage, carListWrapper } from './components/garage/garage-ui';
+import { carsInGarage, carListWrapper, updateGarageTitle } from './components/garage/garage-ui';
 
 // import { createWinners } from './components/winners/winners';
 import { garageBTN, winnersBTN, createCommonUI, prevPageBTN, nextPageBTN } from './components/common';
@@ -31,6 +31,7 @@ prevPageBTN.addEventListener('click', () => {
   activeGaragePage--;
   if (activeGaragePage === 1) prevPageBTN.setAttribute('disabled', '');
   if (activeGaragePage === Math.ceil(carsInGarage / 7) - 1) nextPageBTN.removeAttribute('disabled');
+  updateGarageTitle();
   carListWrapper.innerHTML = '';
   populateCarList();
 });
@@ -40,6 +41,7 @@ nextPageBTN.addEventListener('click', () => {
   console.log('activeGaragePage = ', activeGaragePage);
   if (activeGaragePage === 2) prevPageBTN.removeAttribute('disabled');
   if (activeGaragePage === Math.ceil(carsInGarage / 7)) nextPageBTN.setAttribute('disabled', '');
+  updateGarageTitle();
   carListWrapper.innerHTML = '';
   populateCarList();
 });

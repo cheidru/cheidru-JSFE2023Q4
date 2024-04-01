@@ -27,6 +27,7 @@ export function populateCarList() {
   getCars()
     .then((data) => data.json())
     .then((data) => {
+      console.log('populateCarList data = ', data);
       createCars(data);
     });
 }
