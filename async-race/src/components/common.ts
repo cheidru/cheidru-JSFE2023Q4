@@ -8,8 +8,6 @@ export const prevPageBTN = document.createElement('button');
 export const nextPageBTN = document.createElement('button');
 
 export function createCommonUI() {
-  console.log('createCommonUI enabled ');
-
   const mainWrapper = document.createElement('div');
   mainWrapper.setAttribute('id', 'main-wrapper');
   document.body.append(mainWrapper);

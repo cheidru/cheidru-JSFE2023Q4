@@ -125,7 +125,6 @@ export function updateGarageTitle() {
     .then((data) => data.headers.get('x-total-count'))
     .then((data) => {
       carsInGarage = Number(data);
-      console.log('carsInGarage = ', carsInGarage);
       garageTitle.textContent = `Garage (${carsInGarage})`;
     });
   garagePageNum.textContent = `Page ${activeGaragePage}`;

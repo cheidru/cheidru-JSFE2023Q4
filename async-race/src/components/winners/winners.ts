@@ -44,7 +44,6 @@ export function updateWinnersTitle() {
     .then((data) => data.headers.get('x-total-count'))
     .then((data) => {
       winnersListed = Number(data);
-      console.log('winnersListed = ', winnersListed);
       winnersTitle.textContent = `Winners (${winnersListed})`;
     });
   winnersPageNum.textContent = `Page ${activeWinnersPage}`;
@@ -93,7 +92,6 @@ export function populateWinnersList() {
   getWinners()
     .then((data) => data.json())
     .then((data) => {
-      console.log('populateWinnersList data = ', data);
       fillWinners(data);
     });
 }

@@ -12,15 +12,9 @@ export function createGarage() {
 
   updateCarBTN.addEventListener('click', updateOneCar);
 
-  raceBTN.addEventListener('click', () => {
-    console.log('Race started');
-  });
-  resetBTN.addEventListener('click', () => {
-    console.log('Race reset');
-  });
-  generateCarsBTN.addEventListener('click', () => {
-    console.log('Cars generated');
-  });
+  raceBTN.addEventListener('click', () => {});
+  resetBTN.addEventListener('click', () => {});
+  generateCarsBTN.addEventListener('click', () => {});
 }
 
 export function populateCarList() {
