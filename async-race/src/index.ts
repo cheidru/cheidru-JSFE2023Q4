@@ -28,15 +28,18 @@ garageBTN.addEventListener('click', () => {
 });
 
 prevPageBTN.addEventListener('click', () => {
-  nextPageBTN.removeAttribute('disabled');
-  prevPageBTN.setAttribute('disabled', '');
+  activeGaragePage--;
+  if (activeGaragePage === 1) prevPageBTN.setAttribute('disabled', '');
+  if (activeGaragePage === Math.ceil(carsInGarage / 7) - 1) nextPageBTN.removeAttribute('disabled');
+  carListWrapper.innerHTML = '';
+  populateCarList();
 });
 
 nextPageBTN.addEventListener('click', () => {
   activeGaragePage++;
   console.log('activeGaragePage = ', activeGaragePage);
   if (activeGaragePage === 2) prevPageBTN.removeAttribute('disabled');
-  if (activeGaragePage == Math.ceil(carsInGarage / 7)) nextPageBTN.setAttribute('disabled', '');
+  if (activeGaragePage === Math.ceil(carsInGarage / 7)) nextPageBTN.setAttribute('disabled', '');
   carListWrapper.innerHTML = '';
   populateCarList();
 });
