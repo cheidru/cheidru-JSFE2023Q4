@@ -1,7 +1,7 @@
 import '../style.css';
 
-export const contentWrapper = document.createElement('div');
-
+export const garageContentWrapper = document.createElement('div');
+export const winnersContentWrapper = document.createElement('div');
 export const garageBTN = document.createElement('button');
 export const winnersBTN = document.createElement('button');
 export const prevPageBTN = document.createElement('button');
@@ -37,8 +37,12 @@ export function createCommonUI() {
   // Wrapper for lists of cars and winner with their interface
   // populated with the content in garage-ui.ts and winners.tsd
   // respectively
-  contentWrapper.setAttribute('id', 'stage-switch-wrapper');
-  mainWrapper.append(contentWrapper);
+  garageContentWrapper.setAttribute('id', 'garage-wrapper');
+  mainWrapper.append(garageContentWrapper);
+
+  winnersContentWrapper.setAttribute('id', 'winners-wrapper');
+  winnersContentWrapper.style.display = 'none';
+  mainWrapper.append(winnersContentWrapper);
 
   // Wrapper for pagination buttons down the main wrapper
   const pageBTNWrapper = document.createElement('div');

@@ -1,6 +1,6 @@
 import '../../style.css';
 import { getCarsNumber } from '../../api/api';
-import { contentWrapper } from '../common';
+import { garageContentWrapper } from '../common';
 import { activeGaragePage } from '../../index';
 
 export let carsInGarage: number;
@@ -21,7 +21,7 @@ const garageTitle = document.createElement('div');
 const garagePageNum = document.createElement('div');
 
 export function createGarageUI() {
-  createTitle();
+  createGarageTitle();
   createAddCarMenu();
   createUpdateCarMenu();
   createRaceResetGenerateMenu();
@@ -32,7 +32,7 @@ function createAddCarMenu() {
   const addCarWrapper = document.createElement('div');
   addCarWrapper.setAttribute('id', 'add-car-wrapper');
   addCarWrapper.classList.add('car-list-controls');
-  contentWrapper.append(addCarWrapper);
+  garageContentWrapper.append(addCarWrapper);
 
   addCarName.setAttribute('id', 'add-car-name');
   addCarName.setAttribute('type', 'text');
@@ -56,7 +56,7 @@ function createUpdateCarMenu() {
   const updateCarWrapper = document.createElement('div');
   updateCarWrapper.setAttribute('id', 'update-car-wrapper');
   updateCarWrapper.classList.add('car-list-controls');
-  contentWrapper.append(updateCarWrapper);
+  garageContentWrapper.append(updateCarWrapper);
 
   updateCarName.setAttribute('id', 'update-car-name');
   updateCarName.setAttribute('type', 'text');
@@ -80,7 +80,7 @@ function createRaceResetGenerateMenu() {
   const raceWrapper = document.createElement('div');
   raceWrapper.setAttribute('id', 'race-wrapper');
   raceWrapper.classList.add('car-list-controls');
-  contentWrapper.append(raceWrapper);
+  garageContentWrapper.append(raceWrapper);
 
   raceBTN.setAttribute('id', 'race-btn');
   raceBTN.textContent = 'Race';
@@ -95,10 +95,10 @@ function createRaceResetGenerateMenu() {
   raceWrapper.append(generateCarsBTN);
 }
 
-function createTitle() {
+function createGarageTitle() {
   const garageTitleWrapper = document.createElement('div');
   garageTitleWrapper.classList.add('title-wrapper');
-  contentWrapper.append(garageTitleWrapper);
+  garageContentWrapper.append(garageTitleWrapper);
 
   garageTitle.setAttribute('id', 'garage-title');
   garageTitle.classList.add('stage-title');
@@ -112,12 +112,12 @@ function createTitle() {
 
   updateGarageTitle();
   carListWrapper.setAttribute('id', 'car-list');
-  contentWrapper.append(carListWrapper);
+  garageContentWrapper.append(carListWrapper);
 }
 
 function createCarList() {
   carListWrapper.setAttribute('id', 'car-list');
-  contentWrapper.append(carListWrapper);
+  garageContentWrapper.append(carListWrapper);
 }
 
 export function updateGarageTitle() {
@@ -125,8 +125,8 @@ export function updateGarageTitle() {
     .then((data) => data.headers.get('x-total-count'))
     .then((data) => {
       carsInGarage = Number(data);
-      garageTitle.textContent = `Garage (${carsInGarage})`;
       console.log('carsInGarage = ', carsInGarage);
+      garageTitle.textContent = `Garage (${carsInGarage})`;
     });
   garagePageNum.textContent = `Page ${activeGaragePage}`;
 }

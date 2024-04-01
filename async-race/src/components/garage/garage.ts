@@ -50,9 +50,11 @@ function updateOneCar() {
     name: updateCarName.value,
     color: updateCarColor.value,
   };
-  updateCar(updatedCar, selectedCarID);
-  carListWrapper.innerHTML = '';
-  populateCarList();
+  updateCar(updatedCar, selectedCarID).then(() => {
+    updateGarageTitle();
+    carListWrapper.innerHTML = '';
+    populateCarList();
+  });
 }
 
 export function deleteCar() {

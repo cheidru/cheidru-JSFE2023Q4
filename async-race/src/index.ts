@@ -6,7 +6,7 @@ import { carsInGarage, carListWrapper, updateGarageTitle } from './components/ga
 import { garageBTN, winnersBTN, createCommonUI, prevPageBTN, nextPageBTN } from './components/common';
 
 export let activeGaragePage = 1;
-// export let activeWinnersPage = 1;
+export let activeWinnersPage = 1;
 
 console.log('app started');
 

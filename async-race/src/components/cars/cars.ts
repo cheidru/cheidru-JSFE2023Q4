@@ -13,7 +13,6 @@ let selectedCarName: string = '';
 let selectedCarColor: string = '';
 
 export function createCars(carsArray: []) {
-  console.log('activeGaragePage = ', activeGaragePage, ' carsArray =', carsArray);
   const startIndex = (activeGaragePage - 1) * 7;
   const stopIndex = startIndex + 7 > carsArray.length ? carsArray.length : startIndex + 7;
   for (let i = startIndex; i < stopIndex; i++) {

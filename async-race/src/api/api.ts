@@ -4,8 +4,6 @@ const serverURL = 'http://127.0.0.1:3000';
 
 export async function getCars() {
   const answer = await fetch(serverURL + '/garage');
-  // const carInfo = await answer.json();
-  // console.log(Array.isArray(carInfo), carInfo[0]);
   return answer;
 }
 
@@ -32,6 +30,16 @@ export async function updateCar(carObj: CarObjMembers, carID: number) {
 
 export async function removeCar(carID: number) {
   await fetch(serverURL + '/garage/' + carID, { method: 'DELETE' });
+}
+
+export async function getWinners() {
+  const answer = await fetch(serverURL + '/winners');
+  return answer;
+}
+
+export async function getWinnersNumber() {
+  const answer = await fetch(serverURL + '/winners' + '?_limit=1');
+  return answer;
 }
 
 export const winnerList = [];
