@@ -65,5 +65,49 @@ export function setNameAndColor(name: string, color: string) {
 }
 
 function generateCarLot() {
-  
+  const carModel = [
+    {
+      brand: 'Tesla',
+      model: ['Roadster', 'Model S', 'Model X', 'Model 3', 'Model Y']
+    },
+    {
+      brand: 'Ford',
+      model: ['Focus', 'Mondeo', 'Taurus', 'Mustang', 'Bronco', 'Edge', 'Escape', 'Kuga', 'Explorer', 'Puma', 'Maverick', 'F-150']
+    },
+    {
+      brand: 'Mercedes',
+      model: ['A-Class', 'C-Class', 'CLA', 'E-Class', 'S-Class', 'C-Class', 'EQA', 'EQC', 'EQE SUV', 'G-Class', 'AMG One', 'CLE']
+    },
+    {
+      brand: 'Volkswagen',
+      model: ['Golf', 'Polo', 'Arteon', 'Bora', 'Jetta', 'Lavida', 'Passat', 'Atlas', 'Tayron', 'Tiguan', 'Touareg']
+    },
+    {
+      brand: 'Toyota',
+      model: ['Avalon', 'Camry', 'Century', 'Corolla', 'Crown', 'Mirai', 'Prius', 'Yaris', 'Aqua', 'Vitz', 'Frontlander', 'Harrier', 'RAV4', 'Land Cruiser']
+    },
+    {
+      brand: '',
+      model: ['', '', '', '', '']
+    },
+    {
+      brand: '',
+      model: ['', '', '', '', '']
+    },
+    {
+      brand: '',
+      model: ['', '', '', '', '']
+    },
+    {
+      brand: '',
+      model: ['', '', '', '', '']
+    },
+    {
+      brand: '',
+      model: ['', '', '', '', '']
+    },
+  ]
+  // genegate name
+  // generate color
+  // send server req
 }
