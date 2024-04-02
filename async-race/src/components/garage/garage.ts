@@ -14,7 +14,7 @@ export function createGarage() {
 
   raceBTN.addEventListener('click', () => {});
   resetBTN.addEventListener('click', () => {});
-  generateCarsBTN.addEventListener('click', () => {});
+  generateCarsBTN.addEventListener('click', () => generateCarLot);
 }
 
 export function populateCarList() {
@@ -32,10 +32,11 @@ function addOneCar() {
     name: addCarName.value,
     color: addCarColor.value,
   };
-  addNewCar(newCar);
-  updateGarageTitle();
-  carListWrapper.innerHTML = '';
-  populateCarList();
+  addNewCar(newCar).then(() => {
+    updateGarageTitle();
+    carListWrapper.innerHTML = '';
+    populateCarList();
+  });
 }
 
 function updateOneCar() {
@@ -61,4 +62,8 @@ export function deleteCar() {
 export function setNameAndColor(name: string, color: string) {
   updateCarName.value = name;
   updateCarColor.value = color;
+}
+
+function generateCarLot() {
+  
 }

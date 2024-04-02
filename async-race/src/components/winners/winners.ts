@@ -1,12 +1,19 @@
 import { createCommonUI, winnersContentWrapper } from '../common';
-import { getWinners, getWinnersNumber } from '../../api/api';
+import { getWinners, getWinnersNumber, getOneCar } from '../../api/api';
 import { activeWinnersPage } from '../../index';
+import { carIMG, CarObjMembers } from '../cars/cars';
 
 export const winnersListWrapper = document.createElement('div');
 export let winnersListed: number;
 const winnersTitle = document.createElement('div');
 const winnersPageNum = document.createElement('div');
 const winnerList = document.createElement('table');
+
+interface winnerObject {
+  id: number;
+  wins: number;
+  time: number;
+}
 
 export function createWinners() {
   createCommonUI();
@@ -99,27 +106,45 @@ export function populateWinnersList() {
 function fillWinners(winnersArr: []) {
   const listLen = winnersArr.length;
   for (let i = 0; i < listLen; i++) {
+    const winnerObj: winnerObject = winnersArr[i];
     const listRow = document.createElement('tr');
     winnerList.append(listRow);
 
     const listNum = document.createElement('td');
-    listNum.textContent = '' + i + 1;
+    listNum.textContent = (i + 1).toString();
     listRow.append(listNum);
 
+    const carInfo: CarObjMembers = getCarInfo(winnerObj.id);
+    const winnerCarIMG = carIMG.cloneNode(true) as HTMLElement;
+    winnerCarIMG.style.fill = carInfo.color;
     const listCar = document.createElement('td');
-    listCar.textContent = 'Car';
     listRow.append(listCar);
+    listCar.append(winnerCarIMG);
 
     const carName = document.createElement('td');
-    carName.textContent = 'Name';
+    carName.textContent = carInfo.name;
     listRow.append(carName);
 
     const carWins = document.createElement('td');
-    carWins.textContent = 'Wins';
+    carWins.textContent = winnerObj.wins.toString();
     listRow.append(carWins);
 
     const carTime = document.createElement('td');
-    carTime.textContent = 'Time';
+    carTime.textContent = winnerObj.time.toString();
     listRow.append(carTime);
   }
 }
+
+function getCarInfo(carID: number): CarObjMembers {
+  let carData = {
+    name: '',
+    color: '',
+    id: carID,
+  }
+  getOneCar(carID)
+    .then((data) => data.json())
+    .then((data) => {
+    carData = data});
+  return carData;
+}
+

@@ -7,6 +7,11 @@ export async function getCars() {
   return answer;
 }
 
+export async function getOneCar(carID: number) {
+  const answer = await fetch(serverURL + '/garage/' + carID);
+  return answer;
+}
+
 export async function getCarsNumber() {
   const answer = await fetch(serverURL + '/garage' + '?_limit=1');
   return answer;

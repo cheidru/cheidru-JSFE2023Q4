@@ -8,6 +8,8 @@ export interface CarObjMembers {
   id?: number;
 }
 
+export const carIMG = document.createElement('svg');
+
 export let selectedCarID: number = 0;
 let selectedCarName: string = '';
 let selectedCarColor: string = '';
@@ -79,7 +81,6 @@ function addTrack(parentElement: HTMLElement, carObj: CarObjMembers) {
   stopCarBTN.textContent = 'B';
   trackWrapper.append(stopCarBTN);
 
-  const carIMG = document.createElement('svg');
   // const carColor = carObj.color;
   carIMG.innerHTML = `<svg
     fill="${carObj.color}"
