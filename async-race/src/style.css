@@ -212,6 +212,10 @@ body {
   border-radius: var(--car-btn-border-radius);
 }
 
+.start-btn {
+  cursor: pointer;
+}
+
 .disabled-btn {
   opacity: 0.5;
 }

@@ -18,6 +18,7 @@ export async function getCarsNumber() {
 }
 
 export async function addNewCar(carObj: CarObjMembers) {
+  console.log('Car ', carObj, ' added');
   await fetch(serverURL + '/garage', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

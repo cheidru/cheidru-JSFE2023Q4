@@ -1,7 +1,7 @@
-import { createCommonUI, winnersContentWrapper } from '../common';
+import { createCommonUI, winnersContentWrapper, createCarImage } from '../common';
 import { getWinners, getWinnersNumber, getOneCar } from '../../api/api';
 import { activeWinnersPage } from '../../index';
-import { carIMG, CarObjMembers } from '../cars/cars';
+import { CarObjMembers } from '../cars/cars';
 
 export const winnersListWrapper = document.createElement('div');
 export let winnersListed: number;
@@ -99,6 +99,7 @@ export function populateWinnersList() {
   getWinners()
     .then((data) => data.json())
     .then((data) => {
+      console.log('Winner list = ', data);
       fillWinners(data);
     });
 }
@@ -114,37 +115,34 @@ function fillWinners(winnersArr: []) {
     listNum.textContent = (i + 1).toString();
     listRow.append(listNum);
 
-    const carInfo: CarObjMembers = getCarInfo(winnerObj.id);
-    const winnerCarIMG = carIMG.cloneNode(true) as HTMLElement;
-    winnerCarIMG.style.fill = carInfo.color;
-    const listCar = document.createElement('td');
-    listRow.append(listCar);
-    listCar.append(winnerCarIMG);
-
-    const carName = document.createElement('td');
-    carName.textContent = carInfo.name;
-    listRow.append(carName);
-
-    const carWins = document.createElement('td');
-    carWins.textContent = winnerObj.wins.toString();
-    listRow.append(carWins);
-
-    const carTime = document.createElement('td');
-    carTime.textContent = winnerObj.time.toString();
-    listRow.append(carTime);
+    getCarInfo(winnerObj, listRow);
   }
 }
 
-function getCarInfo(carID: number): CarObjMembers {
-  let carData = {
-    name: '',
-    color: '',
-    id: carID,
-  }
-  getOneCar(carID)
+function getCarInfo(car: winnerObject, row: HTMLElement) {
+  getOneCar(car.id)
     .then((data) => data.json())
     .then((data) => {
-    carData = data});
-  return carData;
+      populateWinnerData(data, car, row);
+    });
 }
 
+function populateWinnerData(carInfo: CarObjMembers, winnerObj: winnerObject, listRow: HTMLElement) {
+  const winnerCarIMG = createCarImage(carInfo);
+  winnerCarIMG.style.fill = carInfo.color;
+  const listCar = document.createElement('td');
+  listRow.append(listCar);
+  listCar.append(winnerCarIMG);
+
+  const carName = document.createElement('td');
+  carName.textContent = carInfo.name;
+  listRow.append(carName);
+
+  const carWins = document.createElement('td');
+  carWins.textContent = winnerObj.wins.toString();
+  listRow.append(carWins);
+
+  const carTime = document.createElement('td');
+  carTime.textContent = winnerObj.time.toString();
+  listRow.append(carTime);
+}
