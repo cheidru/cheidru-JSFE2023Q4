@@ -14,14 +14,13 @@ export function createGarage() {
 
   raceBTN.addEventListener('click', () => {});
   resetBTN.addEventListener('click', () => {});
-  generateCarsBTN.addEventListener('click', () => generateCarLot);
+  generateCarsBTN.addEventListener('click', addCarLot);
 }
 
 export function populateCarList() {
   getCars()
     .then((data) => data.json())
     .then((data) => {
-      console.log('populateCarList data = ', data);
       createCars(data);
     });
 }
@@ -64,7 +63,15 @@ export function setNameAndColor(name: string, color: string) {
   updateCarColor.value = color;
 }
 
-function generateCarLot() {
+function addCarLot() {
+  generateCarLot().then(() => {
+    updateGarageTitle();
+    carListWrapper.innerHTML = '';
+    populateCarList();
+  });
+}
+
+async function generateCarLot() {
   for (let i = 0; i < 100; i++) {
     const brandNo = randomNum(10);
     const modelNo = randomNum(carModel[brandNo].model.length);
@@ -72,12 +79,9 @@ function generateCarLot() {
       name: carModel[brandNo].brand + ' ' + carModel[brandNo].model[modelNo],
       color: randomRGBColor(),
     };
-    addNewCar(newCar).then(() => {
-      updateGarageTitle();
-      carListWrapper.innerHTML = '';
-      populateCarList();
-    });
+    addNewCar(newCar);
   }
+  return true;
 }
 
 function randomNum(max: number) {
