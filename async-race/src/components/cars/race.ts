@@ -1,5 +1,6 @@
 import { startEngine, driveCar, stopEngine } from '../../api/api';
 import { CarRaceMembers, AnimationData } from '../common';
+import { raceMemberIDs } from './cars';
 
 export const carRace: CarRaceMembers = {
   distance: 0,
@@ -49,4 +50,31 @@ function animatedRace(animationData: AnimationData, carRace: CarRaceMembers) {
   stopCarRunning = false;
 }
 
-export function startRace() {}
+export function startRace() {
+  startRaceCarsEngines();
+  driveRaceCars();
+}
+
+function startRaceCarsEngines() {
+  const raceURLs = [];
+  for (let i = 0; i < raceMemberIDs.length; i++) {
+    raceURLs.push('http://127.0.0.1:3000/engine/?id=' + raceMemberIDs[i] + '&status=started');
+  }
+  const requests = raceURLs.map((url) => fetch(url, { method: 'PATCH' }));
+  Promise.all(requests).then((responses) =>
+    responses.forEach((response) => console.log(`${response.url}: ${response.status}`))
+  );
+}
+
+function driveRaceCars() {
+  const raceURLs = [];
+  for (let i = 0; i < raceMemberIDs.length; i++) {
+    raceURLs.push('http://127.0.0.1:3000/engine/?id=' + raceMemberIDs[i] + '&status=drive');
+  }
+  const requests = raceURLs.map((url) => fetch(url, { method: 'PATCH' }));
+  Promise.all(requests).then((responses) =>
+    responses.forEach((response) => console.log(`${response.url}: ${response.status}`))
+  );
+}
+
+// function animateRace() {}

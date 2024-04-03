@@ -5,6 +5,7 @@ import { createCarImage, CarObjMembers, AnimationData } from '../common';
 import { runCar, carRace, stopCar } from './race';
 
 export let selectedCarID: number = 0;
+export const raceMemberIDs: number[] = [];
 let selectedCarName: string = '';
 let selectedCarColor: string = '';
 
@@ -14,9 +15,10 @@ export function createCars(carsArray: []) {
   for (let i = startIndex; i < stopIndex; i++) {
     const carWrapper = document.createElement('div');
     carWrapper.setAttribute('id', `car-no-${i + 1}`);
-    const carObj = carsArray[i];
+    const carObj: CarObjMembers = carsArray[i];
     carListWrapper.append(carWrapper);
     addButtonsAndTrack(carWrapper, carObj);
+    if (carObj.id) raceMemberIDs.push(carObj.id);
   }
 }
 
