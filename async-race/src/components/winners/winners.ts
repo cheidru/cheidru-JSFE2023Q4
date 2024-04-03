@@ -1,7 +1,7 @@
 import { createCommonUI, winnersContentWrapper, createCarImage } from '../common';
 import { getWinners, getWinnersNumber, getOneCar } from '../../api/api';
 import { activeWinnersPage } from '../../index';
-import { CarObjMembers } from '../cars/cars';
+import { CarObjMembers } from '../common';
 
 export const winnersListWrapper = document.createElement('div');
 export let winnersListed: number;

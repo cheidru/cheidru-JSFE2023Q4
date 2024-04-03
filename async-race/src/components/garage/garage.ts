@@ -1,8 +1,9 @@
 import { createGarageUI } from './garage-ui';
 import { addCarBTN, updateCarBTN, raceBTN, resetBTN, generateCarsBTN, updateGarageTitle } from './garage-ui';
 import { addCarName, addCarColor, updateCarName, updateCarColor, carListWrapper } from './garage-ui';
-import { createCars, CarObjMembers, selectedCarID } from '../cars/cars';
+import { createCars, selectedCarID } from '../cars/cars';
 import { getCars, addNewCar, updateCar, removeCar } from '../../api/api';
+import { CarObjMembers } from '../common';
 
 export function createGarage() {
   createGarageUI();

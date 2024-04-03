@@ -1,4 +1,4 @@
-import { CarObjMembers } from '../components/cars/cars';
+import { CarObjMembers } from '../components/common';
 
 const serverURL = 'http://127.0.0.1:3000';
 
@@ -45,6 +45,26 @@ export async function getWinners() {
 
 export async function getWinnersNumber() {
   const answer = await fetch(serverURL + '/winners' + '?_limit=1');
+  return answer;
+}
+
+export async function startEngine(carID: number) {
+  const answer = await fetch(serverURL + '/engine/?id=' + carID + '&status=started', {
+    method: 'PATCH',
+  });
+  console.log('startEngine res = ', answer);
+  return answer;
+}
+
+export async function driveCar(carID: number) {
+  const answer = await fetch(serverURL + '/engine/?id=' + carID + '&status=drive', {
+    method: 'PATCH',
+  });
+  if (!answer.ok) {
+    console.log('driveCar res error = ', answer);
+  } else {
+    console.log('driveCar res ok = ', answer);
+  }
   return answer;
 }
 

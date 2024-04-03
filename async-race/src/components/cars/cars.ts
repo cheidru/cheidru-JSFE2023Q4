@@ -1,13 +1,8 @@
 import { carListWrapper } from '../garage/garage-ui';
 import { activeGaragePage } from '../../index';
 import { setNameAndColor, deleteCar } from '../garage/garage';
-import { createCarImage } from '../common';
-
-export interface CarObjMembers {
-  name: string;
-  color: string;
-  id?: number;
-}
+import { createCarImage, CarObjMembers, AnimationData } from '../common';
+import { runCar, carRace } from './race';
 
 export let selectedCarID: number = 0;
 let selectedCarName: string = '';
@@ -59,6 +54,7 @@ function addButtonsAndTrack(parentElement: HTMLElement, carObj: CarObjMembers) {
   carName.classList.add('car-name');
   carName.textContent = carObj.name;
   buttonWrapper.append(carName);
+
   addTrack(parentElement, carObj);
 }
 
@@ -73,6 +69,20 @@ function addTrack(parentElement: HTMLElement, carObj: CarObjMembers) {
   startCarBTN.textContent = 'A';
   trackWrapper.append(startCarBTN);
 
+  startCarBTN.addEventListener('click', () => {
+    startCarBTN.classList.add('disabled-btn');
+    stopCarBTN.classList.remove('disabled-btn');
+    if (carObj.id) {
+      const animationStartData: AnimationData = {
+        trackLength: trackWrapper.offsetWidth,
+        startPosition: thisCarIMG.offsetLeft,
+        startCarFrontPosition: thisCarIMG.offsetLeft + thisCarIMG.offsetWidth,
+        carObject: thisCarIMG,
+      };
+      runCar(carObj.id, animationStartData, carRace);
+    }
+  });
+
   const stopCarBTN = document.createElement('div');
   stopCarBTN.classList.add('car-btn');
   stopCarBTN.classList.add('stop-btn');
@@ -80,7 +90,8 @@ function addTrack(parentElement: HTMLElement, carObj: CarObjMembers) {
   stopCarBTN.textContent = 'B';
   trackWrapper.append(stopCarBTN);
 
-  trackWrapper.append(createCarImage(carObj));
+  const thisCarIMG = createCarImage(carObj);
+  trackWrapper.append(thisCarIMG);
 
   const flagIMG = document.createElement('div');
   flagIMG.innerHTML = `<svg viewBox="0 -2 366.03679 366" xmlns="http://www.w3.org/2000/svg" class="flag-img">

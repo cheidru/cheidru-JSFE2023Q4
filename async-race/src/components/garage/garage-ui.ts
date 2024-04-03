@@ -1,17 +1,15 @@
 import '../../style.css';
 import { getCarsNumber } from '../../api/api';
 import { garageContentWrapper } from '../common';
-import { activeGaragePage } from '../../index';
+import { activeGaragePage, unlockgarageNextPage } from '../../index';
 
 export let carsInGarage: number;
-
 export const addCarBTN = document.createElement('button');
 export const updateCarBTN = document.createElement('button');
 export const raceBTN = document.createElement('button');
 export const resetBTN = document.createElement('button');
 export const generateCarsBTN = document.createElement('button');
 export const carListWrapper = document.createElement('div');
-
 export const addCarName = document.createElement('input');
 export const addCarColor = document.createElement('input');
 export const updateCarName = document.createElement('input');
@@ -125,6 +123,7 @@ export function updateGarageTitle() {
     .then((data) => data.headers.get('x-total-count'))
     .then((data) => {
       carsInGarage = Number(data);
+      if (carsInGarage > 6) unlockgarageNextPage();
       garageTitle.textContent = `Garage (${carsInGarage})`;
     });
   garagePageNum.textContent = `Page ${activeGaragePage}`;
