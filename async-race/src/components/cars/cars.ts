@@ -90,6 +90,12 @@ function addTrack(parentElement: HTMLElement, carObj: CarObjMembers) {
   stopCarBTN.textContent = 'B';
   trackWrapper.append(stopCarBTN);
 
+  stopCarBTN.addEventListener('click', () => {
+    thisCarIMG.style.transform = `translateX(0)`;
+    stopCarBTN.classList.add('disabled-btn');
+    startCarBTN.classList.remove('disabled-btn');
+  });
+
   const thisCarIMG = createCarImage(carObj);
   trackWrapper.append(thisCarIMG);
 
