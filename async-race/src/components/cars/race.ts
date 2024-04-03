@@ -1,10 +1,20 @@
-import { startEngine, driveCar } from '../../api/api';
+import { startEngine, driveCar, stopEngine } from '../../api/api';
 import { CarRaceMembers, AnimationData } from '../common';
 
 export const carRace: CarRaceMembers = {
   distance: 0,
   velocity: 0,
 };
+
+let stopCarRunning = false;
+
+export async function stopCar(carID: number, thisCarIMG: HTMLElement) {
+  console.log('Stop Car');
+  stopCarRunning = true;
+  stopEngine(carID).then(() => {
+    thisCarIMG.style.transform = `translateX(0)`;
+  });
+}
 
 export function runCar(carID: number, animationData: AnimationData, carRace: CarRaceMembers) {
   startEngine(carID)
@@ -13,10 +23,11 @@ export function runCar(carID: number, animationData: AnimationData, carRace: Car
       carRace = data;
       driveCar(carID);
     })
-    .then(() => animatedRace(carID, animationData, carRace));
+    .then(() => animatedRace(animationData, carRace));
 }
 
-function animatedRace(carID: number, animationData: AnimationData, carRace: CarRaceMembers) {
+function animatedRace(animationData: AnimationData, carRace: CarRaceMembers) {
+  console.log('start animation');
   requestAnimationFrame(carRunning);
   let done = false;
   let elapsedDistance = 0;
@@ -31,15 +42,11 @@ function animatedRace(carID: number, animationData: AnimationData, carRace: CarR
     if (elapsedDistance >= 1270) done = true;
     animationData.carObject.style.transform = `translateX(${elapsedDistance}px)`;
 
-    if (!done) {
+    if (!done && stopCarRunning === false) {
       requestAnimationFrame(carRunning);
     }
   }
-  console.log('animatedRace started', carID, animationData);
+  stopCarRunning = false;
 }
 
-// const animationStartData: object = {
-//   trackLength: trackWrapper.offsetWidth,
-//   startPosition: thisCarIMG.offsetLeft,
-//   startCarFrontPosition: thisCarIMG.offsetLeft + thisCarIMG.offsetWidth,
-//   carObject: thisCarIMG,
+export function startRace() {}

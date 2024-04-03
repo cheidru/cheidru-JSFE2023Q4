@@ -56,6 +56,14 @@ export async function startEngine(carID: number) {
   return answer;
 }
 
+export async function stopEngine(carID: number) {
+  const answer = await fetch(serverURL + '/engine/?id=' + carID + '&status=stopped', {
+    method: 'PATCH',
+  });
+  console.log('stopEngine res = ', answer);
+  return answer;
+}
+
 export async function driveCar(carID: number) {
   const answer = await fetch(serverURL + '/engine/?id=' + carID + '&status=drive', {
     method: 'PATCH',

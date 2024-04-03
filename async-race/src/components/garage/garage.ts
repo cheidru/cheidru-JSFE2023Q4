@@ -4,6 +4,7 @@ import { addCarName, addCarColor, updateCarName, updateCarColor, carListWrapper 
 import { createCars, selectedCarID } from '../cars/cars';
 import { getCars, addNewCar, updateCar, removeCar } from '../../api/api';
 import { CarObjMembers } from '../common';
+import { startRace } from '../cars/race';
 
 export function createGarage() {
   createGarageUI();
@@ -13,8 +14,10 @@ export function createGarage() {
 
   updateCarBTN.addEventListener('click', updateOneCar);
 
-  raceBTN.addEventListener('click', () => {});
+  raceBTN.addEventListener('click', startRace);
+
   resetBTN.addEventListener('click', () => {});
+
   generateCarsBTN.addEventListener('click', addCarLot);
 }
 

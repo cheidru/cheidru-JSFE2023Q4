@@ -2,7 +2,7 @@ import { carListWrapper } from '../garage/garage-ui';
 import { activeGaragePage } from '../../index';
 import { setNameAndColor, deleteCar } from '../garage/garage';
 import { createCarImage, CarObjMembers, AnimationData } from '../common';
-import { runCar, carRace } from './race';
+import { runCar, carRace, stopCar } from './race';
 
 export let selectedCarID: number = 0;
 let selectedCarName: string = '';
@@ -91,9 +91,12 @@ function addTrack(parentElement: HTMLElement, carObj: CarObjMembers) {
   trackWrapper.append(stopCarBTN);
 
   stopCarBTN.addEventListener('click', () => {
-    thisCarIMG.style.transform = `translateX(0)`;
-    stopCarBTN.classList.add('disabled-btn');
-    startCarBTN.classList.remove('disabled-btn');
+    if (carObj.id) {
+      stopCar(carObj.id, thisCarIMG).then(() => {
+        stopCarBTN.classList.add('disabled-btn');
+        startCarBTN.classList.remove('disabled-btn');
+      });
+    }
   });
 
   const thisCarIMG = createCarImage(carObj);
