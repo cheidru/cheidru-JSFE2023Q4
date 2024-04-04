@@ -68,11 +68,6 @@ export async function driveCar(carID: number) {
   const answer = await fetch(serverURL + '/engine/?id=' + carID + '&status=drive', {
     method: 'PATCH',
   });
-  if (!answer.ok) {
-    console.log('driveCar res error = ', answer);
-  } else {
-    console.log('driveCar res ok = ', answer);
-  }
   return answer;
 }
 
