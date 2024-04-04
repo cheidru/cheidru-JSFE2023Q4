@@ -2,10 +2,8 @@ import { createGarageUI } from './garage-ui';
 import { addCarBTN, updateCarBTN, raceBTN, resetBTN, generateCarsBTN, updateGarageTitle } from './garage-ui';
 import { addCarName, addCarColor, updateCarName, updateCarColor, carListWrapper } from './garage-ui';
 import { createCars, selectedCarID } from '../cars/cars';
-import { getCars, addNewCar, updateCar, removeCar, getWinners } from '../../api/api';
+import { getCars, addNewCar, updateCar, removeCar } from '../../api/api';
 import { CarObjMembers } from '../common';
-import { startRace } from '../cars/race';
-import { fillWinners } from '../winners/winners';
 
 export function createGarage() {
   createGarageUI();
@@ -15,7 +13,7 @@ export function createGarage() {
 
   updateCarBTN.addEventListener('click', updateOneCar);
 
-  raceBTN.addEventListener('click', startRace);
+  raceBTN.addEventListener('click', () => {});
 
   resetBTN.addEventListener('click', () => {});
 
@@ -61,25 +59,7 @@ export function deleteCar() {
   updateGarageTitle();
   carListWrapper.innerHTML = '';
   populateCarList();
-  checkWinners(selectedCarID);
 }
-
-//
-//
-//
-//
-function checkWinners(selectedCarID: number) {
-  getWinners()
-    .then((data) => data.json())
-    .then((data) => {
-      if (Oblect.values(data) === selectedCarID)
-      fillWinners(data);
-    });
-}
-
-//
-//
-//
 
 export function setNameAndColor(name: string, color: string) {
   updateCarName.value = name;

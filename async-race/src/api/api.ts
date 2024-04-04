@@ -18,7 +18,6 @@ export async function getCarsNumber() {
 }
 
 export async function addNewCar(carObj: CarObjMembers) {
-  console.log('Car ', carObj, ' added');
   await fetch(serverURL + '/garage', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -52,7 +51,6 @@ export async function startEngine(carID: number) {
   const answer = await fetch(serverURL + '/engine/?id=' + carID + '&status=started', {
     method: 'PATCH',
   });
-  console.log('startEngine res = ', answer);
   return answer;
 }
 
@@ -60,7 +58,6 @@ export async function stopEngine(carID: number) {
   const answer = await fetch(serverURL + '/engine/?id=' + carID + '&status=stopped', {
     method: 'PATCH',
   });
-  console.log('stopEngine res = ', answer);
   return answer;
 }
 
