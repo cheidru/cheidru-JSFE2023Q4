@@ -83,7 +83,7 @@ async function generateCarLot() {
       name: carModel[brandNo].brand + ' ' + carModel[brandNo].model[modelNo],
       color: randomRGBColor(),
     };
-    addNewCar(newCar);
+    await addNewCar(newCar);
   }
   return true;
 }
