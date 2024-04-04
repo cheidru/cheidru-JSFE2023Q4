@@ -12,7 +12,7 @@ let stopCarRunning = false;
 export async function stopCar(carID: number, thisCarIMG: HTMLElement) {
   console.log('Stop Car');
   stopCarRunning = true;
-  stopEngine(carID).then(() => {
+  await stopEngine(carID).then(() => {
     thisCarIMG.style.transform = `translateX(0)`;
   });
 }
