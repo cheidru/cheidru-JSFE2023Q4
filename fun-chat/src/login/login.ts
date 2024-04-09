@@ -1,6 +1,4 @@
-export function loginWindow() {
-
-}
+export function loginWindow() {}
 
 // const inputWindow = document.createElement('div');
 // inputWindow.setAttribute('id', 'login-wrapper');
