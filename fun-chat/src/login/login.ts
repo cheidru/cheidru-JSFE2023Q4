@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const warningMessage = [
   'Minimum name length is ',
   'Enter your name in latin caracters',
@@ -80,9 +79,6 @@ function showInputField(parent: HTMLElement, attrID: string, lblText: string, pa
 
   return input;
 }
-=======
-export function loginWindow() {}
->>>>>>> a36500e57cb3b0df0c51140c61edd2b66b06b7fe
 
 function checkInput(inputNmame: string) {
 
