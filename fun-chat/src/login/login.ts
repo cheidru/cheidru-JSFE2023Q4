@@ -1,77 +1,88 @@
-export function loginWindow() {
+const warningMessage = [
+  'Minimum name length is ',
+  'Enter your name in latin caracters',
+  'First letter must be in upper case',
+];
 
+const userDataValid = {
+    name: false,
+    pass: false,
+};
+
+export function loginWindow() {
+  showPowerLayer();
+  showLoginWindow();
 }
 
-// const inputWindow = document.createElement('div');
-// inputWindow.setAttribute('id', 'login-wrapper');
-// inputWindow.classList.add('modal');
-// // document.body.append(inputWindow);
+function showPowerLayer() {}
 
-// const loginHeader = document.createElement('div');
-// loginHeader.setAttribute('id', 'header');
-// loginHeader.textContent = 'RSS Puzzle Login';
-// // inputWindow.append(loginHeader);
+function showLoginWindow() {
+  const loginWindow = document.createElement('div');
+  loginWindow.setAttribute('id', 'login-wrapper');
+  loginWindow.classList.add('modal');
+  document.body.append(loginWindow);
 
-// const inputWrapperFirst = document.createElement('div');
-// inputWrapperFirst.classList.add('input-wrap');
-// // inputWindow.append(inputWrapperFirst);
+  const loginHeader = document.createElement('div');
+  loginHeader.setAttribute('id', 'header');
+  loginHeader.textContent = 'RSS Puzzle Login';
+  loginWindow.append(loginHeader);
 
-// const firstNameLBL = document.createElement('label');
-// firstNameLBL.setAttribute('for', 'first-name');
-// firstNameLBL.textContent = 'First Name (min 3 characters)';
-// // inputWrapperFirst.append(firstNameLBL);
+  showLoginInput(loginWindow);
 
-// const firstNameInput = document.createElement('input');
-// firstNameInput.setAttribute('type', 'text');
-// firstNameInput.setAttribute('id', 'first-name');
-// firstNameInput.setAttribute('autocomplete', 'off');
-// // prettier-ignore
-// firstNameInput.setAttribute('pattern', '[A-Z][a-z\\-]{2,}'); // eslint-disable-line no-useless-escape
-// firstNameInput.classList.add('user-input');
-// // inputWrapperFirst.append(firstNameInput);
+  const loginBTN = document.createElement('button');
+  loginBTN.setAttribute('disabled', '');
+  loginBTN.innerText = 'Login';
+  loginWindow.append(loginBTN);
+}
 
-// const inputWrapperLast = document.createElement('div');
-// inputWrapperLast.classList.add('input-wrap');
-// // inputWindow.append(inputWrapperLast);
+function showLoginInput(parent: HTMLElement) {
+    
+  const inputWrapperName = document.createElement('div');
+  inputWrapperName.classList.add('input-wrap');
+  parent.append(inputWrapperName);
 
-// const lastNameLBL = document.createElement('label');
-// lastNameLBL.setAttribute('for', 'first-name');
-// lastNameLBL.textContent = 'Surname (min 4 characters)';
-// // inputWrapperLast.append(lastNameLBL);
+  const nameInput = showInputField(inputWrapperName, 'user-name', 'User Name (min 3 characters)', '[A-Z][a-z\\-]{2,}');
+  nameInput.addEventListener('input', () => {checkInput('name')});
 
-// const lastNameInput = document.createElement('input');
-// lastNameInput.setAttribute('type', 'text');
-// lastNameInput.setAttribute('id', 'last-name');
-// lastNameInput.setAttribute('autocomplete', 'off');
-// // prettier-ignore
-// lastNameInput.setAttribute('pattern', '[A-Z][a-z\\-]{3,}'); // eslint-disable-line no-useless-escape
-// lastNameInput.classList.add('user-input');
-// // inputWrapperLast.append(lastNameInput);
+  document.addEventListener('keydown', (e) => {
+    if (e.code == 'Enter') {
 
-// const warningTip = document.createElement('div');
-// warningTip.classList.add('tooltip');
-// warningTip.innerText = 'Test';
+    }
+  })
 
-// const loginBTN = document.createElement('button');
-// loginBTN.setAttribute('disabled', '');
-// loginBTN.innerText = 'Login';
-// // inputWindow.append(loginBTN);
+  const inputWrapperPass = document.createElement('div');
+  inputWrapperPass.classList.add('input-wrap');
+  parent.append(inputWrapperPass);
 
-// const userDataValid = {
-//     firstName: false,
-//     lastName: false,
-// };
 
-// // const userData = {
-// //     firstName: '',
-// //     lastName: '',
-// // };
+  const passInput = showInputField(inputWrapperPass, 'user-pass', 'Password (min 4 characters)', '[A-Z][a-z\\-]{3,}');
 
-// const warningMessage = [
-//     'Minimum name length is ',
-//     'Enter your name in latin caracters',
-//     'First letter must be in upper case',
-// ];
+  const warningTip = document.createElement('div');
+  warningTip.classList.add('tooltip');
+  warningTip.innerText = 'Test';
+}
+
+function showInputField(parent: HTMLElement, attrID: string, lblText: string, pattern: string) {
+  const label = document.createElement('label');
+  label.setAttribute('for', `${attrID}`);
+  label.textContent = lblText;
+  parent.append(label);
+
+  const input = document.createElement('input');
+  input.setAttribute('type', 'text');
+  input.setAttribute('id', `${attrID}`);
+  input.setAttribute('autocomplete', 'off');
+  // prettier-ignore
+  input.setAttribute('pattern', `${pattern}`); // eslint-disable-line no-useless-escape
+  input.classList.add('user-input');
+  parent.append(input);
+
+  return input;
+}
+
+function checkInput(inputNmame: string) {
+
+}
 
 // function checkInput(event: Event | FocusEvent, inputObj: HTMLInputElement) {
 //     if (inputObj.value.length == 0) return;
