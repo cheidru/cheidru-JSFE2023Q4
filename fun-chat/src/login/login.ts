@@ -1,7 +1,6 @@
 const warningMessage = [
-  'Minimum name length is ',
-  'Enter your name in latin caracters',
-  'First letter must be in upper case',
+  'Minimum name length is 3 latin letters. First letter must be in upper case',
+  'Minimum password length is 5 characters. It must contain letters and numbers',
 ];
 
 const userDataValid = {
@@ -9,14 +8,23 @@ const userDataValid = {
     pass: false,
 };
 
+const userData = {
+  name: '',
+  pass: '',
+};
+
+function ckeckIfUserRegistered(userData) {
+
+}
+
 export function loginWindow() {
-  showPowerLayer();
-  showLoginWindow();
+  if (!ckeckIfUserRegistered) showLoginWindow();
 }
 
 function showPowerLayer() {}
 
 function showLoginWindow() {
+  showPowerLayer();
   const loginWindow = document.createElement('div');
   loginWindow.setAttribute('id', 'login-wrapper');
   loginWindow.classList.add('modal');
@@ -24,45 +32,41 @@ function showLoginWindow() {
 
   const loginHeader = document.createElement('div');
   loginHeader.setAttribute('id', 'header');
-  loginHeader.textContent = 'RSS Puzzle Login';
+  loginHeader.textContent = 'Log in';
   loginWindow.append(loginHeader);
 
-  showLoginInput(loginWindow);
-
-  const loginBTN = document.createElement('button');
+  const loginBTN: HTMLElement = document.createElement('button');
   loginBTN.setAttribute('disabled', '');
   loginBTN.innerText = 'Login';
   loginWindow.append(loginBTN);
+
+  showLoginInput(loginWindow, loginBTN);
+    
+  document.addEventListener('keydown', (e) => {
+    if (e.code === 'Enter' && userDataValid.name === true && userDataValid.pass === true) {
+      // Save user
+    }
+  })
+
+  loginBTN.addEventListener('click', () => {
+    // Save user
+  })
 }
 
-function showLoginInput(parent: HTMLElement) {
+function showLoginInput(parent: HTMLElement, loginButton: HTMLElement) {
     
   const inputWrapperName = document.createElement('div');
   inputWrapperName.classList.add('input-wrap');
   parent.append(inputWrapperName);
-
-  const nameInput = showInputField(inputWrapperName, 'user-name', 'User Name (min 3 characters)', '[A-Z][a-z\\-]{2,}');
-  nameInput.addEventListener('input', () => {checkInput('name')});
-
-  document.addEventListener('keydown', (e) => {
-    if (e.code == 'Enter') {
-
-    }
-  })
+  showInputField(inputWrapperName, 'user-name', 'User Name', '[A-Z][a-z\\-]{2,}', loginButton);
 
   const inputWrapperPass = document.createElement('div');
   inputWrapperPass.classList.add('input-wrap');
   parent.append(inputWrapperPass);
-
-
-  const passInput = showInputField(inputWrapperPass, 'user-pass', 'Password (min 4 characters)', '[A-Z][a-z\\-]{3,}');
-
-  const warningTip = document.createElement('div');
-  warningTip.classList.add('tooltip');
-  warningTip.innerText = 'Test';
+  showInputField(inputWrapperPass, 'user-pass', 'Password', '[A-Za-z]+[0-9]+{5,}', loginButton);
 }
 
-function showInputField(parent: HTMLElement, attrID: string, lblText: string, pattern: string) {
+function showInputField(parent: HTMLElement, attrID: string, lblText: string, pattern: string, loginButton: HTMLElement) {
   const label = document.createElement('label');
   label.setAttribute('for', `${attrID}`);
   label.textContent = lblText;
@@ -77,51 +81,50 @@ function showInputField(parent: HTMLElement, attrID: string, lblText: string, pa
   input.classList.add('user-input');
   parent.append(input);
 
-  return input;
+  const warn = document.createElement('div');
+  warn.setAttribute('id', `${attrID}-warning`);
+  warn.classList.add('input-warning');
+  parent.append(warn);
+
+  input.addEventListener('input', (e) => {
+    if (checkInput(e, input)) {
+      if (userDataValid.name === true && userDataValid.pass === true) loginButton.removeAttribute('disabled');
+    } else {
+      loginButton.setAttribute('disabled', '');
+    };
+  });
 }
 
-function checkInput(inputNmame: string) {
+function checkInput(event: Event | FocusEvent, inputObj: HTMLInputElement) {
+  let warnField: ChildNode;
+  if (inputObj && inputObj.parentElement && inputObj.parentElement.lastChild) {
+    warnField = inputObj.parentElement.lastChild;
 
+    if (inputObj.value.length == 0) {
+      warnField.textContent = '';
+      return false;
+    }
+  
+    if (inputObj.validity.patternMismatch) {  
+      event.preventDefault();
+      if (inputObj.id == 'user-name') {
+        warnField.textContent = warningMessage[0];
+        userDataValid.name = false;
+      };
+      if (inputObj.id == 'user-pass') {
+        warnField.textContent = warningMessage[1];
+        userDataValid.pass = false;
+      }
+      return false;
+    } else {
+      warnField.textContent = '';
+      if (inputObj.id == 'user-name') userDataValid.name = true;
+      if (inputObj.id == 'user-pass') userDataValid.pass = true;
+      return true;
+    }
+  }  
 }
 
-// function checkInput(event: Event | FocusEvent, inputObj: HTMLInputElement) {
-//     if (inputObj.value.length == 0) return;
-//     // if(event.target.value.length == 0) return;
-//     if (inputObj.validity.patternMismatch) {
-//         event.preventDefault();
-//         if (issueWarning(event, inputObj)) {
-//             inputObj.focus();
-//             closeWarnForCorrection(inputObj);
-//         } else {
-//             checkDataIsComplete(inputObj);
-//         }
-//     } else {
-//         checkDataIsComplete(inputObj);
-//     }
-// }
-
-// function checkDataIsComplete(inputObj: HTMLInputElement) {
-//     if (inputObj === lastNameInput) {
-//         // userData.lastName = inputObj.value;
-//         userDataValid.lastName = true;
-//         if (userDataValid.firstName === true) loginBTN.removeAttribute('disabled');
-//     } else {
-//         // userData.firstName = inputObj.value;
-//         userDataValid.firstName = true;
-//         if (userDataValid.lastName === true) loginBTN.removeAttribute('disabled');
-//     }
-// }
-
-// function closeWarnForCorrection(inputField: HTMLInputElement) {
-//     inputField.addEventListener(
-//         'input',
-//         () => {
-//             warningTip.remove();
-//             inputField.style.backgroundColor = 'var(--input-background-color)';
-//         },
-//         { once: true }
-//     );
-// }
 
 // function issueWarning(event: Event, inputObj: HTMLInputElement) {
 //     const string = inputObj.value;
@@ -143,27 +146,6 @@ function checkInput(inputNmame: string) {
 //     return true;
 // }
 
-// function showCollout(message: string, targetObj: HTMLInputElement) {
-//     targetObj.style.backgroundColor = 'var(--warning-color)';
-//     warningTip.textContent = message;
-//     // compensate surname input bottom padding
-//     if (targetObj.parentElement === inputWrapperLast) warningTip.style.bottom = '2rem';
-//     if (targetObj.parentElement !== null) targetObj.parentElement.append(warningTip);
-// }
-
-// function makeLoginWindow() {
-//     document.body.append(inputWindow);
-//     inputWindow.append(loginHeader);
-//     inputWindow.append(inputWrapperFirst);
-//     inputWrapperFirst.append(firstNameLBL);
-//     firstNameInput.value = '';
-//     inputWrapperFirst.append(firstNameInput);
-//     inputWindow.append(inputWrapperLast);
-//     inputWrapperLast.append(lastNameLBL);
-//     lastNameInput.value = '';
-//     inputWrapperLast.append(lastNameInput);
-//     inputWindow.append(loginBTN);
-// }
 
 // function saveInLocalStorage() {
 //     return new Promise((res) => {
