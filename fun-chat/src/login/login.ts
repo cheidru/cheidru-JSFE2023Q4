@@ -23,14 +23,14 @@ export function showLoginWindow() {
   loginWindow.classList.add('modal');
   document.body.append(loginWindow);
 
+  const pass = document.getElementById('user-pass');
+  const name = document.getElementById('user-name');
+
   showTitle(loginWindow);
 
   showLoginInput(loginWindow);
 
   showButtons(loginWindow);
-
-  const pass = document.getElementById('user-pass');
-  const name = document.getElementById('user-name');
 
   document.addEventListener('keydown', (e) => {
     if (e.code === 'Enter' && userDataValid.name === true && userDataValid.pass === true) {

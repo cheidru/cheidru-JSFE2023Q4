@@ -110,6 +110,7 @@ input {
 }
 
 .login-window-btn {
+  box-sizing: border-box;
   padding: 0.5rem 2rem;
   border-radius: 0.5rem;
   border-width: 0;
