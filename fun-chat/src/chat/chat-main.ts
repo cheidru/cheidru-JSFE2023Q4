@@ -1,7 +1,7 @@
-import { showHeader } from 'chat-header';
-import { showFooter } from 'chat-footer';
-import { showUserPanel } from 'chat-users';
-import { showMessagePanel } from 'chat-messages';
+import { showHeader } from './chat-header';
+import { showFooter } from './chat-footer';
+import { showUserPanel } from './chat-users';
+import { showMessagePanel } from './chat-messages';
 
 export const chatWrapper = document.createElement('div');
 
@@ -23,5 +23,3 @@ function showMainWindow(parent: HTMLElement) {
   showUserPanel(mainWrapper);
   showMessagePanel(mainWrapper);
 }
-
-

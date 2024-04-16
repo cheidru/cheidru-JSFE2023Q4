@@ -1,5 +1,5 @@
-import { showLoginInput } from 'login-input';
-import { showButtons, loginBTN } from 'login-buttons';
+import { showLoginInput } from './login-input';
+import { showButtons, loginBTN } from './login-buttons';
 import { showModal } from '../common/common';
 import { chatWrapper } from '../chat/chat-main';
 
@@ -8,7 +8,7 @@ export const userDataValid = {
   pass: false,
 };
 
-const activeUser = {
+export const activeUser = {
   name: '',
   pass: '',
 };
@@ -29,9 +29,9 @@ export function showLoginWindow() {
 
   document.addEventListener('keydown', (e) => {
     if (e.code === 'Enter' && userDataValid.name === true && userDataValid.pass === true) {
-      if (name !== null && pass !== null) checkServerAuth(name.textContent as string, pass.textContent as string);
+      if (activeUser.name !== null && activeUser.pass !== null) checkServerAuth(activeUser.name, activeUser.pass);
     } else {
-      if (name !== null && document.activeElement === name) {
+      if (activeUser.name !== null && document.activeElement === name) {
         if (pass !== null) pass.focus();
       } else {
         if (name !== null) name.focus();
@@ -40,7 +40,8 @@ export function showLoginWindow() {
   });
 
   loginBTN.addEventListener('click', () => {
-    if (name !== null && pass !== null) checkServerAuth(name.textContent as string, pass.textContent as string);
+    console.log('name = ', activeUser.name, 'pass = ', activeUser.pass);
+    if (activeUser.name !== null && activeUser.pass !== null) checkServerAuth(activeUser.name, activeUser.pass);
   });
 }
 
@@ -52,21 +53,22 @@ function showTitle(parent: HTMLElement) {
 }
 
 function checkServerAuth(name: string, pass: string) {
-  // ToDo Error handling 
+  console.log('checkServerAuth started');
+  // ToDo Error handling
   // https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications#connection_errors
-  const wSocket = new WebSocket("wss://localhost:4000");
-  wSocket.onopen = function() {
+  const wSocket = new WebSocket('ws://localhost:4000');
+  wSocket.onopen = function () {
+    console.log('wSocket opened');
     const userAuthData = {
       id: `user ${name} authentication request`,
-      type: "USER_LOGIN",
-      payload: {user: {login: `${name}`, password: `${pass}`,
-        },
-      },
-    }
+      type: 'USER_LOGIN',
+      payload: { user: { login: `${name}`, password: `${pass}` } },
+    };
     wSocket.send(JSON.stringify(userAuthData));
-  }
+  };
 
-  wSocket.onmessage = function(event) {
+  wSocket.onmessage = function (event) {
+    console.log('Server responce received');
     const serverAuthResp = JSON.parse(event.data);
     if (serverAuthResp.type === 'USER_LOGIN') {
       sessionStorage.setItem(name, pass);
@@ -80,8 +82,5 @@ function checkServerAuth(name: string, pass: string) {
       const loginErrorMSG = `User ${name} is already logged in`;
       showModal(loginErrorMSG, loginWindow);
     }
-
-  }
-
-
+  };
 }
