@@ -20,7 +20,6 @@ export function showButtons(parent: HTMLElement) {
     btnWrapper.append(infoBTN);
   
     infoBTN.addEventListener('click', () => {
-      parent.style.display = 'none';
       showModal(appInfo, parent);
     });
   }

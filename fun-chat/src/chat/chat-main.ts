@@ -3,11 +3,11 @@ import { showFooter } from 'chat-footer';
 import { showUserPanel } from 'chat-users';
 import { showMessagePanel } from 'chat-messages';
 
+export const chatWrapper = document.createElement('div');
 
 export function showChatWindow() {
-  const chatWrapper = document.createElement('div');
   chatWrapper.setAttribute('id', 'chat-wrapper');
-  // chatWrapper.classList.add('hidden-modal');
+  chatWrapper.classList.add('hidden-modal');
   document.body.append(chatWrapper);
 
   showHeader(chatWrapper);

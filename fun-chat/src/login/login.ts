@@ -1,5 +1,7 @@
 import { showLoginInput } from 'login-input';
 import { showButtons, loginBTN } from 'login-buttons';
+import { showModal } from '../common/common';
+import { chatWrapper } from '../chat/chat-main';
 
 export const userDataValid = {
   name: false,
@@ -11,9 +13,9 @@ const activeUser = {
   pass: '',
 };
 
+const loginWindow = document.createElement('div');
+
 export function showLoginWindow() {
-  // if (powerLayer !== null) powerLayer.style.display = 'block';
-  const loginWindow = document.createElement('div');
   loginWindow.setAttribute('id', 'login-wrapper');
   loginWindow.classList.add('modal');
   document.body.append(loginWindow);
@@ -50,7 +52,36 @@ function showTitle(parent: HTMLElement) {
 }
 
 function checkServerAuth(name: string, pass: string) {
-  activeUser.name = name;
-  activeUser.pass = pass;
-  sessionStorage.setItem(name, pass);
+  // ToDo Error handling 
+  // https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications#connection_errors
+  const wSocket = new WebSocket("wss://localhost:4000");
+  wSocket.onopen = function() {
+    const userAuthData = {
+      id: `user ${name} authentication request`,
+      type: "USER_LOGIN",
+      payload: {user: {login: `${name}`, password: `${pass}`,
+        },
+      },
+    }
+    wSocket.send(JSON.stringify(userAuthData));
+  }
+
+  wSocket.onmessage = function(event) {
+    const serverAuthResp = JSON.parse(event.data);
+    if (serverAuthResp.type === 'USER_LOGIN') {
+      sessionStorage.setItem(name, pass);
+      activeUser.name = name;
+      activeUser.pass = pass;
+      loginWindow.classList.add('hidden-modal');
+      chatWrapper.classList.remove('hidden-modal');
+    }
+
+    if (serverAuthResp.type === 'ERROR') {
+      const loginErrorMSG = `User ${name} is already logged in`;
+      showModal(loginErrorMSG, loginWindow);
+    }
+
+  }
+
+
 }
