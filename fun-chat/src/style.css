@@ -69,10 +69,6 @@ input {
   justify-self: right;
 }
 
-/* #login-btn {
-  order: 3;
-} */
-
 .login-label {
   width: 5rem;
   flex-shrink: 0;

@@ -68,17 +68,19 @@ function checkServerAuth(name: string, pass: string) {
   };
 
   wSocket.onmessage = function (event) {
-    console.log('Server responce received');
     const serverAuthResp = JSON.parse(event.data);
+    console.log('Server response received: ', serverAuthResp);
     if (serverAuthResp.type === 'USER_LOGIN') {
       sessionStorage.setItem(name, pass);
       activeUser.name = name;
       activeUser.pass = pass;
-      loginWindow.classList.add('hidden-modal');
+      loginWindow.style.display = 'none';
       chatWrapper.classList.remove('hidden-modal');
+      console.log('Chat is opened');
     }
 
     if (serverAuthResp.type === 'ERROR') {
+      console.log('Error received');
       const loginErrorMSG = `User ${name} is already logged in`;
       showModal(loginErrorMSG, loginWindow);
     }
