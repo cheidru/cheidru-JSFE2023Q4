@@ -1,8 +1,9 @@
 import './style.css';
 import { showLoginWindow } from './login/login';
 import { createModal } from './common/common';
-import { showChatWindow } from './chat/chat-main';
+import { createChatWindow } from './chat/chat-main';
 
 createModal();
+createChatWindow();
 showLoginWindow();
-showChatWindow();
+

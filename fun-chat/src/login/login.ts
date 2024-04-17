@@ -2,6 +2,7 @@ import { showLoginInput } from './login-input';
 import { showButtons, loginBTN } from './login-buttons';
 import { showModal } from '../common/common';
 import { chatWrapper } from '../chat/chat-main';
+import { wSocket } from '../api/api';
 
 export const userDataValid = {
   name: false,
@@ -56,7 +57,7 @@ function checkServerAuth(name: string, pass: string) {
   console.log('checkServerAuth started');
   // ToDo Error handling
   // https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications#connection_errors
-  const wSocket = new WebSocket('ws://localhost:4000');
+
   wSocket.onopen = function () {
     console.log('wSocket opened');
     const userAuthData = {
@@ -69,7 +70,7 @@ function checkServerAuth(name: string, pass: string) {
 
   wSocket.onmessage = function (event) {
     const serverAuthResp = JSON.parse(event.data);
-    console.log('Server response received: ', serverAuthResp);
+    console.log('Server response received: ', serverAuthResp, 'response id = ', serverAuthResp.id);
     if (serverAuthResp.type === 'USER_LOGIN') {
       sessionStorage.setItem(name, pass);
       activeUser.name = name;
@@ -77,6 +78,23 @@ function checkServerAuth(name: string, pass: string) {
       loginWindow.style.display = 'none';
       chatWrapper.classList.remove('hidden-modal');
       console.log('Chat is opened');
+
+      const chatUserOnlineData = {
+        id: `list of users online`,
+        type: 'USER_ACTIVE',
+        payload: null,
+      };
+
+      wSocket.send(JSON.stringify(chatUserOnlineData));
+
+      const chatUserOfflineData = {
+        id: `list of users offline`,
+        type: 'USER_INACTIVE',
+        payload: null,
+      };
+
+      wSocket.send(JSON.stringify(chatUserOfflineData));
+
     }
 
     if (serverAuthResp.type === 'ERROR') {

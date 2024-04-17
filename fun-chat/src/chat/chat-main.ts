@@ -5,7 +5,7 @@ import { showMessagePanel } from './chat-messages';
 
 export const chatWrapper = document.createElement('div');
 
-export function showChatWindow() {
+export function createChatWindow() {
   chatWrapper.setAttribute('id', 'chat-wrapper');
   chatWrapper.classList.add('hidden-modal');
   document.body.append(chatWrapper);
@@ -23,3 +23,13 @@ function showMainWindow(parent: HTMLElement) {
   showUserPanel(mainWrapper);
   showMessagePanel(mainWrapper);
 }
+
+
+
+
+
+
+
+
+
+
