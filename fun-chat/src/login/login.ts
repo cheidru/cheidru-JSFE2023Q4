@@ -2,7 +2,6 @@ import { showLoginInput } from './login-input';
 import { showButtons, loginBTN } from './login-buttons';
 import { showModal } from '../common/common';
 import { chatWrapper } from '../chat/chat-main';
-import { wSocket } from '../api/api';
 
 export const userDataValid = {
   name: false,
@@ -10,9 +9,12 @@ export const userDataValid = {
 };
 
 export const activeUser = {
-  name: '',
-  pass: '',
+  name: 'test',
+  pass: 'test',
 };
+
+export let usersOnLine = [];
+export let usersOffLine = [];
 
 const loginWindow = document.createElement('div');
 
@@ -57,6 +59,7 @@ function checkServerAuth(name: string, pass: string) {
   console.log('checkServerAuth started');
   // ToDo Error handling
   // https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications#connection_errors
+  const wSocket = new WebSocket('ws://localhost:4000');
 
   wSocket.onopen = function () {
     console.log('wSocket opened');
@@ -76,7 +79,7 @@ function checkServerAuth(name: string, pass: string) {
       activeUser.name = name;
       activeUser.pass = pass;
       loginWindow.style.display = 'none';
-      chatWrapper.classList.remove('hidden-modal');
+      chatWrapper.style.display = 'flex';
       console.log('Chat is opened');
 
       const chatUserOnlineData = {
@@ -94,7 +97,16 @@ function checkServerAuth(name: string, pass: string) {
       };
 
       wSocket.send(JSON.stringify(chatUserOfflineData));
+    }
 
+    if (serverAuthResp.type === 'USER_ACTIVE') {
+      console.log('Active users received');
+      usersOnLine = serverAuthResp.payload;
+    }
+
+    if (serverAuthResp.type === 'USER_INACTIVE') {
+      console.log('Inactive users received');
+      usersOffLine = serverAuthResp.payload;
     }
 
     if (serverAuthResp.type === 'ERROR') {

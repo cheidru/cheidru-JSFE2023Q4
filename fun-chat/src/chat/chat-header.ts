@@ -1,12 +1,13 @@
-import { activeUser } from "../login/login";
+import { activeUser } from '../login/login';
 
 export function showHeader(parent: HTMLElement) {
   const headerWrapper = document.createElement('div');
-  headerWrapper.setAttribute('id', 'header-wrapper');
+  headerWrapper.setAttribute('id', 'chat-header-wrapper');
   parent.append(headerWrapper);
 
   const ownUserName = document.createElement('div');
   ownUserName.setAttribute('id', 'own-user-name');
+  console.log('activeUser.name = ', activeUser);
   ownUserName.textContent = activeUser.name;
   headerWrapper.append(ownUserName);
 

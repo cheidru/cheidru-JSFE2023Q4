@@ -2,12 +2,13 @@ import { showHeader } from './chat-header';
 import { showFooter } from './chat-footer';
 import { showUserPanel } from './chat-users';
 import { showMessagePanel } from './chat-messages';
+// import { usersOnLine, usersOffLine } from '../login/login';
 
 export const chatWrapper = document.createElement('div');
 
 export function createChatWindow() {
   chatWrapper.setAttribute('id', 'chat-wrapper');
-  chatWrapper.classList.add('hidden-modal');
+  chatWrapper.style.display = 'none';
   document.body.append(chatWrapper);
 
   showHeader(chatWrapper);
@@ -23,13 +24,3 @@ function showMainWindow(parent: HTMLElement) {
   showUserPanel(mainWrapper);
   showMessagePanel(mainWrapper);
 }
-
-
-
-
-
-
-
-
-
-

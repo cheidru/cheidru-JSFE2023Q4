@@ -13,6 +13,4 @@ export function showUserPanel(parent: HTMLElement) {
   userPanelWrapper.append(userList);
 }
 
-export function addUserItem(userList: []) {
-
-}
+// export function addUserItem(userList: []) {};
