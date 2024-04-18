@@ -1,3 +1,5 @@
+import { userOnLine, userOffLine } from '../api/api';
+
 export function showUserPanel(parent: HTMLElement) {
   const userPanelWrapper = document.createElement('div');
   userPanelWrapper.setAttribute('id', 'user-panel-wrapper');

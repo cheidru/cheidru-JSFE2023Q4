@@ -159,11 +159,6 @@ button:hover:not(:disabled) {
   z-index: 1;
 }
 
-#chat-header-wrapper {
-  position: fixed;
-  top: 0;
-}
-
 #header-btn-wrapper {
   display: flex;
   flex-direction: row;
@@ -174,11 +169,11 @@ button:hover:not(:disabled) {
 
 #main-chat-wrapper {
   width: 100vw;
-  height: auto;
   position: fixed;
   top: 0;
   display: flex;
   flex-direction: row;
+  flex-grow: 1;
 }
 
 #user-panel-wrapper,
@@ -192,7 +187,7 @@ button:hover:not(:disabled) {
 }
 
 #user-panel-wrapper {
-  width: 30vw;
+  flex-grow: 1;
   background-color: var(--input-focus-bg-color);
 }
 
@@ -210,7 +205,7 @@ button:hover:not(:disabled) {
 
 #messenger-wrapper {
   position: relative;
-  width: 70%;
+  flex-grow: 2;
   height: 100%;
   margin-bottom: 30rem;
 }
@@ -238,11 +233,6 @@ button:hover:not(:disabled) {
   display: flex;
   width: 100%;
   height: 2rem;
-}
-
-#chat-footer-wrapper {
-  position: fixed;
-  bottom: 0;
 }
 
 .footer-link {
