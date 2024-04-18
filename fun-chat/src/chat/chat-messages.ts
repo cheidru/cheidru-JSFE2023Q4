@@ -35,9 +35,11 @@ function sendNewMessagePanel(parent: HTMLElement) {
 
   const newMessage = document.createElement('input');
   newMessage.setAttribute('id', 'new-message-input');
+  newMessage.setAttribute('placeholder', 'Write new message ...');
   newMessageWrapper.append(newMessage);
 
   const sendBTN = document.createElement('button');
   sendBTN.setAttribute('id', 'send-message-btn');
+  sendBTN.textContent = 'Send';
   newMessageWrapper.append(sendBTN);
 }
