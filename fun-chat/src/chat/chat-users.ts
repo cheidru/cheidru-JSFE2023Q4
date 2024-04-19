@@ -17,7 +17,7 @@ export function showUserPanel(parent: HTMLElement) {
   populateUserList(userList, userOnLine, userOffLine);
 }
 
-function populateUserList(parent: HTMLElement, userOnLine: UserInfo[], userOffLine: UserInfo[]) {
+export function populateUserList(parent: HTMLElement, userOnLine: UserInfo[], userOffLine: UserInfo[]) {
   console.log('Making User List');
   if (userOnLine.length > 0) {
     for (let i = 0; i < userOnLine.length; i++) {
