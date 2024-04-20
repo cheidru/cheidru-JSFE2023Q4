@@ -19,12 +19,12 @@ function showMessagePanelHeader(parent: HTMLElement) {
 
   const userName = document.createElement('div');
   userName.setAttribute('id', 'user-name');
-  userName.textContent = 'test contact';
+  userName.textContent = 'Select contact from user list';
   headerWrapper.append(userName);
 
   const userStatus = document.createElement('div');
   userStatus.setAttribute('id', 'user-status');
-  userStatus.textContent = 'online';
+  userStatus.textContent = '';
   headerWrapper.append(userStatus);
 }
 

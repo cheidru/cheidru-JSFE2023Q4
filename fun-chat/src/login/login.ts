@@ -8,8 +8,8 @@ export const userDataValid = {
 };
 
 export const activeUser = {
-  name: 'test',
-  pass: 'test',
+  name: '',
+  pass: '',
 };
 
 export const loginWindow = document.createElement('div');

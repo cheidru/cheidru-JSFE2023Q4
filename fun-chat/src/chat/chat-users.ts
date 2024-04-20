@@ -1,4 +1,6 @@
-import { userOnLine, userOffLine, UserInfo } from '../api/api';
+import { UserInfo } from '../api/api';
+
+export const userList = document.createElement('ul');
 
 export function showUserPanel(parent: HTMLElement) {
   const userPanelWrapper = document.createElement('div');
@@ -10,15 +12,12 @@ export function showUserPanel(parent: HTMLElement) {
   userSearch.setAttribute('placeholder', 'Search ...');
   userPanelWrapper.append(userSearch);
 
-  const userList = document.createElement('ul');
   userList.setAttribute('id', 'user-list');
   userPanelWrapper.append(userList);
-
-  populateUserList(userList, userOnLine, userOffLine);
 }
 
 export function populateUserList(parent: HTMLElement, userOnLine: UserInfo[], userOffLine: UserInfo[]) {
-  console.log('Making User List');
+  console.log('Making User List', parent, userOnLine, userOffLine);
   if (userOnLine.length > 0) {
     for (let i = 0; i < userOnLine.length; i++) {
       const userWrapper = document.createElement('div');
@@ -34,6 +33,7 @@ export function populateUserList(parent: HTMLElement, userOnLine: UserInfo[], us
       userID.classList.add('user-id');
       userID.textContent = userOnLine[i].login;
       userWrapper.append(userID);
+      console.log(userWrapper);
     }
   }
 
@@ -52,6 +52,7 @@ export function populateUserList(parent: HTMLElement, userOnLine: UserInfo[], us
       userID.classList.add('user-id');
       userID.textContent = userOffLine[i].login;
       userWrapper.append(userID);
+      console.log(userWrapper);
     }
   }
 }

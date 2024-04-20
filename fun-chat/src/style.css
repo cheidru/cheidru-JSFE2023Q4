@@ -212,6 +212,28 @@ button:hover:not(:disabled) {
   flex-direction: column;
 }
 
+.user-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  font-family: Arial;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.user-wrapper:hover {
+  font-weight: bold;
+}
+
+.user-status-icon {
+  width: 1rem;
+  height: 1rem;
+  background-color:rgb(15, 106, 203);
+  border-radius: 50%;
+  border-width: 0px;
+}
+
 #messenger-wrapper {
   position: relative;
   flex-grow: 2;
