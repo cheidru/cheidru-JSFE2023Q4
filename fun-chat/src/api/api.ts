@@ -37,6 +37,7 @@ function authorizeUser(socketObj: WebSocket, name: string, pass: string) {
 
 function onMessageAction(event: MessageEvent, socketObj: WebSocket, name: string, pass: string) {
   const serverResp = JSON.parse(event.data);
+  const messageArray = [];
   console.log('Server response received: ', serverResp, 'response id = ', serverResp.id);
 
   switch (serverResp.type) {
@@ -75,7 +76,8 @@ function onMessageAction(event: MessageEvent, socketObj: WebSocket, name: string
     case 'MSG_SEND':
       console.log('User sent mail or received mail');
       console.log(serverResp.payload.message);
-      showMessages(serverResp.payload.message);
+      messageArray.push(serverResp.payload.message);
+      showMessages(messageArray as []);
       break;
     case 'ERROR':
       console.log('Error received');
@@ -99,6 +101,7 @@ function updateMessengerTitle(status: string) {
   }
   if (status === 'logout') {
     userToChatStatus.textContent = 'offline';
+    // Doesn't work
     userToChatStatus.style.color = 'rgb(57, 57, 57)';
   }
 }

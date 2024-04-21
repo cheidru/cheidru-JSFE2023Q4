@@ -4,6 +4,17 @@ export const userToChatName = document.createElement('div');
 export const userToChatStatus = document.createElement('div');
 const messages = document.createElement('div');
 
+export type Message = {
+  id: number;
+  from: string;
+  to: string;
+  text: string;
+  datetime: Date;
+  isDelivered: boolean;
+  isReaded: boolean;
+  isEdited: boolean;
+};
+
 export function showMessagePanel(parent: HTMLElement) {
   const messengerWrapper = document.createElement('div');
   messengerWrapper.setAttribute('id', 'messenger-wrapper');
@@ -51,9 +62,9 @@ function sendNewMessagePanel(parent: HTMLElement) {
   });
 }
 
-export function showMessages(messageArray: []) {
+export function showMessages(messageArray: Message[]) {
   const messageNum = messageArray.length;
-  console.log(messageArray);
+  console.log('showMessages messageArray = ', messageArray, 'messageNum = ', messageNum);
 
   for (let i = 0; i < messageNum; i++) {
     const messageWrapper = document.createElement('div');
@@ -62,14 +73,24 @@ export function showMessages(messageArray: []) {
 
     const messageHeader = document.createElement('div');
     messageHeader.classList.add('message-header');
+    const fro = messageArray[i].from === userToChatName.textContent ? messageArray[i].from : 'You';
+    messageWrapper.textContent = fro + ' ' + new Date(messageArray[i].datetime);
     messageWrapper.append(messageHeader);
 
     const messageTxt = document.createElement('div');
     messageTxt.classList.add('message-txt');
+    messageTxt.textContent = messageArray[i].text;
     messageWrapper.append(messageTxt);
 
     const messageFooter = document.createElement('div');
-    messageFooter.classList.add('message-txt');
+    messageFooter.classList.add('message-footer');
+    if (messageArray[i].isEdited === true) {
+      messageFooter.textContent = 'Edited';
+    } else if (messageArray[i].isReaded === true) {
+      messageFooter.textContent = 'Opened';
+    } else if (messageArray[i].isDelivered === true) {
+      messageFooter.textContent = 'Delivered';
+    }
     messageWrapper.append(messageFooter);
   }
 }

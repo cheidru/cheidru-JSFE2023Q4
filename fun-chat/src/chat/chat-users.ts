@@ -44,6 +44,7 @@ export function showUserPanel(parent: HTMLElement) {
     userToChatName.textContent = selectedUserElement.textContent;
     userToChatStatus.textContent = selectedUserElement.dataset.status as string;
     if (userToChatStatus.textContent === 'online') userToChatStatus.style.color = '#87A922';
+    if (userToChatStatus.textContent === 'offline') userToChatStatus.style.color = 'rgb(57, 57, 57)';
     fillMessageList();
   });
 }
