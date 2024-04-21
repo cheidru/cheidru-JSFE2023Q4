@@ -2,7 +2,7 @@ import { userDataValid, activeUser } from './login';
 import { loginBTN } from './login-buttons';
 
 const warningMessage = [
-  'Minimum name length is 3 latin letters. First letter must be in upper case',
+  'Minimum name length is 3 latin letters. Only first letter must be in upper case',
   'Minimum password length is 5 characters. It must contain letters and numbers',
 ];
 

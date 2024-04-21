@@ -1,3 +1,9 @@
+import { sendMessage } from '../api/api';
+
+export const userToChatName = document.createElement('div');
+export const userToChatStatus = document.createElement('div');
+const messages = document.createElement('div');
+
 export function showMessagePanel(parent: HTMLElement) {
   const messengerWrapper = document.createElement('div');
   messengerWrapper.setAttribute('id', 'messenger-wrapper');
@@ -5,7 +11,6 @@ export function showMessagePanel(parent: HTMLElement) {
 
   showMessagePanelHeader(messengerWrapper);
 
-  const messages = document.createElement('div');
   messages.setAttribute('id', 'messages');
   messengerWrapper.append(messages);
 
@@ -17,15 +22,13 @@ function showMessagePanelHeader(parent: HTMLElement) {
   headerWrapper.setAttribute('id', 'message-header-wrapper');
   parent.append(headerWrapper);
 
-  const userName = document.createElement('div');
-  userName.setAttribute('id', 'user-name');
-  userName.textContent = 'Select contact from user list';
-  headerWrapper.append(userName);
+  userToChatName.setAttribute('id', 'user-name');
+  userToChatName.textContent = 'Select contact from user list';
+  headerWrapper.append(userToChatName);
 
-  const userStatus = document.createElement('div');
-  userStatus.setAttribute('id', 'user-status');
-  userStatus.textContent = '';
-  headerWrapper.append(userStatus);
+  userToChatStatus.setAttribute('id', 'user-status');
+  userToChatStatus.textContent = '';
+  headerWrapper.append(userToChatStatus);
 }
 
 function sendNewMessagePanel(parent: HTMLElement) {
@@ -42,4 +45,31 @@ function sendNewMessagePanel(parent: HTMLElement) {
   sendBTN.setAttribute('id', 'send-message-btn');
   sendBTN.textContent = 'Send';
   newMessageWrapper.append(sendBTN);
+
+  sendBTN.addEventListener('click', () => {
+    sendMessage(newMessage.value);
+  });
+}
+
+export function showMessages(messageArray: []) {
+  const messageNum = messageArray.length;
+  console.log(messageArray);
+
+  for (let i = 0; i < messageNum; i++) {
+    const messageWrapper = document.createElement('div');
+    messageWrapper.classList.add('message-wrapper');
+    messages.append(messageWrapper);
+
+    const messageHeader = document.createElement('div');
+    messageHeader.classList.add('message-header');
+    messageWrapper.append(messageHeader);
+
+    const messageTxt = document.createElement('div');
+    messageTxt.classList.add('message-txt');
+    messageWrapper.append(messageTxt);
+
+    const messageFooter = document.createElement('div');
+    messageFooter.classList.add('message-txt');
+    messageWrapper.append(messageFooter);
+  }
 }
