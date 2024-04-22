@@ -73,9 +73,18 @@ export function showMessages(messageArray: Message[]) {
 
     const messageHeader = document.createElement('div');
     messageHeader.classList.add('message-header');
-    const fro = messageArray[i].from === userToChatName.textContent ? messageArray[i].from : 'You';
-    messageWrapper.textContent = fro + ' ' + new Date(messageArray[i].datetime);
     messageWrapper.append(messageHeader);
+
+    const messageSender = document.createElement('div');
+    const fro = messageArray[i].from === userToChatName.textContent ? messageArray[i].from : 'You';
+    messageSender.textContent = fro;
+    if (fro === 'You') messageWrapper.style.alignSelf = 'flex-start';
+    messageHeader.append(messageSender);
+
+    const messageDate = document.createElement('div');
+    const msgDate = new Date(messageArray[i].datetime);
+    messageDate.textContent = `${msgDate.getDate()}-${msgDate.getMonth()}-${msgDate.getFullYear()} ${msgDate.getHours()}:${msgDate.getMinutes()}:${msgDate.getSeconds()}`;
+    messageHeader.append(messageDate);
 
     const messageTxt = document.createElement('div');
     messageTxt.classList.add('message-txt');

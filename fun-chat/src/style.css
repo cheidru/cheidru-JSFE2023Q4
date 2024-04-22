@@ -258,25 +258,29 @@ button:hover:not(:disabled) {
   height: 100%;  
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+  padding: 1rem;
 }
 
 .message-wrapper {
-  width: 80%;
+  width: 70%;
   height: auto;
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
-  padding: 0.2rem;
+  padding: 0.2rem 1rem;
   align-items: start;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .message-header,
 .message-footer {
   width: 100%;
-  height: 1rem;
+  height: auto;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   gap: 0.5rem;
   background-color: var(--common-title-color);
 }
@@ -285,6 +289,7 @@ button:hover:not(:disabled) {
   width: 100%;  
   height: auto;
   flex-grow: 1;
+  padding: 0.5rem 0;
   background-color: var(--input-focus-bg-color);
 }
 

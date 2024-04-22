@@ -1,6 +1,9 @@
 import { activeUser } from '../login/login';
+import { showModal, appInfo } from '../common/common';
+import { logoutCurrentUser } from '../api/api';
 
 export const ownUserName = document.createElement('div');
+
 export function showHeader(parent: HTMLElement) {
   const headerWrapper = document.createElement('div');
   headerWrapper.setAttribute('id', 'chat-header-wrapper');
@@ -25,8 +28,16 @@ export function showHeader(parent: HTMLElement) {
   infoBTN.textContent = 'Info';
   btnWrapper.append(infoBTN);
 
+  infoBTN.addEventListener('click', () => {
+    showModal(appInfo, parent);
+  })
+
   const logOutBTN = document.createElement('button');
   logOutBTN.setAttribute('id', 'header-logout-btn');
   logOutBTN.innerText = 'Log out';
   btnWrapper.append(logOutBTN);
+
+  logOutBTN.addEventListener('click', () => {
+    logoutCurrentUser();
+  })  
 }

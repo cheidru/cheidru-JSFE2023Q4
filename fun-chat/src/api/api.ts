@@ -79,6 +79,15 @@ function onMessageAction(event: MessageEvent, socketObj: WebSocket, name: string
       messageArray.push(serverResp.payload.message);
       showMessages(messageArray as []);
       break;
+    case 'USER_LOGOUT':
+      console.log('A user logged out');
+      closeChatWindow();
+      break;
+    case 'USER_EXTERNAL_LOGOUT':
+      console.log('A user logged out');
+      if (serverResp.payload.user.login === userToChatName.textContent) updateMessengerTitle('logout');
+      requestRegisteredUserInfo(socketObj);
+      break;
     case 'ERROR':
       console.log('Error received');
       showModal('User ' + name + ' is already logged in', loginWindow);
@@ -126,6 +135,11 @@ function openChatWindow(name: string, pass: string) {
   chatWrapper.style.display = 'flex';
 }
 
+function closeChatWindow() {
+  loginWindow.style.display = 'flex';
+  chatWrapper.style.display = 'none';
+}
+
 function requestRegisteredUserInfo(socketObj: WebSocket) {
   const chatUserOnlineData = {
     id: `list of users online`,
@@ -159,3 +173,18 @@ export function sendMessage(message: string) {
   };
   wSocket.send(JSON.stringify(messageObj));
 }
+
+export function logoutCurrentUser() {
+  const messageObj = {
+    id: 'log out user ' + activeUser.name,
+    type: "USER_LOGOUT",
+    payload: {
+      user: {
+        login: activeUser.name,
+        password: activeUser.pass,
+      }
+    }
+  };
+  wSocket.send(JSON.stringify(messageObj));
+}
+
