@@ -63,11 +63,6 @@ function onMessageAction(event: MessageEvent, socketObj: WebSocket, name: string
       if (serverResp.payload.user.login === userToChatName.textContent) updateMessengerTitle('login');
       requestRegisteredUserInfo(socketObj);
       break;
-    case 'USER_EXTERNAL_LOGOUT':
-      console.log('Third-party User Logged out');
-      if (serverResp.payload.user.login === userToChatName.textContent) updateMessengerTitle('logout');
-      requestRegisteredUserInfo(socketObj);
-      break;
     case 'MSG_FROM_USER':
       console.log('User Mailing history fetched');
       console.log(serverResp.payload.messages);
@@ -177,14 +172,13 @@ export function sendMessage(message: string) {
 export function logoutCurrentUser() {
   const messageObj = {
     id: 'log out user ' + activeUser.name,
-    type: "USER_LOGOUT",
+    type: 'USER_LOGOUT',
     payload: {
       user: {
         login: activeUser.name,
         password: activeUser.pass,
-      }
-    }
+      },
+    },
   };
   wSocket.send(JSON.stringify(messageObj));
 }
-

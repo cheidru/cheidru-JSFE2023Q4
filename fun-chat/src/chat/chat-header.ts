@@ -30,7 +30,7 @@ export function showHeader(parent: HTMLElement) {
 
   infoBTN.addEventListener('click', () => {
     showModal(appInfo, parent);
-  })
+  });
 
   const logOutBTN = document.createElement('button');
   logOutBTN.setAttribute('id', 'header-logout-btn');
@@ -39,5 +39,5 @@ export function showHeader(parent: HTMLElement) {
 
   logOutBTN.addEventListener('click', () => {
     logoutCurrentUser();
-  })  
+  });
 }

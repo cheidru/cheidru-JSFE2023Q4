@@ -6,7 +6,7 @@
     --car-btn-bg-color: rgb(140, 216, 189);
     --border-radius: 0.5rem;
     --common-title-color: rgb(190, 214, 230);
-    --input-focus-bg-color: lightgray;
+    --input-focus-bg-color: rgb(211, 209, 209);
     --input-focus-color: black;
     --race-btn-bg-color: #e2f9b6;
     --winners-header-bg-color: rgb(15, 106, 203);
@@ -65,14 +65,17 @@
 }
 
 input {
-  width: 10rem;
+  width: 8rem;
+  height: auto;
   justify-self: right;
+  font-size: 1.2rem;
 }
 
 .login-label {
-  width: 5rem;
+  width: 6rem;
   flex-shrink: 0;
   text-align: left;
+  font-size: 1.2rem;
 }
 
 .login-input-wrapper {
@@ -90,7 +93,7 @@ input {
 .input-warning {
   width: 100%;
   color: rgb(205, 45, 17);
-  font-size: 0.9em;
+  font-size: 1.1em;
 }
 
 #login-btn-wrapper {
@@ -242,7 +245,7 @@ button:hover:not(:disabled) {
 
 #message-header-wrapper {
   width: 100%;
-  height: 1.5rem;
+  height: 2rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -254,12 +257,27 @@ button:hover:not(:disabled) {
 }
 
 #messages {
+  position: relative;
   width: 100%;
-  height: 100%;  
+  height: calc(100% - 8rem);  
   display: flex;
   flex-direction: column;
+  flex-grow: 0;
   align-items: flex-end;
+  gap: 0.5rem;
   padding: 1rem;
+  overflow-y: auto;
+}
+
+#chat-invite-modal {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: auto;
+  height: auto;
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  transform: translate(-50%, -50%);
 }
 
 .message-wrapper {
@@ -268,29 +286,33 @@ button:hover:not(:disabled) {
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
-  padding: 0.2rem 1rem;
   align-items: start;
   justify-content: space-between;
+  font-size: 1.2rem;
   overflow: hidden;
 }
 
 .message-header,
 .message-footer {
+  box-sizing: border-box;
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 0.5rem;
-  background-color: var(--common-title-color);
+  padding: 0.2rem 1.5rem;
+  font-size: 0.9rem;
+  font-family:Arial, Helvetica, sans-serif;
+  background-color: rgb(228, 225, 225);
 }
 
 .message-txt {
   width: 100%;  
   height: auto;
   flex-grow: 1;
-  padding: 0.5rem 0;
-  background-color: var(--input-focus-bg-color);
+  padding: 0.5rem 1rem;
+  background-color: whitesmoke;
 }
 
 #new-message-wrapper {

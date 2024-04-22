@@ -2,7 +2,14 @@ import { sendMessage } from '../api/api';
 
 export const userToChatName = document.createElement('div');
 export const userToChatStatus = document.createElement('div');
+const inviteMessage = document.createElement('div');
 const messages = document.createElement('div');
+export const sendBTN = document.createElement('button');
+
+export function changeInviteMSG(message: string) {
+  console.log('changeInviteMSG to ', message);
+  inviteMessage.textContent = message;
+}
 
 export type Message = {
   id: number;
@@ -10,9 +17,11 @@ export type Message = {
   to: string;
   text: string;
   datetime: Date;
-  isDelivered: boolean;
-  isReaded: boolean;
-  isEdited: boolean;
+  status: {
+    isDelivered: boolean;
+    isReaded: boolean;
+    isEdited: boolean;
+  };
 };
 
 export function showMessagePanel(parent: HTMLElement) {
@@ -25,6 +34,10 @@ export function showMessagePanel(parent: HTMLElement) {
   messages.setAttribute('id', 'messages');
   messengerWrapper.append(messages);
 
+  inviteMessage.setAttribute('id', 'chat-invite-modal');
+  inviteMessage.textContent = 'Select a user to start messaging';
+  messengerWrapper.append(inviteMessage);
+
   sendNewMessagePanel(messengerWrapper);
 }
 
@@ -34,7 +47,7 @@ function showMessagePanelHeader(parent: HTMLElement) {
   parent.append(headerWrapper);
 
   userToChatName.setAttribute('id', 'user-name');
-  userToChatName.textContent = 'Select contact from user list';
+  userToChatName.textContent = '';
   headerWrapper.append(userToChatName);
 
   userToChatStatus.setAttribute('id', 'user-status');
@@ -52,18 +65,26 @@ function sendNewMessagePanel(parent: HTMLElement) {
   newMessage.setAttribute('placeholder', 'Write new message ...');
   newMessageWrapper.append(newMessage);
 
-  const sendBTN = document.createElement('button');
+  newMessage.addEventListener('input', () => {
+    if (newMessage.value.length > 0) sendBTN.removeAttribute('disabled');
+    if (newMessage.value.length === 0) sendBTN.setAttribute('disabled', '');
+  });
+
   sendBTN.setAttribute('id', 'send-message-btn');
   sendBTN.textContent = 'Send';
   newMessageWrapper.append(sendBTN);
 
   sendBTN.addEventListener('click', () => {
+    inviteMessage.style.display = 'none';
     sendMessage(newMessage.value);
+    newMessage.value = '';
   });
 }
 
 export function showMessages(messageArray: Message[]) {
   const messageNum = messageArray.length;
+  if (messageArray.length > 0) changeInviteMSG('');
+
   console.log('showMessages messageArray = ', messageArray, 'messageNum = ', messageNum);
 
   for (let i = 0; i < messageNum; i++) {
@@ -83,7 +104,7 @@ export function showMessages(messageArray: Message[]) {
 
     const messageDate = document.createElement('div');
     const msgDate = new Date(messageArray[i].datetime);
-    messageDate.textContent = `${msgDate.getDate()}-${msgDate.getMonth()}-${msgDate.getFullYear()} ${msgDate.getHours()}:${msgDate.getMinutes()}:${msgDate.getSeconds()}`;
+    messageDate.textContent = `${norm(msgDate.getDate())}-${norm(msgDate.getMonth())}-${msgDate.getFullYear()} ${norm(msgDate.getHours())}:${norm(msgDate.getMinutes())}:${norm(msgDate.getSeconds())}`;
     messageHeader.append(messageDate);
 
     const messageTxt = document.createElement('div');
@@ -93,13 +114,19 @@ export function showMessages(messageArray: Message[]) {
 
     const messageFooter = document.createElement('div');
     messageFooter.classList.add('message-footer');
-    if (messageArray[i].isEdited === true) {
+    if (messageArray[i].status.isEdited === true) {
       messageFooter.textContent = 'Edited';
-    } else if (messageArray[i].isReaded === true) {
+    } else if (messageArray[i].status.isReaded === true) {
       messageFooter.textContent = 'Opened';
-    } else if (messageArray[i].isDelivered === true) {
+    } else if (messageArray[i].status.isDelivered === true) {
       messageFooter.textContent = 'Delivered';
+    } else {
+      messageFooter.textContent = 'Not delivered';
     }
     messageWrapper.append(messageFooter);
   }
+}
+
+function norm(dayMin: number) {
+  return dayMin < 10 ? '0' + dayMin : dayMin.toString();
 }

@@ -1,5 +1,5 @@
 import { UserInfo, fillMessageList } from '../api/api';
-import { userToChatName, userToChatStatus } from './chat-messages';
+import { userToChatName, userToChatStatus, changeInviteMSG, sendBTN } from './chat-messages';
 
 export const userList = document.createElement('ul');
 export let selectedContact = '';
@@ -27,12 +27,14 @@ export function showUserPanel(parent: HTMLElement) {
       selectedContact = userNameElement.textContent as string;
       selectedUserElement = userNameElement;
       userNameElement.style.color = 'blue';
+      changeInviteMSG('Start messaging');
     }
     if (element !== null && element.parentElement !== null && element.classList.contains('user-status-icon')) {
       const userNameElement = element.parentElement.children[1] as HTMLElement;
       selectedContact = userNameElement.textContent as string;
       userNameElement.style.color = 'blue';
       selectedUserElement = userNameElement;
+      changeInviteMSG('Start messaging');
     }
 
     if (element !== null && element.parentElement !== null && element.classList.contains('user-id')) {
@@ -40,6 +42,7 @@ export function showUserPanel(parent: HTMLElement) {
       selectedContact = element.parentElement.children[1].textContent as string;
       userNameElement.style.color = 'blue';
       selectedUserElement = userNameElement;
+      changeInviteMSG('Start messaging');
     }
     userToChatName.textContent = selectedUserElement.textContent;
     userToChatStatus.textContent = selectedUserElement.dataset.status as string;
@@ -52,6 +55,11 @@ export function showUserPanel(parent: HTMLElement) {
 export function populateUserList(parent: HTMLElement, userOnLine: UserInfo[], userOffLine: UserInfo[]) {
   console.log('Making User List', parent, userOnLine, userOffLine);
   parent.innerHTML = '';
+  if (userOnLine.length === 0 && userOffLine.length === 0) {
+    changeInviteMSG('');
+    sendBTN.setAttribute('disabled', '');
+  }
+
   if (userOnLine.length > 0) {
     for (let i = 0; i < userOnLine.length; i++) {
       const userWrapper = document.createElement('div');
