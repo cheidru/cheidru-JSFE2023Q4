@@ -226,7 +226,7 @@ button:hover:not(:disabled) {
   cursor: pointer;
 }
 
-.user-wrapper:hover {
+.user-wrapper:hover:not(.user-msg-number) {
   font-weight: bold;
 }
 
@@ -236,6 +236,15 @@ button:hover:not(:disabled) {
   background-color:rgb(15, 106, 203);
   border-radius: 50%;
   border-width: 0px;
+}
+
+.user-msg-number {
+  width: 2rem;
+  height: auto;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  color: whitesmoke;
+  background-color: green;
 }
 
 #messenger-wrapper {
