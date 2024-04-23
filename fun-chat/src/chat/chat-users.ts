@@ -1,5 +1,5 @@
 import { UserInfo, fillMessageList } from '../api/api';
-import { userToChatName, userToChatStatus, changeInviteMSG, sendBTN, newMessage } from './chat-messages';
+import { userToChatName, userToChatStatus, changeInviteMSG, sendBTN, newMessage, messages } from './chat-messages';
 
 export const userList = document.createElement('ul');
 export let selectedContact = '';
@@ -79,11 +79,14 @@ function catchUserListElementClicked(event: Event) {
 }
 
 function changeAttributesAccToNewContact(newContact: HTMLElement) {
+  if (selectedUserElement === newContact) return;
   selectedUserElement = newContact;
   newContact.style.color = 'blue';
   changeInviteMSG('Start messaging');
   sendBTN.removeAttribute('disabled');
   newMessage.removeAttribute('disabled');
+  if (newContact.parentElement !== null) newContact.parentElement.children[2].textContent = '';
+  messages.innerHTML = '';
 }
 
 export function populateUserList(parent: HTMLElement, userOnLineList: UserInfo[], userOffLineList: UserInfo[]) {

@@ -241,10 +241,14 @@ button:hover:not(:disabled) {
 .user-msg-number {
   width: auto;
   height: auto;
-  padding: auto;
+  padding: 0 0.5rem;
   border-radius: 0.5rem;
   color: whitesmoke;
   background-color: green;
+}
+
+.user-msg-number:empty {
+  padding: 0;
 }
 
 #messenger-wrapper {
@@ -266,6 +270,7 @@ button:hover:not(:disabled) {
 }
 
 #messages {
+  box-sizing: border-box;
   position: relative;
   width: 100%;
   height: calc(100% - 8rem);  

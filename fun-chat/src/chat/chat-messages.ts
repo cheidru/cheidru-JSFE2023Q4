@@ -1,9 +1,10 @@
 import { sendMessage } from '../api/api';
+import { activeUser } from '../login/login';
 
 export const userToChatName = document.createElement('div');
 export const userToChatStatus = document.createElement('div');
 const inviteMessage = document.createElement('div');
-const messages = document.createElement('div');
+export const messages = document.createElement('div');
 export const sendBTN = document.createElement('button');
 export const newMessage = document.createElement('input');
 
@@ -89,42 +90,58 @@ export function showMessages(messageArray: Message[]) {
   console.log('showMessages messageArray = ', messageArray, 'messageNum = ', messageNum);
 
   for (let i = 0; i < messageNum; i++) {
-    const messageWrapper = document.createElement('div');
-    messageWrapper.classList.add('message-wrapper');
-    messages.append(messageWrapper);
+    // Message from the user I'm chatting now
+    if (messageArray[i].from === userToChatName.textContent || messageArray[i].from === activeUser.name) {
+      const messageWrapper = document.createElement('div');
+      messageWrapper.classList.add('message-wrapper');
+      messages.append(messageWrapper);
 
-    const messageHeader = document.createElement('div');
-    messageHeader.classList.add('message-header');
-    messageWrapper.append(messageHeader);
+      const messageHeader = document.createElement('div');
+      messageHeader.classList.add('message-header');
+      messageWrapper.append(messageHeader);
 
-    const messageSender = document.createElement('div');
-    const fro = messageArray[i].from === userToChatName.textContent ? messageArray[i].from : 'You';
-    messageSender.textContent = fro;
-    if (fro === 'You') messageWrapper.style.alignSelf = 'flex-start';
-    messageHeader.append(messageSender);
+      const messageSender = document.createElement('div');
+      const fro = messageArray[i].from === userToChatName.textContent ? messageArray[i].from : 'You';
+      messageSender.textContent = fro;
+      if (fro === 'You') messageWrapper.style.alignSelf = 'flex-start';
+      messageHeader.append(messageSender);
 
-    const messageDate = document.createElement('div');
-    const msgDate = new Date(messageArray[i].datetime);
-    messageDate.textContent = `${norm(msgDate.getDate())}-${norm(msgDate.getMonth())}-${msgDate.getFullYear()} ${norm(msgDate.getHours())}:${norm(msgDate.getMinutes())}:${norm(msgDate.getSeconds())}`;
-    messageHeader.append(messageDate);
+      const messageDate = document.createElement('div');
+      const msgDate = new Date(messageArray[i].datetime);
+      messageDate.textContent = `${norm(msgDate.getDate())}-${norm(msgDate.getMonth())}-${msgDate.getFullYear()} ${norm(msgDate.getHours())}:${norm(msgDate.getMinutes())}:${norm(msgDate.getSeconds())}`;
+      messageHeader.append(messageDate);
 
-    const messageTxt = document.createElement('div');
-    messageTxt.classList.add('message-txt');
-    messageTxt.textContent = messageArray[i].text;
-    messageWrapper.append(messageTxt);
+      const messageTxt = document.createElement('div');
+      messageTxt.classList.add('message-txt');
+      messageTxt.textContent = messageArray[i].text;
+      messageWrapper.append(messageTxt);
 
-    const messageFooter = document.createElement('div');
-    messageFooter.classList.add('message-footer');
-    if (messageArray[i].status.isEdited === true) {
-      messageFooter.textContent = 'Edited';
-    } else if (messageArray[i].status.isReaded === true) {
-      messageFooter.textContent = 'Opened';
-    } else if (messageArray[i].status.isDelivered === true) {
-      messageFooter.textContent = 'Delivered';
+      const messageFooter = document.createElement('div');
+      messageFooter.classList.add('message-footer');
+      if (messageArray[i].status.isEdited === true) {
+        messageFooter.textContent = 'Edited';
+      } else if (messageArray[i].status.isReaded === true) {
+        messageFooter.textContent = 'Opened';
+      } else if (messageArray[i].status.isDelivered === true) {
+        messageFooter.textContent = 'Delivered';
+      } else {
+        messageFooter.textContent = 'Not delivered';
+      }
+      messageWrapper.append(messageFooter);
     } else {
-      messageFooter.textContent = 'Not delivered';
+      const userWrapperList = document.querySelectorAll('.user-id');
+      for (const user of userWrapperList) {
+        if (user.textContent === messageArray[i].from && messageArray[i].status.isReaded === false) {
+          if (user.parentElement !== null) {
+            const mailNum =
+              user.parentElement.children[2].textContent === ''
+                ? 1
+                : Number(user.parentElement.children[2].textContent) + 1;
+            user.parentElement.children[2].textContent = mailNum.toString();
+          }
+        }
+      }
     }
-    messageWrapper.append(messageFooter);
   }
 }
 
