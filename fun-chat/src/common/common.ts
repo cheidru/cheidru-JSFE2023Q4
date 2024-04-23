@@ -46,3 +46,9 @@ export function showModal(content: string, parent: HTMLElement) {
     true
   );
 }
+
+export function showLoader(parent: HTMLElement) {
+  const loader = document.createElement('span');
+  loader.classList.add('loader');
+  parent.append(loader);
+}
