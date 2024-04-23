@@ -239,9 +239,9 @@ button:hover:not(:disabled) {
 }
 
 .user-msg-number {
-  width: 2rem;
+  width: auto;
   height: auto;
-  padding: 0.5rem;
+  padding: auto;
   border-radius: 0.5rem;
   color: whitesmoke;
   background-color: green;

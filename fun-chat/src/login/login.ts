@@ -26,8 +26,11 @@ export function showLoginWindow() {
   showLoginInput(loginWindow);
   showButtons(loginWindow);
 
-  document.addEventListener('keydown', (e) => {
-    if (e.code === 'Enter' && userDataValid.name === true && userDataValid.pass === true) {
+  document.addEventListener('keydown', keyDownHandler);
+
+  function keyDownHandler(event: KeyboardEvent) {
+    if (event.code === 'Enter' && userDataValid.name === true && userDataValid.pass === true) {
+      document.removeEventListener('keydown', keyDownHandler);
       if (activeUser.name !== null && activeUser.pass !== null) checkServerAuth(activeUser.name, activeUser.pass);
     } else {
       if (activeUser.name !== null && document.activeElement === name) {
@@ -36,10 +39,11 @@ export function showLoginWindow() {
         if (name !== null) name.focus();
       }
     }
-  });
+  }
 
   loginBTN.addEventListener('click', () => {
     console.log('name = ', activeUser.name, 'pass = ', activeUser.pass);
+    document.removeEventListener('keydown', keyDownHandler);
     if (activeUser.name !== null && activeUser.pass !== null) checkServerAuth(activeUser.name, activeUser.pass);
   });
 }

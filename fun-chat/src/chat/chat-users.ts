@@ -1,5 +1,5 @@
 import { UserInfo, fillMessageList } from '../api/api';
-import { userToChatName, userToChatStatus, changeInviteMSG, sendBTN } from './chat-messages';
+import { userToChatName, userToChatStatus, changeInviteMSG, sendBTN, newMessage } from './chat-messages';
 
 export const userList = document.createElement('ul');
 export let selectedContact = '';
@@ -13,13 +13,15 @@ export function showUserPanel(parent: HTMLElement) {
   const userSearch = document.createElement('input');
   userSearch.setAttribute('id', 'user-search');
   userSearch.setAttribute('placeholder', 'Search ...');
+  userSearch.setAttribute('autocomplete', 'off');
   userPanelWrapper.append(userSearch);
 
   userList.setAttribute('id', 'user-list');
   userPanelWrapper.append(userList);
 
   userSearch.addEventListener('input', () => {
-    const userWrapperList = document.querySelectorAll('user-wrapper');
+    const userWrapperList = document.querySelectorAll('.user-wrapper');
+    console.log('Start searching ', userWrapperList);
     // Search pattern starts with input lowercase value
     const regexp = new RegExp(`^${userSearch.value.toLowerCase()}`);
     for (let i = 0; i < userWrapperList.length; i++) {
@@ -29,10 +31,10 @@ export function showUserPanel(parent: HTMLElement) {
       if (userNameElement.textContent !== null) userName = userNameElement.textContent.toLowerCase();
       // Hide user if it doesn't match pattern
       if (regexp && !regexp.test(userName)) userWrapper.style.display = 'none';
-      // Show all users if pattern (input value) is empty
-      if (!regexp) userWrapper.style.display = 'flex';
+      // Show all users if pattern (input value) is empty or show hidden user when pattern changed
+      if (!regexp || (regexp && regexp.test(userName))) userWrapper.style.display = 'flex';
     }
-  })
+  });
 
   userList.addEventListener('click', (event) => {
     // If any user was selected before, remove this selection
@@ -76,34 +78,43 @@ function catchUserListElementClicked(event: Event) {
   }
 }
 
-
 function changeAttributesAccToNewContact(newContact: HTMLElement) {
   selectedUserElement = newContact;
   newContact.style.color = 'blue';
   changeInviteMSG('Start messaging');
+  sendBTN.removeAttribute('disabled');
+  newMessage.removeAttribute('disabled');
 }
 
 export function populateUserList(parent: HTMLElement, userOnLineList: UserInfo[], userOffLineList: UserInfo[]) {
   parent.innerHTML = '';
-  if (userOnLineList.length === 0 && userOffLineList.length === 0) {
+
+  if (userToChatName.textContent === '') {
     changeInviteMSG('');
     sendBTN.setAttribute('disabled', '');
+    newMessage.setAttribute('disabled', '');
   }
 
   if (userOnLineList.length > 0) {
     for (let i = 0; i < userOnLineList.length; i++) {
-      createUserListElement(parent, userOnLineList, i, '#87A922', 'online')
+      createUserListElement(parent, userOnLineList, i, '#87A922', 'online');
     }
   }
-  
+
   if (userOffLineList.length > 0) {
     for (let i = 0; i < userOffLineList.length; i++) {
-      createUserListElement(parent, userOffLineList, i, '#B3C8CF', 'offline')
+      createUserListElement(parent, userOffLineList, i, '#B3C8CF', 'offline');
     }
   }
 }
 
-function createUserListElement(parent: HTMLElement, userArray: UserInfo[], index: number, iconColor: string, status: string) {
+function createUserListElement(
+  parent: HTMLElement,
+  userArray: UserInfo[],
+  index: number,
+  iconColor: string,
+  status: string
+) {
   const userWrapper = document.createElement('div');
   userWrapper.classList.add('user-wrapper');
   parent.append(userWrapper);

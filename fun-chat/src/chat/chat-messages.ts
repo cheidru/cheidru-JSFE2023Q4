@@ -5,6 +5,7 @@ export const userToChatStatus = document.createElement('div');
 const inviteMessage = document.createElement('div');
 const messages = document.createElement('div');
 export const sendBTN = document.createElement('button');
+export const newMessage = document.createElement('input');
 
 export function changeInviteMSG(message: string) {
   console.log('changeInviteMSG to ', message);
@@ -60,9 +61,9 @@ function sendNewMessagePanel(parent: HTMLElement) {
   newMessageWrapper.setAttribute('id', 'new-message-wrapper');
   parent.append(newMessageWrapper);
 
-  const newMessage = document.createElement('input');
   newMessage.setAttribute('id', 'new-message-input');
   newMessage.setAttribute('placeholder', 'Write new message ...');
+  newMessage.setAttribute('autocomplete', 'off');
   newMessageWrapper.append(newMessage);
 
   newMessage.addEventListener('input', () => {
