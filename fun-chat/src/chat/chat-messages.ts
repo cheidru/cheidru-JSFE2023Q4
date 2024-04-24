@@ -9,7 +9,6 @@ export const sendBTN = document.createElement('button');
 export const newMessage = document.createElement('input');
 
 export function changeInviteMSG(message: string) {
-  console.log('changeInviteMSG to ', message);
   inviteMessage.textContent = message;
 }
 
@@ -67,20 +66,32 @@ function sendNewMessagePanel(parent: HTMLElement) {
   newMessage.setAttribute('autocomplete', 'off');
   newMessageWrapper.append(newMessage);
 
+  sendBTN.setAttribute('id', 'send-message-btn');
+  sendBTN.textContent = 'Send';
+  newMessageWrapper.append(sendBTN);
+
   newMessage.addEventListener('input', () => {
     if (newMessage.value.length > 0) sendBTN.removeAttribute('disabled');
     if (newMessage.value.length === 0) sendBTN.setAttribute('disabled', '');
   });
 
-  sendBTN.setAttribute('id', 'send-message-btn');
-  sendBTN.textContent = 'Send';
-  newMessageWrapper.append(sendBTN);
+  document.addEventListener('keydown', keyDownHandler);
 
   sendBTN.addEventListener('click', () => {
+    if (newMessage.value === '') return;
     inviteMessage.style.display = 'none';
     sendMessage(newMessage.value);
     newMessage.value = '';
   });
+}
+
+export function keyDownHandler(event: KeyboardEvent) {
+  if (newMessage.value === '') return;
+  if (event.code === 'Enter' && document.activeElement === newMessage) {
+    inviteMessage.style.display = 'none';
+    sendMessage(newMessage.value);
+    newMessage.value = '';
+  }
 }
 
 export function showMessages(messageArray: Message[]) {

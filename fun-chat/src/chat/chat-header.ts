@@ -1,5 +1,6 @@
 import { activeUser } from '../login/login';
 import { logoutCurrentUser } from '../api/api';
+import { keyDownHandler } from './chat-messages';
 
 export const ownUserName = document.createElement('div');
 
@@ -28,6 +29,7 @@ export function showHeader(parent: HTMLElement) {
   btnWrapper.append(logOutBTN);
 
   logOutBTN.addEventListener('click', () => {
+    document.removeEventListener('keydown', keyDownHandler);
     logoutCurrentUser();
   });
 }

@@ -93,7 +93,6 @@ export function populateUserList(parent: HTMLElement, userOnLineList: UserInfo[]
   parent.innerHTML = '';
 
   if (userToChatName.textContent === '') {
-    changeInviteMSG('');
     sendBTN.setAttribute('disabled', '');
     newMessage.setAttribute('disabled', '');
   }
