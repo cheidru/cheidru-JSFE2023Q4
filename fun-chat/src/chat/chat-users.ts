@@ -1,4 +1,4 @@
-import { UserInfo, fillMessageList } from '../api/api';
+import { UserInfo, fillMessageList, getMailFromThirdPartyUser } from '../api/api';
 import { userToChatName, userToChatStatus, changeInviteMSG, sendBTN, newMessage, messages } from './chat-messages';
 
 export const userList = document.createElement('ul');
@@ -135,4 +135,5 @@ function createUserListElement(
   const msgNum = document.createElement('div');
   msgNum.classList.add('user-msg-number');
   userWrapper.append(msgNum);
+  getMailFromThirdPartyUser(userID.textContent);
 }

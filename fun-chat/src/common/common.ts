@@ -2,7 +2,7 @@ export const appInfo = `What could be better than chatting with your friends usi
   But what if the service owner deletes your messages? Or, on the contrary, 
   they can store your chat history without your consent! You know how to create 
   an outstanding design and functionality, right? Let's not delay and get down to work! 
-  Let's create our own chat.`;
+  Let's create our own chat. Author: Igor Checheurov`;
 
 const powerLayer = document.createElement('div');
 const modal = document.createElement('div');

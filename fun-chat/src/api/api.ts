@@ -66,13 +66,19 @@ function onMessageAction(event: MessageEvent, socketObj: WebSocket, name: string
     case 'MSG_FROM_USER':
       console.log('User Mailing history fetched');
       console.log(serverResp.payload.messages);
-      showMessages(serverResp.payload.messages);
+      if (serverResp.id.includes('third-party-user')) {
+        const idTXT = serverResp.id;
+        const user = idTXT.slice(17);
+        showMessages(serverResp.payload.messages, user);
+      } else {
+        showMessages(serverResp.payload.messages, '');
+      }
       break;
     case 'MSG_SEND':
       console.log('User sent mail or received mail');
       console.log(serverResp.payload.message);
       messageArray.push(serverResp.payload.message);
-      showMessages(messageArray as []);
+      showMessages(messageArray as [], '');
       break;
     case 'USER_LOGOUT':
       console.log('A user logged out');
@@ -177,6 +183,20 @@ export function logoutCurrentUser() {
       user: {
         login: activeUser.name,
         password: activeUser.pass,
+      },
+    },
+  };
+  wSocket.send(JSON.stringify(messageObj));
+}
+
+export function getMailFromThirdPartyUser(userName: string) {
+  console.log('MSG_FROM_USER ', userName);
+  const messageObj = {
+    id: 'third-party-user ' + userName,
+    type: 'MSG_FROM_USER',
+    payload: {
+      user: {
+        login: userName,
       },
     },
   };

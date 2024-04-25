@@ -94,8 +94,21 @@ export function keyDownHandler(event: KeyboardEvent) {
   }
 }
 
-export function showMessages(messageArray: Message[]) {
+export function showMessages(messageArray: Message[], sender: string) {
   const messageNum = messageArray.length;
+
+  if (sender.length > 0 && sender !== activeUser.name) {
+    console.log('sender =', sender, 'activeUser.name =', activeUser.name, messageArray.length);
+    const userWrapperList = document.querySelectorAll('.user-wrapper');
+    for (let i = 0; i < userWrapperList.length; i++) {
+      const userNameElement = userWrapperList[i].children[1] as HTMLElement;
+      if (userNameElement.textContent === sender) {
+        const userMSGNum = userWrapperList[i].children[2] as HTMLElement;
+        userMSGNum.textContent = messageArray.length > 0 ? messageArray.length.toString() : '';
+        return;
+      }
+    }
+  }
   if (messageArray.length > 0) changeInviteMSG('');
 
   console.log('showMessages messageArray = ', messageArray, 'messageNum = ', messageNum);
