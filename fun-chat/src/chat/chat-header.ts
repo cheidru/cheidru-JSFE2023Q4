@@ -1,5 +1,5 @@
 import { activeUser } from '../login/login';
-import { logoutCurrentUser } from '../api/api';
+import { logoutCurrentUser } from '../api/api-req';
 import { keyDownHandler } from './chat-messages';
 
 export const ownUserName = document.createElement('div');

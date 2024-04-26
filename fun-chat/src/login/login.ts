@@ -1,6 +1,6 @@
 import { showLoginInput } from './login-input';
 import { showButtons, loginBTN } from './login-buttons';
-import { checkServerAuth } from '../api/api';
+import { checkServerAuth } from '../api/api-common';
 
 export const userDataValid = {
   name: false,

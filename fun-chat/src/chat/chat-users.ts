@@ -1,4 +1,5 @@
-import { UserInfo, fillMessageList, getMailFromThirdPartyUser } from '../api/api';
+import { UserInfo } from '../api/api-common';
+import { getMailFromThirdPartyUser } from '../api/api-req';
 import { userToChatName, userToChatStatus, changeInviteMSG, sendBTN, newMessage, messages } from './chat-messages';
 
 export const userList = document.createElement('ul');
@@ -46,7 +47,8 @@ export function showUserPanel(parent: HTMLElement) {
     userToChatStatus.textContent = selectedUserElement.dataset.status as string;
     if (userToChatStatus.textContent === 'online') userToChatStatus.style.color = '#87A922';
     if (userToChatStatus.textContent === 'offline') userToChatStatus.style.color = 'rgb(57, 57, 57)';
-    fillMessageList();
+    getMailFromThirdPartyUser(userToChatName.textContent as string);
+    // fillMessageList();
   });
 }
 

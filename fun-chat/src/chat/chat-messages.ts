@@ -1,4 +1,4 @@
-import { sendMessage } from '../api/api';
+import { sendMessage } from '../api/api-req';
 import { activeUser } from '../login/login';
 
 export const userToChatName = document.createElement('div');
