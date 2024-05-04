@@ -22,25 +22,35 @@
 						<h4>Scalable Vector Graphics</h4>
 
 						<aside class="notes">
-							Hello friends, I want to speak about SVG in this presentation
+							Hello friends, I want to speak about SVG in this presentation.
 						</aside>
 					</section>
 					<section>
 						<p>It is an XML-based vector image format for defining two-dimensional graphics, having support for interactivity and animation.</p>
 
 						<aside class="notes">
-							SVG structure is based on XML. SVG format adds possibility for interaction and animation
+							SVG files have structure based on XML language. SVG format add possibility for interaction and animation
 						</aside>
 					</section>
 					<section>
 						<p>The SVG specification was developed back in 1999 by the World Wide Web Consortium.</p>
 						<p>Early adoption was limited due to lack of support in older versions of Internet Explorer.</p>
 						<p>Since 2011, all major desktop browsers began to support SVG.</p>
+						
+						<aside class="notes">
+							SVG specification was developed back in 1999 by the World Wide Web Consortium. 
+							But in the beginning SVG was not popular because of poor support in browsers.
+							Situation has changed in 2011 when all major browsers began to support SVG.
+						</aside>
 					</section>
 				</section>
 				<section>
 					<section>
 						<h3>Benefits of SVG compared to CSS</h3>
+
+						<aside class="notes">
+							Some words about benefits of using SVG comparing to CSS
+						</aside>
 					</section>
 					<section>
 						<ol>
@@ -50,9 +60,9 @@
 						</ol>
 
 						<aside class="notes">
-							SVG allows much more complex shapes than basic squares and circles of css
-							It is more easy to resize and control an element composed of several basic shapes with SVG than with CSS
-							You can position a string of text along a curve
+							- SVG allows much more complex shapes than basic squares and circles of CSS.
+							- It is more easy to resize and control position of basic shapes which compose compound SVG.
+							- You can position a string of text along a curve in SVG,
 						</aside>
 					</section>
 					<section>
@@ -61,6 +71,10 @@
 							<img class="svg1" src="./assets/svg/close-circle-svgrepo-com.svg" alt="master-mind-words"></img>							
 							<img class="svg1" id="master-mind-svg" src="./assets/svg/master-mind.svg" alt="master-mind-words"></img>
 						</div>
+					
+						<aside class="notes">
+							And here are some examples.
+						</aside>
 					</section>
 				</section>
 				<section>
@@ -146,6 +160,10 @@
 				<section>
 					<section>
 						<h2>Icon font</h2>
+
+						<aside class="notes">
+							Begin with Icon fonts
+						</aside>
 					</section>
 					<section>
 						<ul>
@@ -154,6 +172,13 @@
 							<li>Icon fonts are transparent by nature so you can put them on any background and you can change the opacity of icons.</li>
 							<li>The most popular library of icon fonts is <span class="brand-name">Font Awesome</span>. It’s used for more than 100 million websites and includes a robust collection of icons.</li>
 						</ul>
+
+						<aside class="notes">
+							- Icon fonts are practically fonts where letters a replaces with SVG icons.
+							- And they share all characteristics of fonts such as size selection or positioning.
+							- Icon letters are transparent, so you can apply any background.
+							- The most popular and the first library of icon fonts is Font Awesome which was developed to be used in Bootstrap.
+						</aside>
 					</section>
 					<section>
 						<h3>Cons of Using Icon Fonts</h3>
@@ -163,14 +188,32 @@
 							<li>Some screen readers don’t know what to do with icon fonts.</li>
 							<li>You might not find a pack that has all icons you need.</li>
 						</ul>
+
+						<aside class="notes">
+							But there are some negative aspects in using Icon fonts.
+							- you can't apply gradient to it.
+							- you consume excessive memory if you don't need all icons of the this font.
+							- some screen readers can not recognize it
+							- it is possible that you don't find all icons you need in this pack.
+						</aside>
 					</section>
 				</section>
 				<section>
 					<section>
 						<h2>Object</h2>
+						
+						<aside class="notes">
+							Let's have a look at insertion SVG as objects
+						</aside>
 					</section>
 					<section>
 						<p>Using SVG as object gives pretty good control over animation and modification of SVG image. However there is a pitfall that you can't assign Event Listener to this object element.</p>
+												
+						<aside class="notes">
+							As it was shown in the table before, objects provide pretty good control over modification and animation of SVG omage.
+							Bad thing is that you can't assign event listener to this object which makes it more or less useless.
+						</aside>
+
 					</section>
 				</section>
 				<section>
