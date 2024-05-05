@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<section>
+						<h1>SVG</h1>
+						<h4>Scalable Vector Graphics</h4>
+
+						<aside class="notes">
+							Hello friends, I want to speak about SVG in this presentation.
+						</aside>
+					</section>
+					<section>
+						<p>It is an XML-based vector image format for defining two-dimensional graphics, having support for interactivity and animation.</p>
+
+						<aside class="notes">
+							SVG files have structure based on XML language. SVG format add possibility for interaction and animation
+						</aside>
+					</section>
+					<section>
+						<p>The SVG specification was developed back in 1999 by the World Wide Web Consortium.</p>
+						<p>Early adoption was limited due to lack of support in older versions of Internet Explorer.</p>
+						<p>Since 2011, all major desktop browsers began to support SVG.</p>
+						
+						<aside class="notes">
+							SVG specification was developed back in 1999 by the World Wide Web Consortium. 
+							But in the beginning SVG was not popular because of poor support in browsers.
+							Situation has changed in 2011 when all major browsers began to support SVG.
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h3>Benefits of SVG compared to CSS</h3>
+
+						<aside class="notes">
+							Some words about benefits of using SVG comparing to CSS
+						</aside>
+					</section>
+					<section>
+						<ol>
+							<li>More complex shapes</li>
+							<li>Better control of shape elements</li>
+							<li>Can position text along a curve</li>
+						</ol>
+
+						<aside class="notes">
+							- SVG allows much more complex shapes than basic squares and circles of CSS.
+							- It is more easy to resize and control position of basic shapes which compose compound SVG.
+							- You can position a string of text along a curve in SVG,
+						</aside>
+					</section>
+					<section>
+						<div id="sample-wrapper">
+							<img class="svg1" src="./assets/svg/genetic-data-svgrepo-com.svg" alt="master-mind-words"></img>
+							<img class="svg1" src="./assets/svg/close-circle-svgrepo-com.svg" alt="master-mind-words"></img>							
+							<img class="svg1" id="master-mind-svg" src="./assets/svg/master-mind.svg" alt="master-mind-words"></img>
+						</div>
+					
+						<aside class="notes">
+							And here are some examples.
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<table>
+							<caption>Methods to insert SVG into HTML code</caption>
+							<tbody>
+								<tr>
+									<th></th>
+									<th>Icon font</th>
+									<th>IMG, background-image</th>
+									<th>Object</th>
+									<th>Inline</th>
+								</tr>
+								<tr>
+									<th>CSS styling</th>
+									<td>Partially</td>
+									<td>No</td>
+									<td>Partially</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<th>JS modification</th>
+									<td>Partially</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<th>SVG animation</th>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+								<tr>
+									<th>Interactive SVG animation</th>
+									<td>No</td>
+									<td>No</td>
+									<td>Yes</td>
+									<td>Yes</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+					<section>
+						<table>
+							<caption>What 'Partially' means</caption>
+							<tbody>
+								<tr>
+									<th></th>
+									<th>Icon font</th>
+									<th></th>
+									<th>Object</th>
+									<th></th>
+								</tr>
+								<tr>
+									<th>CSS styling</th>
+									<td  style="text-wrap: nowrap;">Same as text. You  <br>can change color,  <br>size, alignment etc.</td>
+									<td></td>
+									<td><p>You need to add in the beginning of SVG either inline style or link to external css file like</p> <code style="text-wrap: nowrap;">&lt;<span>?xml-stylesheet type="text/css" <br>href="svgstyle.css"?</span>&gt</code></td>
+									<td></td>
+								</tr>
+								<tr>
+									<th>JS modification</th>
+									<td>Same as text. You can change color, size, alignment etc.</td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</section>
+				<section>
+					<h2>More about</h2>
+					<h4>Icon font <span>and</span> Object</h4>
+
+					<aside class="notes">
+						While using SVG as image and inline SVG are pretty obvious and common, let me pay more attention to image font and object options.
+					</aside>
+				</section>
+				<section>
+					<section>
+						<h2>Icon font</h2>
+
+						<aside class="notes">
+							Begin with Icon fonts
+						</aside>
+					</section>
+					<section>
+						<ul>
+							<li>Icon fonts are typefaces that use images rather than letter forms.</li>
+							<li>Like type, each character is scalable and can be modified using CSS.</li>
+							<li>Icon fonts are transparent by nature so you can put them on any background and you can change the opacity of icons.</li>
+							<li>The most popular library of icon fonts is <span class="brand-name">Font Awesome</span>. It’s used for more than 100 million websites and includes a robust collection of icons.</li>
+						</ul>
+
+						<aside class="notes">
+							- Icon fonts are practically fonts where letters a replaces with SVG icons.
+							- And they share all characteristics of fonts such as size selection or positioning.
+							- Icon letters are transparent, so you can apply any background.
+							- The most popular and the first library of icon fonts is Font Awesome which was developed to be used in Bootstrap.
+						</aside>
+					</section>
+					<section>
+						<h3>Cons of Using Icon Fonts</h3>
+						<ul>
+							<li>You can't apply gradient to it.</li>
+							<li>You might not need a full icon set.</li>
+							<li>Some screen readers don’t know what to do with icon fonts.</li>
+							<li>You might not find a pack that has all icons you need.</li>
+						</ul>
+
+						<aside class="notes">
+							But there are some negative aspects in using Icon fonts.
+							- you can't apply gradient to it.
+							- you consume excessive memory if you don't need all icons of the this font.
+							- some screen readers can not recognize it
+							- it is possible that you don't find all icons you need in this pack.
+						</aside>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Object</h2>
+						
+						<aside class="notes">
+							Let's have a look at insertion SVG as objects
+						</aside>
+					</section>
+					<section>
+						<p>Using SVG as object gives pretty good control over animation and modification of SVG image. However there is a pitfall that you can't assign Event Listener to this object element.</p>
+												
+						<aside class="notes">
+							As it was shown in the table before, objects provide pretty good control over modification and animation of SVG omage.
+							Bad thing is that you can't assign event listener to this object which makes it more or less useless.
+						</aside>
+
+					</section>
+				</section>
+				<section>
+					<h2>thank you for watching</h2>
+
+					<aside class="notes">That's all! Thank you for watching! And take care!</aside>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
