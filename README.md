@@ -4,7 +4,7 @@ List of course projects
 
 [Nonograms project](https://cheidru.github.io/cheidru-JSFE2023Q4/nonograms/)
 
-[Async race project](https://cheidru.github.io/cheidru-JSFE2023Q4/async-race/)
+[Async race project - Need server init](https://cheidru.github.io/cheidru-JSFE2023Q4/async-race/)
 
 [RSS puzzle project - Not finished](https://cheidru.github.io/cheidru-JSFE2023Q4/rss-puzzle/)
 
