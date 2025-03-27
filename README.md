@@ -4,13 +4,14 @@ List of course projects
 
 [Nonograms project](https://cheidru.github.io/cheidru-JSFE2023Q4/nonograms/)
 
-[Async race project - Need server init](https://cheidru.github.io/cheidru-JSFE2023Q4/async-race/)
+[Hangman project](https://cheidru.github.io/cheidru-JSFE2023Q4/hangman/)
+
+[Async race project - Require server init. Run locally](https://cheidru.github.io/cheidru-JSFE2023Q4/async-race/)
 
 [RSS puzzle project - Not finished](https://cheidru.github.io/cheidru-JSFE2023Q4/rss-puzzle/)
 
-[Fun chat project - Not finished](https://cheidru.github.io/cheidru-JSFE2023Q4/fun-chat/)
+[Fun chat project - Require server init. Run locally](https://cheidru.github.io/cheidru-JSFE2023Q4/fun-chat/)
 
-[Hangman project](https://cheidru.github.io/cheidru-JSFE2023Q4/hangman/)
 
 
 
